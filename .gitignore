@@ -24,4 +24,5 @@ hs_err_pid*
 replay_pid*
 
 # Ignore config.properties file
+target/classes/config.properties
 src/main/resources/config.properties
