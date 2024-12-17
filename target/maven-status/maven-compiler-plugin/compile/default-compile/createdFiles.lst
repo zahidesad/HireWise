@@ -1,1 +1,10 @@
-com\talentbridge\hirewise\Main.class
+com\talentbridge\hirewise\personnel_system\model\Department.class
+com\talentbridge\hirewise\personnel_system\service\DepartmentService.class
+com\talentbridge\hirewise\personnel_system\ui\DepartmentPanel.class
+com\talentbridge\hirewise\MainFrameTest.class
+com\talentbridge\hirewise\personnel_system\Main.class
+com\talentbridge\hirewise\MainFrameTest$1.class
+com\talentbridge\hirewise\personnel_system\ui\DepartmentPanel$1.class
+com\talentbridge\hirewise\personnel_system\dao\DepartmentDAO.class
+com\talentbridge\hirewise\DBConnection.class
+com\talentbridge\hirewise\job_posting_system\Main.class
