@@ -9,7 +9,14 @@ public class Department {
     private int departmentId;
     private String departmentName;
     private String departmentDescription;
+    
+    public Department() {}
 
+    public Department(String departmentName, String departmentDescription) {
+        this.departmentName = departmentName;
+        this.departmentDescription = departmentDescription;
+    }
+    
     // Getters and Setters
     public int getDepartmentId() { return departmentId; }
     public void setDepartmentId(int departmentId) { this.departmentId = departmentId; }
