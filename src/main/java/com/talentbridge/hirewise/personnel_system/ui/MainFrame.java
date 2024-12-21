@@ -14,22 +14,27 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static MainFrame instance;
     
+    private final SideMenuPanel sideMenu;
+    private final HeaderPanel header;
+    
     private final WelcomePanel welcomePage;
+    private final DepartmentPanel departmentPage;
 
     public MainFrame() {
         initComponents();
-        
+        System.out.println(System.getProperty("user.dir"));
         welcomePage = new WelcomePanel();
+        departmentPage = new DepartmentPanel();
         
-        // headerPanel.setLayout(new GridLayout());
-        // header = new HeaderPanel();
-        // header.setSize(headerPanel.getWidth(), headerPanel.getWidth());
-        // headerPanel.add(header);
+        headerPanel.setLayout(new GridLayout());
+        header = new HeaderPanel();
+        header.setSize(headerPanel.getWidth(), headerPanel.getWidth());
+        headerPanel.add(header);
         
-        // sideMenuPanel.setLayout(new GridLayout());
-        // sideMenu = new SideMenuPanel();
-        // sideMenu.setSize(sideMenuPanel.getWidth(), sideMenuPanel.getWidth());
-        // sideMenuPanel.add(sideMenu);
+        sideMenuPanel.setLayout(new GridLayout());
+        sideMenu = new SideMenuPanel();
+        sideMenu.setSize(sideMenuPanel.getWidth(), sideMenuPanel.getWidth());
+        sideMenuPanel.add(sideMenu);
         
         this.add(mainPanel);
         
@@ -42,6 +47,10 @@ public class MainFrame extends javax.swing.JFrame {
         
         // ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\appIcons\\logo.png");
         // this.setIconImage(icon.getImage());
+    }
+    
+    private void onAfterInit(){
+        sideMenu.adjustSideMenuContent();
     }
 
     @SuppressWarnings("unchecked")
@@ -133,10 +142,14 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 instance = new MainFrame();
+                instance.onAfterInit();
                 instance.setVisible(true);
             }
         });
     }
+    
+    public DepartmentPanel getDepartmentPage(){return this.departmentPage; }
+    public WelcomePanel getWelcomePage(){return this.welcomePage; }
     
     public final void setPage(JPanel page) {
         mainPanel.removeAll();
