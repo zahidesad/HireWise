@@ -10,39 +10,13 @@ public class Department {
     private String departmentName;
     private String departmentDescription;
 
-    public Department() {}
+    // Getters and Setters
+    public int getDepartmentId() { return departmentId; }
+    public void setDepartmentId(int departmentId) { this.departmentId = departmentId; }
 
-    public Department(String departmentName, String departmentDescription) {
-        this.departmentName = departmentName;
-        this.departmentDescription = departmentDescription;
-    }
+    public String getDepartmentName() { return departmentName; }
+    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
 
-    public int getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public String getDepartmentDescription() {
-        return departmentDescription;
-    }
-
-    public void setDepartmentDescription(String departmentDescription) {
-        this.departmentDescription = departmentDescription;
-    }
-
-    @Override
-    public String toString() {
-        return departmentName + " (" + departmentId + ")";
-    }
+    public String getDepartmentDescription() { return departmentDescription; }
+    public void setDepartmentDescription(String departmentDescription) { this.departmentDescription = departmentDescription; }
 }
