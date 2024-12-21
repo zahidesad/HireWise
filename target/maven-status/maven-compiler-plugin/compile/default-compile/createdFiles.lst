@@ -1,14 +1,14 @@
-<<<<<<< Updated upstream
 com\talentbridge\hirewise\personnel_system\ui\WelcomePanel.class
 com\talentbridge\hirewise\swing_custom_components\Button.class
 com\talentbridge\hirewise\personnel_system\service\DepartmentService.class
 com\talentbridge\hirewise\personnel_system\ui\DepartmentPanel.class
 com\talentbridge\hirewise\job_posting_system\dao\ApplicantDAO.class
-=======
 com\talentbridge\hirewise\custom_components\EventSwitchSelected.class
 com\talentbridge\hirewise\custom_components\CCModernScrollBar.class
 com\talentbridge\hirewise\custom_components\ListItem.class
->>>>>>> Stashed changes
+com\talentbridge\hirewise\custom_components\EventSwitchSelected.class
+com\talentbridge\hirewise\custom_components\CCModernScrollBar.class
+com\talentbridge\hirewise\custom_components\ListItem.class
 com\talentbridge\hirewise\MainFrameTest$1.class
 com\talentbridge\hirewise\personnel_system\ui\HeaderPanel$1.class
 com\talentbridge\hirewise\custom_components\CCSwitchButton.class
