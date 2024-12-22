@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
+import com.talentbridge.hirewise.ImageLib;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -12,7 +13,7 @@ public class HeaderPanel extends javax.swing.JPanel {
     public HeaderPanel() {
         initComponents();
         
-        ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\user.png");
+        ImageIcon icon = new ImageIcon(ImageLib.getPPIconPath());
         Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
         cCAvatarImageLabel1.setImage(icon);

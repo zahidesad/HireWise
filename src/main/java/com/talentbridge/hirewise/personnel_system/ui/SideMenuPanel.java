@@ -256,7 +256,6 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.removeAllItems();
         
         //------------ Department -------------
-        System.out.println(ImageLib.getWelcomeIconPath());
         ImageIcon icon = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
@@ -267,6 +266,12 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Wellcome", icon2, MainFrame.instance.getWelcomePage()));
+        
+        //------------ Department -------------
+        ImageIcon icon3 = new ImageIcon(ImageLib.getWelcomeIconPath());
+        Image imgFit3 = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon3.setImage(imgFit3);
+        cCSideMenuList1.addItem(new Item("Login", icon3,MainFrame.instance.getLoginPage()));
         
         cCSideMenuList1.setSelectedIndex(0);
     }

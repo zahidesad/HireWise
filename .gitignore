@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 /.idea
 target/classes/.netbeans_automatic_build
+/target/test-classes
+/target/maven-status

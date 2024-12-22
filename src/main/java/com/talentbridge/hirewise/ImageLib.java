@@ -14,4 +14,8 @@ public class ImageLib {
     public static String getDepartmentIconPath(){
         return projectPath + "\\assets\\corporation.png";
     }
+    
+    public static String getPPIconPath(){
+        return projectPath + "\\assets\\pp.jpg";
+    }
 }

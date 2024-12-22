@@ -19,12 +19,14 @@ public class MainFrame extends javax.swing.JFrame {
     
     private final WelcomePanel welcomePage;
     private final DepartmentPanel departmentPage;
+    private final LoginPanel loginPage;
 
     public MainFrame() {
         initComponents();
         System.out.println(System.getProperty("user.dir"));
         welcomePage = new WelcomePanel();
         departmentPage = new DepartmentPanel();
+        loginPage = new LoginPanel();
         
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -150,6 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public DepartmentPanel getDepartmentPage(){return this.departmentPage; }
     public WelcomePanel getWelcomePage(){return this.welcomePage; }
+    public LoginPanel getLoginPage(){return this.loginPage; }
     
     public final void setPage(JPanel page) {
         mainPanel.removeAll();
