@@ -2,6 +2,9 @@ package com.talentbridge.hirewise.personnel_system.service;
 
 import com.talentbridge.hirewise.personnel_system.dao.DepartmentDAO;
 import com.talentbridge.hirewise.personnel_system.model.Department;
+import com.talentbridge.hirewise.personnel_system.model.DepartmentBudget;
+import com.talentbridge.hirewise.personnel_system.model.ExpenseRecord;
+import com.talentbridge.hirewise.personnel_system.model.Position;
 import java.util.List;
 
 /**
@@ -38,4 +41,15 @@ public class DepartmentService {
         departmentDAO.delete(id);
     }
     
+    public List<Position> getDepartmentPositions(int id){
+        return departmentDAO.departmentPositions(id);
+    }
+    
+    public List<ExpenseRecord> getDepartmentExpenseRecords(int id){
+        return departmentDAO.departmentExpenseRecords(id);
+    }
+    
+    public List<DepartmentBudget> getDepartmentBudgetHistory(int id){
+        return departmentDAO.departmentBudgetHistory(id);
+    }
 }

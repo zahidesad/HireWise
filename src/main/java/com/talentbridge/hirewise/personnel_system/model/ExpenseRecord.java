@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.personnel_system.model;
+
+import java.sql.Date;
 
 /**
  *
@@ -13,8 +11,8 @@ public class ExpenseRecord {
     private int departmentId;
     private String expenseType;
     private double amount;
-    private String expenseDate;
-    private String referenceNo;
+    private Date expenseDate;
+    private int referenceId;
 
     // Getters and Setters
     public int getExpenseId() { return expenseId; }
@@ -29,9 +27,9 @@ public class ExpenseRecord {
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
 
-    public String getExpenseDate() { return expenseDate; }
-    public void setExpenseDate(String expenseDate) { this.expenseDate = expenseDate; }
+    public Date getExpenseDate() { return expenseDate; }
+    public void setExpenseDate(Date expenseDate) { this.expenseDate = expenseDate; }
 
-    public String getReferenceNo() { return referenceNo; }
-    public void setReferenceNo(String referenceNo) { this.referenceNo = referenceNo; }
+    public int getReferenceNo() { return referenceId; }
+    public void setReferenceNo(int referenceId) { this.referenceId = referenceId; }
 }
