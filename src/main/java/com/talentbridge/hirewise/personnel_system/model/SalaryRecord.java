@@ -1,30 +1,65 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.personnel_system.model;
+
+import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+import java.util.Date;
 
 /**
  *
- * @author Lenovo
+ * @author zahid
  */
 public class SalaryRecord {
+
     private int salaryRecordId;
     private int employeeId;
-    private String effectiveDate;
+    private Date effectiveDate;
     private double salaryAmount;
 
-    // Getters and Setters
-    public int getSalaryRecordId() { return salaryRecordId; }
-    public void setSalaryRecordId(int salaryRecordId) { this.salaryRecordId = salaryRecordId; }
+    public SalaryRecord() {
+    }
 
-    public int getEmployeeId() { return employeeId; }
-    public void setEmployeeId(int employeeId) { this.employeeId = employeeId; }
+    public SalaryRecord(int employeeId, Date effectiveDate, double salaryAmount) {
+        this.employeeId = employeeId;
+        this.effectiveDate = effectiveDate;
+        this.salaryAmount = salaryAmount;
+    }
+    
+    public Employee getEmployee() {
+        if (this.employeeId <= 0) {
+            return null; 
+        }
+        EmployeeDAO dao = new EmployeeDAO();
+        return dao.findById(this.employeeId);
+    }
 
-    public String getEffectiveDate() { return effectiveDate; }
-    public void setEffectiveDate(String effectiveDate) { this.effectiveDate = effectiveDate; }
+    public int getSalaryRecordId() {
+        return salaryRecordId;
+    }
 
-    public double getSalaryAmount() { return salaryAmount; }
-    public void setSalaryAmount(double salaryAmount) { this.salaryAmount = salaryAmount; }
+    public void setSalaryRecordId(int salaryRecordId) {
+        this.salaryRecordId = salaryRecordId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Date getEffectiveDate() {
+        return effectiveDate;
+    }
+
+    public void setEffectiveDate(Date effectiveDate) {
+        this.effectiveDate = effectiveDate;
+    }
+
+    public double getSalaryAmount() {
+        return salaryAmount;
+    }
+
+    public void setSalaryAmount(double salaryAmount) {
+        this.salaryAmount = salaryAmount;
+    }
 }
-

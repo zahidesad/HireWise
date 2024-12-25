@@ -1,41 +1,108 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.personnel_system.model;
+
+import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+import java.util.Date;
 
 /**
  *
- * @author Lenovo
+ * @author zahid
  */
 public class LeaveRecord {
-     private int leaveId;
+
+    private int leaveId;
     private int employeeId;
-    private int approvedBy;
+    private Integer approvedBy;
     private String leaveType;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private String status;
 
-    // Getters and Setters
-    public int getLeaveId() { return leaveId; }
-    public void setLeaveId(int leaveId) { this.leaveId = leaveId; }
+    public LeaveRecord() {
+    }
 
-    public int getEmployeeId() { return employeeId; }
-    public void setEmployeeId(int employeeId) { this.employeeId = employeeId; }
+    public LeaveRecord(int employeeId, Integer approvedBy, String leaveType,
+            Date startDate, Date endDate, String status) {
+        this.employeeId = employeeId;
+        this.approvedBy = approvedBy;
+        this.leaveType = leaveType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
 
-    public int getApprovedBy() { return approvedBy; }
-    public void setApprovedBy(int approvedBy) { this.approvedBy = approvedBy; }
+    // LeaveRecord.java içinde:
+    public Employee getEmployee() {
+        // employeeId = int
+        if (this.employeeId <= 0) {
+            return null;
+        }
+        EmployeeDAO dao = new EmployeeDAO();
+        return dao.findById(this.employeeId);
+    }
 
-    public String getLeaveType() { return leaveType; }
-    public void setLeaveType(String leaveType) { this.leaveType = leaveType; }
+    // LeaveRecord.java içinde:
+    public Employee getApprovedByEmployee() {
+        if (this.approvedBy == null || this.approvedBy <= 0) {
+            return null;
+        }
+        EmployeeDAO dao = new EmployeeDAO();
+        return dao.findById(this.approvedBy);
+    }
 
-    public String getStartDate() { return startDate; }
-    public void setStartDate(String startDate) { this.startDate = startDate; }
+    // Getters & Setters ...
+    public int getLeaveId() {
+        return leaveId;
+    }
 
-    public String getEndDate() { return endDate; }
-    public void setEndDate(String endDate) { this.endDate = endDate; }
+    public void setLeaveId(int leaveId) {
+        this.leaveId = leaveId;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Integer getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(Integer approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public String getLeaveType() {
+        return leaveType;
+    }
+
+    public void setLeaveType(String leaveType) {
+        this.leaveType = leaveType;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

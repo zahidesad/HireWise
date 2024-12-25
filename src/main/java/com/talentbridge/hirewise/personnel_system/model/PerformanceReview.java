@@ -1,35 +1,78 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.personnel_system.model;
+
+import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+import java.util.Date;
 
 /**
  *
- * @author Lenovo
+ * @author zahid
  */
 public class PerformanceReview {
-    
+
     private int reviewId;
     private int employeeId;
-    private String reviewDate;
+    private Date reviewDate;
     private int performanceScore;
     private String comments;
 
-    // Getters and Setters
-    public int getReviewId() { return reviewId; }
-    public void setReviewId(int reviewId) { this.reviewId = reviewId; }
+    public PerformanceReview() {
+    }
 
-    public int getEmployeeId() { return employeeId; }
-    public void setEmployeeId(int employeeId) { this.employeeId = employeeId; }
+    public PerformanceReview(int employeeId, Date reviewDate, int performanceScore, String comments) {
+        this.employeeId = employeeId;
+        this.reviewDate = reviewDate;
+        this.performanceScore = performanceScore;
+        this.comments = comments;
+    }
 
-    public String getReviewDate() { return reviewDate; }
-    public void setReviewDate(String reviewDate) { this.reviewDate = reviewDate; }
+    // LeaveRecord.java içinde:
+    public Employee getEmployee() {
+        // employeeId = int
+        if (this.employeeId <= 0) {
+            return null;
+        }
+        EmployeeDAO dao = new EmployeeDAO();
+        return dao.findById(this.employeeId);
+    }
 
-    public int getPerformanceScore() { return performanceScore; }
-    public void setPerformanceScore(int performanceScore) { this.performanceScore = performanceScore; }
+    // Getters & Setters ...
+    public int getReviewId() {
+        return reviewId;
+    }
 
-    public String getComments() { return comments; }
-    public void setComments(String comments) { this.comments = comments; }
-    
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Date getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(Date reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public int getPerformanceScore() {
+        return performanceScore;
+    }
+
+    public void setPerformanceScore(int performanceScore) {
+        this.performanceScore = performanceScore;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 }
