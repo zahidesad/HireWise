@@ -5,7 +5,8 @@ package com.talentbridge.hirewise.personnel_system.model;
  * @author Lenovo
  */
 public class Employee {
-     private int employeeId;
+    private int employeeId;
+    private int userId;
     private int departmentId;
     private int positionId;
     private int originalApplicantId;
@@ -19,6 +20,9 @@ public class Employee {
     // Getters and Setters
     public int getEmployeeId() { return employeeId; }
     public void setEmployeeId(int employeeId) { this.employeeId = employeeId; }
+    
+    public int getUserId() {return userId;}
+    public void setUserId(int userId) {this.userId = userId;}
 
     public int getDepartmentId() { return departmentId; }
     public void setDepartmentId(int departmentId) { this.departmentId = departmentId; }

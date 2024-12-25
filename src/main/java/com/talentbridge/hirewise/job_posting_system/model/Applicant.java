@@ -6,6 +6,7 @@ package com.talentbridge.hirewise.job_posting_system.model;
  */
 public class Applicant {
     private int applicantId;
+    private int userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,6 +20,13 @@ public class Applicant {
 
     public void setApplicantId(int applicantId) {
         this.applicantId = applicantId;
+    }
+    
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
