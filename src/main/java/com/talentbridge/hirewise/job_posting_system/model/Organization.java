@@ -4,15 +4,17 @@
  */
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Lenovo
  */
 public class Organization {
-     private int organizationId;
+    private int organizationId;
     private int cvId;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private String organizationName;
     private String organizationDescription;
 
@@ -32,19 +34,19 @@ public class Organization {
         this.cvId = cvId;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

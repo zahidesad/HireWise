@@ -1,6 +1,9 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
+
 import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+
+
 import java.util.Date;
 
 /**
@@ -9,6 +12,8 @@ import java.util.Date;
  */
 public class LeaveRecord {
 
+
+
     private int leaveId;
     private int employeeId;
     private Integer approvedBy;
@@ -16,6 +21,7 @@ public class LeaveRecord {
     private Date startDate;
     private Date endDate;
     private String status;
+
 
     public LeaveRecord() {
     }
@@ -105,4 +111,7 @@ public class LeaveRecord {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
 }
+

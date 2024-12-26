@@ -4,6 +4,8 @@
  */
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import java.util.Date;
+
 /**
  *
  * @author Lenovo
@@ -14,8 +16,8 @@ public class ApplicationStageHistory {
     private int postedBy;
     private String title;
     private String description;
-    private String postingDate;
-    private String expiryDate;
+    private Date postingDate;
+    private Date expiryDate;
     private String status;
 
     public int getJobPostingId() {
@@ -58,19 +60,19 @@ public class ApplicationStageHistory {
         this.description = description;
     }
 
-    public String getPostingDate() {
+    public Date getPostingDate() {
         return postingDate;
     }
 
-    public void setPostingDate(String postingDate) {
+    public void setPostingDate(Date postingDate) {
         this.postingDate = postingDate;
     }
 
-    public String getExpiryDate() {
+    public Date getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(String expiryDate) {
+    public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
 

@@ -1,6 +1,9 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
+
 import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+
+
 import java.util.Date;
 
 /**
@@ -16,6 +19,7 @@ public class Task {
     private Date startDate;
     private Date endDate;
     private String status;
+
 
     public Task() {
     }

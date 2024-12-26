@@ -1,6 +1,9 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
+
 import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+
+
 import java.util.Date;
 
 /**
@@ -13,6 +16,7 @@ public class SalaryRecord {
     private int employeeId;
     private Date effectiveDate;
     private double salaryAmount;
+
 
     public SalaryRecord() {
     }

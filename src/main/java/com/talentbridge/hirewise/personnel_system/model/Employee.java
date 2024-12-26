@@ -1,9 +1,11 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
+
 import com.talentbridge.hirewise.User;
 import com.talentbridge.hirewise.personnel_system.dao.DepartmentDAO;
 import com.talentbridge.hirewise.UserDAO;
 import com.talentbridge.hirewise.personnel_system.dao.PositionDAO;
+
 import java.util.Date;
 
 /**
@@ -11,6 +13,7 @@ import java.util.Date;
  * @author zahid
  */
 public class Employee {
+
 
     private int employeeId;
     private int userId;
@@ -80,6 +83,7 @@ public class Employee {
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
+
 
     public int getUserId() {
         return userId;
@@ -161,3 +165,4 @@ public class Employee {
         this.employmentStatus = employmentStatus;
     }
 }
+

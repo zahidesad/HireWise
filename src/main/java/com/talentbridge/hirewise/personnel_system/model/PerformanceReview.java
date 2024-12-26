@@ -1,6 +1,9 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
+
 import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+
+
 import java.util.Date;
 
 /**
@@ -14,6 +17,7 @@ public class PerformanceReview {
     private Date reviewDate;
     private int performanceScore;
     private String comments;
+
 
     public PerformanceReview() {
     }

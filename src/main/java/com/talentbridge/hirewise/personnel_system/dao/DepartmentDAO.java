@@ -138,7 +138,7 @@ public class DepartmentDAO {
                     e.setExpenseType(rs.getString("expense_type"));
                     e.setAmount(rs.getInt("amount"));
                     e.setExpenseDate(rs.getDate("expense_date"));
-                    e.setReferenceNo(rs.getInt("reference_id"));
+                    e.setReferenceId(rs.getInt("reference_id"));
                     records.add(e);
                 }
             }
