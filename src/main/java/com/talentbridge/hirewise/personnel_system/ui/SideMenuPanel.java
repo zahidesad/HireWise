@@ -267,11 +267,11 @@ public class SideMenuPanel extends javax.swing.JPanel {
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Wellcome", icon2, MainFrame.instance.getWelcomePage()));
         
-        //------------ Department -------------
+        //------------ Show Tasks -------------
         ImageIcon icon3 = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit3 = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
-        cCSideMenuList1.addItem(new Item("Login", icon3,MainFrame.instance.getLoginPage()));
+        cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
         
         cCSideMenuList1.setSelectedIndex(0);
     }

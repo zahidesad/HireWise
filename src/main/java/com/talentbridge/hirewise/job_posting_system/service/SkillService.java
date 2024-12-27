@@ -5,6 +5,7 @@
 package com.talentbridge.hirewise.job_posting_system.service;
 import com.talentbridge.hirewise.job_posting_system.dao.SkillDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Skill;
+import java.util.List;
 /**
  *
  * @author PC
