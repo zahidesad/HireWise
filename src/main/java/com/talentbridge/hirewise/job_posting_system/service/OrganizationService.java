@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.talentbridge.hirewise.job_posting_system.service;
-package com.talentbridge.hirewise.job_posting_system.service;
 import com.talentbridge.hirewise.job_posting_system.dao.OrganizationDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Organization;
+import java.util.List;
 /**
  *
  * @author PC

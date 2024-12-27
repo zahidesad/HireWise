@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -169,5 +171,9 @@ public class OrganizationDAO {
         organization.setOrganizationName(rs.getString("organization_name"));
         organization.setOrganizationDescription(rs.getString("organization_description"));
         return organization;
+    }
+
+    public void deleteByCvId(int cvId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -4,7 +4,12 @@
  */
 package com.talentbridge.hirewise.job_posting_system.service;
 import com.talentbridge.hirewise.job_posting_system.dao.CVDAO;
+import com.talentbridge.hirewise.job_posting_system.dao.OrganizationDAO;
+import com.talentbridge.hirewise.job_posting_system.dao.SkillDAO;
 import com.talentbridge.hirewise.job_posting_system.model.CV;
+import com.talentbridge.hirewise.job_posting_system.model.Organization;
+import com.talentbridge.hirewise.job_posting_system.model.Skill;
+import java.util.List;
 /**
  *
  * @author PC
