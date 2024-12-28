@@ -13,56 +13,78 @@ import java.util.List;
  * @author Lenovo
  */
 public class ApplicationStageHistoryService {
-     private ApplicationStageHistoryDAO applicationStageHistoryDAO = new ApplicationStageHistoryDAO();
+       private ApplicationStageHistoryDAO dao= new ApplicationStageHistoryDAO();
 
-    // Add a new application stage history
-    public void addApplicationStageHistory(ApplicationStageHistory history) {
-        // Validate required fields
-        if (history.getTitle() == null || history.getTitle().trim().isEmpty()) {
-            System.out.println("Title is invalid!");
-            return;
-        }
-        if (history.getPositionId() <= 0) {
-            System.out.println("Position ID is invalid!");
-            return;
-        }
-        applicationStageHistoryDAO.insert(history);
+    public ApplicationStageHistoryService() {
+        this.dao = new ApplicationStageHistoryDAO();
     }
 
-    // Get an application stage history by ID
-    public ApplicationStageHistory getApplicationStageHistoryById(int jobPostingId) {
-        if (jobPostingId <= 0) {
-            System.out.println("Invalid job posting ID!");
-            return null;
+    // Add a new stage history
+    public void addStageHistory(ApplicationStageHistory history) {
+        if (history == null || history.getApplicationId() <= 0) {
+            throw new IllegalArgumentException("Invalid stage history data.");
         }
-        return applicationStageHistoryDAO.findById(jobPostingId);
+        dao.insert(history);
     }
 
-    // Get all application stage histories
-    public List<ApplicationStageHistory> getAllApplicationStageHistories() {
-        return applicationStageHistoryDAO.findAll();
+    // Get stage history by ID
+    public ApplicationStageHistory getStageHistoryById(int stageHistoryId) {
+        if (stageHistoryId <= 0) {
+            throw new IllegalArgumentException("Invalid Stage History ID.");
+        }
+        ApplicationStageHistory history = dao.findById(stageHistoryId);
+        if (history == null) {
+            throw new RuntimeException("Stage History not found with ID: " + stageHistoryId);
+        }
+        return history;
     }
 
-    // Update an existing application stage history
-    public void updateApplicationStageHistory(ApplicationStageHistory history) {
-        // Validate required fields
-        if (history.getJobPostingId() <= 0) {
-            System.out.println("Invalid job posting ID!");
-            return;
+    // Get all stage histories
+    public List<ApplicationStageHistory> getAllStageHistories() {
+        List<ApplicationStageHistory> histories = dao.findAll();
+        if (histories.isEmpty()) {
+            throw new RuntimeException("No stage histories found.");
         }
-        if (history.getTitle() == null || history.getTitle().trim().isEmpty()) {
-            System.out.println("Title is invalid!");
-            return;
-        }
-        applicationStageHistoryDAO.update(history);
+        return histories;
     }
 
-    // Delete an application stage history by ID
-    public void deleteApplicationStageHistory(int jobPostingId) {
-        if (jobPostingId <= 0) {
-            System.out.println("Invalid job posting ID for deletion!");
-            return;
+    // Update an existing stage history
+    public void updateStageHistory(ApplicationStageHistory history) {
+        if (history == null || history.getStageHistoryId() <= 0) {
+            throw new IllegalArgumentException("Invalid stage history data for update.");
         }
-        applicationStageHistoryDAO.delete(jobPostingId);
+        ApplicationStageHistory existingHistory = dao.findById(history.getStageHistoryId());
+        if (existingHistory == null) {
+            throw new RuntimeException("Stage History not found with ID: " + history.getStageHistoryId());
+        }
+        dao.update(history);
+    }
+
+    // Delete stage history by ID
+    public void deleteStageHistory(int stageHistoryId) {
+        if (stageHistoryId <= 0) {
+            throw new IllegalArgumentException("Invalid Stage History ID.");
+        }
+        ApplicationStageHistory existingHistory = dao.findById(stageHistoryId);
+        if (existingHistory == null) {
+            throw new RuntimeException("Stage History not found with ID: " + stageHistoryId);
+        }
+        dao.delete(stageHistoryId);
+    }
+
+    // Get stage histories for a specific application ID
+    public List<ApplicationStageHistory> getStageHistoriesByApplicationId(int applicationId) {
+        if (applicationId <= 0) {
+            throw new IllegalArgumentException("Invalid Application ID.");
+        }
+
+        List<ApplicationStageHistory> histories = dao.findAll(); // Update DAO to have findByApplicationId if required
+        histories.removeIf(history -> history.getApplicationId() != applicationId);
+
+        if (histories.isEmpty()) {
+            throw new RuntimeException("No stage histories found for Application ID: " + applicationId);
+        }
+
+        return histories;
     }
 }

@@ -4,6 +4,10 @@
  */
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import com.talentbridge.hirewise.personnel_system.dao.EmployeeDAO;
+import com.talentbridge.hirewise.personnel_system.dao.PositionDAO;
+import com.talentbridge.hirewise.personnel_system.model.Employee;
+import com.talentbridge.hirewise.personnel_system.model.Position;
 import java.util.Date;
 
 /**
@@ -19,6 +23,23 @@ public class JobPosting {
     private Date postingDate;
     private Date expiryDate;
     private String status;
+    
+    public Position getPosition() {
+        
+        if (this.positionId <= 0) {
+            return null;
+        }
+        PositionDAO dao = new PositionDAO();
+        return dao.findById(this.positionId);
+    }
+    
+    public Employee getEmployee(){
+        if(this.postedBy<=0){
+            return null;
+        }
+       EmployeeDAO dao = new EmployeeDAO();
+       return dao.findById(this.postedBy);
+    }
 
     public int getJobPostingId() {
         return jobPostingId;

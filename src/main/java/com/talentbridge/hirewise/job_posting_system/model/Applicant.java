@@ -1,5 +1,9 @@
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.UserDAO;
+import com.talentbridge.hirewise.job_posting_system.dao.CVDAO;
+
 /**
  *
  * @author zahid
@@ -13,6 +17,26 @@ public class Applicant {
     private String phone;
     private int cvId; // Foreign Key reference to CV
 
+    
+    public CV getCV() {
+       
+        if (this.cvId <= 0) {
+            return null;
+        }
+        CVDAO dao = new CVDAO();
+        return dao.findById(this.cvId);
+    }
+    
+    public User getUser(){
+        
+        if (this.userId <= 0) {
+            return null;
+        }
+        UserDAO dao = new UserDAO();
+        return dao.findById(this.userId);
+    }
+    
+    
     // Getters and Setters
     public int getApplicantId() {
         return applicantId;

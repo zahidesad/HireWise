@@ -1,5 +1,8 @@
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import com.talentbridge.hirewise.job_posting_system.dao.ApplicantDAO;
+import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -16,7 +19,27 @@ public class Application {
     private String applicationDate;
     private String currentStage;
     private String lastUpdated;
-
+    
+    
+    
+    public Applicant getApplicant() {
+       
+        if (this.applicantId <= 0) {
+            return null;
+        }
+        ApplicantDAO dao = new ApplicantDAO();
+        return dao.findById(this.applicantId);
+    }
+    public JobPosting getJobPosting() {
+      
+        if (this.jobPostingId <= 0) {
+            return null;
+        }
+        JobPostingDAO dao = new JobPostingDAO();
+        return dao.findById(this.jobPostingId);
+    }
+    
+    
     public int getApplicationId() {
         return applicationId;
     }

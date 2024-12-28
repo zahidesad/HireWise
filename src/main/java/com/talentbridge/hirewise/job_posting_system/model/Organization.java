@@ -4,6 +4,7 @@
  */
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import com.talentbridge.hirewise.job_posting_system.dao.CVDAO;
 import java.util.Date;
 
 /**
@@ -17,7 +18,18 @@ public class Organization {
     private Date endDate;
     private String organizationName;
     private String organizationDescription;
-
+    
+    
+    
+    public CV getCV() {
+        
+        if (this.cvId <= 0) {
+            return null;
+        }
+        CVDAO dao = new CVDAO();
+        return dao.findById(this.cvId);
+    }
+    
     public int getOrganizationId() {
         return organizationId;
     }

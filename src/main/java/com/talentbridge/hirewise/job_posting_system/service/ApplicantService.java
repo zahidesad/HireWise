@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.job_posting_system.service;
 
+
 import com.talentbridge.hirewise.job_posting_system.dao.ApplicantDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @author zahid
  */
 public class ApplicantService {
+
     private ApplicantDAO applicantDAO = new ApplicantDAO();
 
     // Create a new applicant

@@ -4,8 +4,12 @@
  */
 package com.talentbridge.hirewise.job_posting_system.service;
 
+import com.talentbridge.hirewise.job_posting_system.dao.ApplicantDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.ApplicationDAO;
+import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
+import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.model.Application;
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import java.util.List;
 
 /**
@@ -13,7 +17,8 @@ import java.util.List;
  * @author Lenovo
  */
 public class ApplicationService {
-        private ApplicationDAO applicationDAO = new ApplicationDAO();
+
+    private ApplicationDAO applicationDAO = new ApplicationDAO();
 
     // Create a new application
     public void addApplication(Application application) {

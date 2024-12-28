@@ -4,6 +4,7 @@
  */
 package com.talentbridge.hirewise.job_posting_system.model;
 
+import com.talentbridge.hirewise.job_posting_system.dao.ApplicationDAO;
 import java.util.Date;
 
 /**
@@ -11,76 +12,96 @@ import java.util.Date;
  * @author Lenovo
  */
 public class ApplicationStageHistory {
-    private int jobPostingId;
-    private int positionId;
-    private int postedBy;
-    private String title;
-    private String description;
-    private Date postingDate;
-    private Date expiryDate;
-    private String status;
+    private int stageHistoryId;
+    private int applicationId;
+    private String stageName;
+    private String changedData;
+    private String comments;
 
-    public int getJobPostingId() {
-        return jobPostingId;
+    /**
+     * @return the stageHistoryId
+     */
+    public int getStageHistoryId() {
+        return stageHistoryId;
+    }
+    
+    
+    public Application getApplication() {
+       
+        if (this.applicationId <= 0) {
+            return null;
+        }
+        ApplicationDAO dao = new ApplicationDAO();
+        return dao.findById(this.applicationId);
+    }
+    
+    /**
+     * @param stageHistoryId the stageHistoryId to set
+     */
+    public void setStageHistoryId(int stageHistoryId) {
+        this.stageHistoryId = stageHistoryId;
     }
 
-    public void setJobPostingId(int jobPostingId) {
-        this.jobPostingId = jobPostingId;
+    /**
+     * @return the applicationId
+     */
+    public int getApplicationId() {
+        return applicationId;
     }
 
-    public int getPositionId() {
-        return positionId;
+    /**
+     * @param applicationId the applicationId to set
+     */
+    public void setApplicationId(int applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public void setPositionId(int positionId) {
-        this.positionId = positionId;
+    /**
+     * @return the stageName
+     */
+    public String getStageName() {
+        return stageName;
     }
 
-    public int getPostedBy() {
-        return postedBy;
+    /**
+     * @param stageName the stageName to set
+     */
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
     }
 
-    public void setPostedBy(int postedBy) {
-        this.postedBy = postedBy;
+    /**
+     * @return the changedData
+     */
+    public String getChangedData() {
+        return changedData;
     }
 
-    public String getTitle() {
-        return title;
+    /**
+     * @param changedData the changedData to set
+     */
+    public void setChangedData(String changedData) {
+        this.changedData = changedData;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    /**
+     * @return the comments
+     */
+    public String getComments() {
+        return comments;
     }
 
-    public String getDescription() {
-        return description;
+    /**
+     * @param comments the comments to set
+     */
+    public void setComments(String comments) {
+        this.comments = comments;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getPostingDate() {
-        return postingDate;
-    }
-
-    public void setPostingDate(Date postingDate) {
-        this.postingDate = postingDate;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    
+    
+    
+    
+ 
+    
+   
 }
