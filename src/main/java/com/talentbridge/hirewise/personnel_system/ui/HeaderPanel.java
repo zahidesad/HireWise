@@ -50,7 +50,7 @@ public class HeaderPanel extends javax.swing.JPanel {
                 logoutLabelMouseClicked(evt);
             }
         });
-        add(logoutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 30));
+        add(logoutLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 40));
         add(cCAvatarImageLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 50, 50));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -71,8 +71,8 @@ public class HeaderPanel extends javax.swing.JPanel {
         } else {
             usernameText.setText(account.getUsername());
             
-            ImageIcon icon = new ImageIcon(ImageLib.getPPIconPath());
-            Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_AREA_AVERAGING);
+            ImageIcon icon = new ImageIcon(ImageLib.getPPIconPath(MainFrame.instance.getAccount().getUsername()));
+            Image imgFit = icon.getImage().getScaledInstance(50, 50, Image.SCALE_AREA_AVERAGING);
             icon.setImage(imgFit);
             cCAvatarImageLabel1.setImage(icon);
 
@@ -85,6 +85,13 @@ public class HeaderPanel extends javax.swing.JPanel {
         logoutLabel.repaint();
         cCAvatarImageLabel1.repaint();
         
+    }
+    
+    public void updateProfilePicture(){
+        ImageIcon icon2 = new ImageIcon(ImageLib.getPPIconPath(MainFrame.instance.getAccount().getUsername()));
+        Image imgFit2 = icon2.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        icon2.setImage(imgFit2);
+        cCAvatarImageLabel1.setImage(icon2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

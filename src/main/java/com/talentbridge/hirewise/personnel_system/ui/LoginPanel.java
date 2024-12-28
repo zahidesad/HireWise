@@ -5,6 +5,7 @@ import com.talentbridge.hirewise.UserService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
 import com.talentbridge.hirewise.personnel_system.service.EmployeeService;
+import javax.swing.JPanel;
 
 /**
  *
@@ -141,7 +142,8 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
             warningLabel.setText("Invalid username or password.");
             return;
         }
-        
+
+        JPanel page = MainFrame.instance.getDepartmentPage();
         String account_type = "";
         if (loginType.equals("hirewise")) {
             try {
@@ -150,34 +152,42 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                     String position_title = empService.getPositionTitleForEmployee(emp.getEmployeeId());
                     if (position_title.equals("HR")) {
                         account_type = "hirewise_hr";
+                        page = MainFrame.instance.getDepartmentPage();
                     } else {
                         account_type = "hirewise_user";
+                        page = MainFrame.instance.getProfilePage();
                     }
                 } catch (RuntimeException e) {
                     account_type = "hirewise_user";
+                    page = MainFrame.instance.getProfilePage();
                 }
             } catch (Exception e) {
                 account_type = "hirewise_user";
+                page = MainFrame.instance.getProfilePage();
             }
-        }else if(loginType.equals("talentbridge")){
-            try {
-                Employee emp = empService.getEmployeeByUserId(account.getUserId());
-                String position_title = empService.getPositionTitleForEmployee(emp.getEmployeeId());
+        } else if (loginType.equals("talentbridge")) {
+            if (account.getRole().equals("admin")) {
+                account_type = "talentbridge_admin";
+            } else {
+                try {
+                    Employee emp = empService.getEmployeeByUserId(account.getUserId());
+                    String position_title = empService.getPositionTitleForEmployee(emp.getEmployeeId());
                     if (position_title.equals("Manager")) {
                         account_type = "talentbridge_manager";
                     } else {
                         account_type = "talentbridge_emp";
                     }
-            } catch (Exception e) {
-                warningLabel.setText("No Employee Found with This Information");
-                return;
+                } catch (Exception e) {
+                    warningLabel.setText("No Employee Found with This Information");
+                    return;
+                }
             }
         }
-        
+
         MainFrame.instance.setAccount(account);
         MainFrame.instance.setLoggedSystem(account_type);
         MainFrame.instance.login();
-        MainFrame.instance.setPage(MainFrame.instance.getDepartmentPage());
+        MainFrame.instance.setPage(page);
     }//GEN-LAST:event_loginButtonActionPerformed
 
 

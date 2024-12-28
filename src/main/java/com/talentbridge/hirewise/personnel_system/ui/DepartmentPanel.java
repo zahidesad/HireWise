@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
+import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Department;
 import com.talentbridge.hirewise.personnel_system.service.DepartmentService;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  *
  * @author zahid
  */
-public class DepartmentPanel extends javax.swing.JPanel {
+public class DepartmentPanel extends javax.swing.JPanel implements IPage{
 
     /**
      * Creates new form DepartmentPanel
@@ -90,4 +91,9 @@ public class DepartmentPanel extends javax.swing.JPanel {
     private javax.swing.JLabel deptNameLabel;
     private javax.swing.JButton refreshButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onPageSetted() {
+        
+    }
 }

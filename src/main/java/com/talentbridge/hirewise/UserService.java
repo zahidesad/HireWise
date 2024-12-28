@@ -13,19 +13,20 @@ public class UserService {
 
     private UserDAO userDAO = new UserDAO();
 
-    public void addUser(User user) {
+    public Object addUser(User user) {
         // Basit validasyon
         if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
             System.out.println("Username is required.");
-            return;
+            return "Username is required.";
         }
         if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
             System.out.println("Password is required.");
-            return;
+            return "Password is required.";
         }
         // Şifre hashing? vs. ekleyebilirsiniz
 
         userDAO.insert(user);
+        return user;
     }
 
     public User getUserById(int userId) {

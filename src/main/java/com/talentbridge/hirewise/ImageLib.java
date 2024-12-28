@@ -1,33 +1,69 @@
 package com.talentbridge.hirewise;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 /**
  *
  * @author emirs
  */
 public class ImageLib {
+
     public static String projectPath = System.getProperty("user.dir");
-    
-    public static String getWelcomeIconPath(){
+
+    public static String getWelcomeIconPath() {
         return projectPath + "\\assets\\gesture.png";
     }
-    
-    public static String getDepartmentIconPath(){
+
+    public static String getDepartmentIconPath() {
         return projectPath + "\\assets\\corporation.png";
     }
-    
-    public static String getPPIconPath(){
+
+    public static String getPPIconPath() {
         return projectPath + "\\assets\\pp.jpg";
     }
-    
-    public static String getLogoutIconPath(){
+
+    public static String getLogoutIconPath() {
         return projectPath + "\\assets\\logout.png";
     }
-    
-    public static String getUserIconPath(){
+
+    public static String getUserIconPath() {
         return projectPath + "\\assets\\user.png";
     }
-    
-    public static String getLoginIconPath(){
+
+    public static String getLoginIconPath() {
         return projectPath + "\\assets\\login.png";
+    }
+
+    public static String getRegisterIconPath() {
+        return projectPath + "\\assets\\register.png";
+    }
+    
+    public static String getPPIconPath(String username) {
+        File destinationDir = new File(projectPath + "\\assets\\");
+        File destinationFilePng = new File(destinationDir, username + ".png");
+        File destinationFileJpg = new File(destinationDir, username + ".jpg");
+        
+        if (destinationFilePng.exists()) {
+            return destinationFilePng.getAbsolutePath();
+        }else if (destinationFileJpg.exists()) {
+            return destinationFileJpg.getAbsolutePath();
+        }
+        return getUserIconPath();
+    }
+
+    public static String setProfilePicture(File selectedFile, String username) throws IOException{
+        String newFileName = username + (selectedFile.getName().endsWith(".png") ? ".png" : ".jpg");
+        File destinationDir = new File(projectPath + "\\assets\\");
+        File destinationFile = new File(destinationDir, newFileName);
+
+        // Ensure destination directory exists
+        if (!destinationDir.exists()) {
+            destinationDir.mkdirs();
+        }
+
+        Files.copy(selectedFile.toPath(), destinationFile.toPath());
+        return destinationFile.getAbsolutePath();
     }
 }

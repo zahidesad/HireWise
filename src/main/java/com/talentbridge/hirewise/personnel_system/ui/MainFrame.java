@@ -1,6 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -25,6 +26,8 @@ public class MainFrame extends javax.swing.JFrame {
     private final DepartmentPanel departmentPage;
     private final ShowTasksPanel showTasksPage;
     private final LoginPanel loginPage;
+    private final RegisterPanel registerPage;
+    private final ProfilePanel profilePage;
 
     public MainFrame() {
         initComponents();
@@ -33,6 +36,8 @@ public class MainFrame extends javax.swing.JFrame {
         departmentPage = new DepartmentPanel();
         showTasksPage = new ShowTasksPanel();
         loginPage = new LoginPanel();
+        registerPage = new RegisterPanel();
+        profilePage = new ProfilePanel();
         
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -159,7 +164,9 @@ public class MainFrame extends javax.swing.JFrame {
     public DepartmentPanel getDepartmentPage(){return this.departmentPage; }
     public WelcomePanel getWelcomePage(){return this.welcomePage; }
     public LoginPanel getLoginPage(){return this.loginPage; }
+    public RegisterPanel getRegisterPage(){return this.registerPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
+    public ProfilePanel getProfilePage(){return this.profilePage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }
@@ -177,14 +184,18 @@ public class MainFrame extends javax.swing.JFrame {
             iPage.onPageSetted();
         }
     }
+    
+    public void updatePP(){
+        header.updateProfilePicture();
+    }
 
     public void logout() {
         //loginPage.forgetMe();
-        //account = null;
-        //setPage(getLoginPage());
+        account = null;
+        setPage(getLoginPage());
 
-        //sideMenu.adjustSideMenuContent(account);
-        //header.adjustHeader(account);
+        sideMenu.adjustSideMenuContent("logout");
+        header.adjustHeader(account);
     }
 
     public void login() {
