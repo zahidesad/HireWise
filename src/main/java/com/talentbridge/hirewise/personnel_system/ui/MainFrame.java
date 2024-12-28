@@ -33,6 +33,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final RegisterPanel registerPage;
     private final ProfilePanel profilePage;
     private final PositionDetailsPanel positionDetailsPage;
+    private final LeaveRecordPanel leaveRecordPage;
 
     public MainFrame() {
         initComponents();
@@ -45,6 +46,9 @@ public class MainFrame extends javax.swing.JFrame {
         profilePage = new ProfilePanel();
         positionDetailsPage = new PositionDetailsPanel();
         
+        // ----------Department Panels----------
+        leaveRecordPage = new LeaveRecordPanel();
+        // -------------------------------------
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
         header.setSize(headerPanel.getWidth(), headerPanel.getWidth());
@@ -174,6 +178,7 @@ public class MainFrame extends javax.swing.JFrame {
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     public ProfilePanel getProfilePage(){return this.profilePage; }
     public PositionDetailsPanel getPositionDetailPage(){return this.positionDetailsPage; }
+    public LeaveRecordPanel getLeaveRecordPage(){return this.leaveRecordPage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }

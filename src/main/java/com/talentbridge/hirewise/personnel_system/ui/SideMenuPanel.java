@@ -46,7 +46,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCGradientPanel1.setGradientEndd(new java.awt.Color(48, 170, 250));
         cCGradientPanel1.setGradientStart(new java.awt.Color(140, 4, 219));
 
-        logoText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        logoText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logoText.setForeground(new java.awt.Color(255, 255, 255));
         logoText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         logoText.setText("HireWise Personel");
@@ -57,7 +57,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setText("Developed by TaleBridge");
+        jLabel1.setText("Developed by TalentBridge");
 
         cCSideMenuList1.setBackground(new java.awt.Color(122, 51, 219));
         cCSideMenuList1.setBorder(null);
@@ -69,7 +69,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCGradientPanel1Layout.setHorizontalGroup(
             cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cCGradientPanel1Layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoText, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,10 +111,10 @@ public class SideMenuPanel extends javax.swing.JPanel {
             logoText.setText("Hirewise HR");
         } else if (account.equals("talentbridge_emp")) {
             talentbridgeEmpList();
-            logoText.setText("TalentBridhe Employee");
+            logoText.setText("TalentBridge Employee");
         } else if (account.equals("talentbridge_manager")) {
             talentbridgeManagerList();
-            logoText.setText("TalentBridhe Manager");
+            logoText.setText("TalentBridge Manager");
         } else if (account.equals("talentbridge_admin")) {
             talentbridgeAdminList();
             logoText.setText("TalentBridhe Admin");
@@ -180,10 +180,10 @@ public class SideMenuPanel extends javax.swing.JPanel {
         ImageIcon iconLeave = new ImageIcon(ImageLib.getLeaveIconPath());
         Image imgFitLeave = iconLeave.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconLeave.setImage(imgFitLeave);
-        // Burada getLeaveRecordPage() gibi bir panel oluşturduğunuzu varsayalım
-        //cCSideMenuList1.addItem(new Item("İzinleri Görüntüle", iconLeave, MainFrame.instance.getLeaveRecordPage()));
+        //Burada getLeaveRecordPage() gibi bir panel oluşturduğunuzu varsayalım
+        cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getLeaveRecordPage()));
         // Eğer henüz böyle bir panel yoksa, placeholder olarak DepartmentPanel veya ShowTasksPanel kullanılabilir:
-        cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getDepartmentPage()));
+        //cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getDepartmentPage()));
         
         // 4) Departman Bütçe
         //Varsayılan bir "DepartmentBudgetPanel" paneliniz olduğunu düşünelim:

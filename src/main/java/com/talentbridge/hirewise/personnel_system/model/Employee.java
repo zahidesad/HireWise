@@ -67,7 +67,7 @@ public class Employee {
             return null;
         }
         PositionDAO dao = new PositionDAO();
-        return dao.findById(this.userId);
+        return dao.findById(this.positionId);
     }
 
     /*
