@@ -36,4 +36,13 @@ public class PerformanceReviewService {
     public void deletePerformanceReview(int reviewId) {
         performanceReviewDAO.delete(reviewId);
     }
+    
+    public List<PerformanceReview> getEmployeeReviews(int employeeId) {
+        List<PerformanceReview> reviews = performanceReviewDAO.getEmployeeReviews(employeeId);
+        if (reviews.isEmpty()) {
+            throw new RuntimeException("No performance reviews found for Employee ID: " + employeeId);
+        }
+
+        return reviews;
+    }
 }
