@@ -40,6 +40,10 @@ public class ImageLib {
         return projectPath + "\\assets\\register.png";
     }
     
+    public static String getPositionIconPath() {
+        return projectPath + "\\assets\\position.png";
+    }
+
     public static String getPPIconPath(String username) {
         File destinationDir = new File(projectPath + "\\assets\\");
         File destinationFilePng = new File(destinationDir, username + ".png");

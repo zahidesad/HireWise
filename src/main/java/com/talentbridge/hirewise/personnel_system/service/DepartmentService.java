@@ -17,6 +17,10 @@ public class DepartmentService {
     public List<Department> getAllDepartments() {
         return departmentDAO.findAll();
     }
+    
+    public Department getDepartmentById(int deptId){
+        return departmentDAO.findById(deptId);
+    }
 
     public void addDepartment(String name, String description) {
         // Örneğin basit bir iş kuralı: name boş değilse ekle

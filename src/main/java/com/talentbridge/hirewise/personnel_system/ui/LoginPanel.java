@@ -152,6 +152,7 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                     String position_title = empService.getPositionTitleForEmployee(emp.getEmployeeId());
                     if (position_title.equals("HR")) {
                         account_type = "hirewise_hr";
+                        MainFrame.instance.setEmployee(emp);
                         page = MainFrame.instance.getDepartmentPage();
                     } else {
                         account_type = "hirewise_user";
@@ -172,10 +173,13 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                 try {
                     Employee emp = empService.getEmployeeByUserId(account.getUserId());
                     String position_title = empService.getPositionTitleForEmployee(emp.getEmployeeId());
+                    MainFrame.instance.setEmployee(emp);
                     if (position_title.equals("Manager")) {
                         account_type = "talentbridge_manager";
+                        page = MainFrame.instance.getProfilePage();
                     } else {
                         account_type = "talentbridge_emp";
+                        page = MainFrame.instance.getProfilePage();
                     }
                 } catch (Exception e) {
                     warningLabel.setText("No Employee Found with This Information");

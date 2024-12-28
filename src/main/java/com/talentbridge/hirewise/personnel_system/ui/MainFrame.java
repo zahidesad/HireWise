@@ -1,8 +1,10 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
+import com.talentbridge.hirewise.personnel_system.model.Employee;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
@@ -17,6 +19,8 @@ public class MainFrame extends javax.swing.JFrame {
     public static MainFrame instance;
     
     private User account; 
+    private Employee employee; 
+    private Applicant applicant; 
     private String loggedSystem = "";
     
     private final SideMenuPanel sideMenu;
@@ -28,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final LoginPanel loginPage;
     private final RegisterPanel registerPage;
     private final ProfilePanel profilePage;
+    private final PositionDetailsPanel positionDetailsPage;
 
     public MainFrame() {
         initComponents();
@@ -38,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
         loginPage = new LoginPanel();
         registerPage = new RegisterPanel();
         profilePage = new ProfilePanel();
+        positionDetailsPage = new PositionDetailsPanel();
         
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -167,9 +173,14 @@ public class MainFrame extends javax.swing.JFrame {
     public RegisterPanel getRegisterPage(){return this.registerPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     public ProfilePanel getProfilePage(){return this.profilePage; }
+    public PositionDetailsPanel getPositionDetailPage(){return this.positionDetailsPage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }
+    public Employee getEmployee(){return this.employee; }
+    public void setEmployee(Employee emp){ this.employee = emp; }
+    public Applicant getApplicant(){return this.applicant; }
+    public void setApplicant(Applicant applicant){ this.applicant = applicant; }
     public String getLoggedSystem() {return loggedSystem;}
     public void setLoggedSystem(String loggedSystem) {this.loggedSystem = loggedSystem;}
     

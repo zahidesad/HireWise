@@ -1,6 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.service;
 
 import com.talentbridge.hirewise.personnel_system.dao.SalaryRecordDAO;
+import com.talentbridge.hirewise.personnel_system.model.Employee;
 import com.talentbridge.hirewise.personnel_system.model.SalaryRecord;
 
 /**
@@ -20,6 +21,15 @@ public class SalaryRecordService {
             return;
         }
         salaryRecordDAO.insert(sr);
+    }
+    
+    public List<SalaryRecord> getEmployeeSalaryRecords(Employee emp) {
+        List<SalaryRecord> salaryRecords = salaryRecordDAO.findByEmployeeId(emp.getEmployeeId());
+        if (salaryRecords.isEmpty()) {
+            System.out.println("No salary records found for Employee ID: " + emp.getEmployeeId());
+        }
+
+        return salaryRecords;
     }
 
     public SalaryRecord getSalaryRecordById(int salaryRecordId) {

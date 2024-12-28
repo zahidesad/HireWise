@@ -112,6 +112,31 @@ public class SalaryRecordDAO {
             e.printStackTrace();
         }
     }
+    
+    public List<SalaryRecord> findByEmployeeId(int employeeId) {
+        String sql = "SELECT salary_record_id, employee_id, effective_date, salary_amount "
+                   + "FROM SalaryRecord WHERE employee_id = ? ORDER BY effective_date DESC";
+        List<SalaryRecord> records = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, employeeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    SalaryRecord record = new SalaryRecord();
+                    record.setSalaryRecordId(rs.getInt("salary_record_id"));
+                    record.setEmployeeId(rs.getInt("employee_id"));
+                    record.setEffectiveDate(rs.getDate("effective_date"));
+                    record.setSalaryAmount(rs.getDouble("salary_amount"));
+                    records.add(record);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return records;
+    }
 
     private SalaryRecord mapRowToSalaryRecord(ResultSet rs) throws SQLException {
         SalaryRecord sr = new SalaryRecord();

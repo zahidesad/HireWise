@@ -169,7 +169,21 @@ public class SideMenuPanel extends javax.swing.JPanel {
     }
     
     private void talentbridgeEmpList(){
-        testList();
+        cCSideMenuList1.removeAllItems();
+        
+        //------------ Profile -------------
+        ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon.setImage(imgFit);
+        cCSideMenuList1.addItem(new Item("Profile", icon, MainFrame.instance.getProfilePage()));
+        
+        //------------ Position Details -------------
+        ImageIcon icon2 = new ImageIcon(ImageLib.getPositionIconPath());
+        Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon2.setImage(imgFit2);
+        cCSideMenuList1.addItem(new Item("Position Details", icon2, MainFrame.instance.getPositionDetailPage()));
+        
+        cCSideMenuList1.setSelectedIndex(0);
     }
     
     private void talentbridgeAdminList(){
