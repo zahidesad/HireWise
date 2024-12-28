@@ -39,29 +39,28 @@ public class ImageLib {
     public static String getRegisterIconPath() {
         return projectPath + "\\assets\\register.png";
     }
-    
+
     public static String getPositionIconPath() {
         return projectPath + "\\assets\\position.png";
     }
-    
+
     /*public static String getTaskIconPath() {
         return projectPath + "\\assets\\clipboard.png";
     }*/
-
     public static String getPPIconPath(String username) {
         File destinationDir = new File(projectPath + "\\assets\\");
         File destinationFilePng = new File(destinationDir, username + ".png");
         File destinationFileJpg = new File(destinationDir, username + ".jpg");
-        
+
         if (destinationFilePng.exists()) {
             return destinationFilePng.getAbsolutePath();
-        }else if (destinationFileJpg.exists()) {
+        } else if (destinationFileJpg.exists()) {
             return destinationFileJpg.getAbsolutePath();
         }
         return getUserIconPath();
     }
 
-    public static String setProfilePicture(File selectedFile, String username) throws IOException{
+    public static String setProfilePicture(File selectedFile, String username) throws IOException {
         String newFileName = username + (selectedFile.getName().endsWith(".png") ? ".png" : ".jpg");
         File destinationDir = new File(projectPath + "\\assets\\");
         File destinationFile = new File(destinationDir, newFileName);
@@ -74,21 +73,21 @@ public class ImageLib {
         Files.copy(selectedFile.toPath(), destinationFile.toPath());
         return destinationFile.getAbsolutePath();
     }
-    
-    public static String getHomeIconPath(){
+
+    public static String getHomeIconPath() {
         return projectPath + "\\assets\\home.png";
     }
-    
-    public static String getLeaveIconPath(){
+
+    public static String getLeaveIconPath() {
         return projectPath + "\\assets\\leave.png";
     }
-    
-    public static String getBudgetIconPath(){
+
+    public static String getBudgetIconPath() {
         return projectPath + "\\assets\\budget.png";
     }
 
     public static String getPositionsIconPath() {
-       return projectPath + "\\assets\\position.png";
+        return projectPath + "\\assets\\postions.png";
     }
 
     public static String getTaskIconPath() {
@@ -97,5 +96,9 @@ public class ImageLib {
 
     public static String getReviewIconPath() {
         return projectPath + "\\assets\\review.png";
+    }
+
+    public static String getBackArrowPath() {
+        return projectPath + "\\assets\\back-arrow.png";
     }
 }

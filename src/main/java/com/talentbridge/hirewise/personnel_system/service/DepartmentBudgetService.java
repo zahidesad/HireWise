@@ -3,11 +3,11 @@ package com.talentbridge.hirewise.personnel_system.service;
 import com.talentbridge.hirewise.personnel_system.dao.DepartmentBudgetDAO;
 import com.talentbridge.hirewise.personnel_system.model.DepartmentBudget;
 import java.util.List;
+
 /**
  *
  * @author emirs
  */
-
 public class DepartmentBudgetService {
 
     private final DepartmentBudgetDAO departmentBudgetDAO;
@@ -61,9 +61,6 @@ public class DepartmentBudgetService {
     }
 
     public List<DepartmentBudget> getBudgetsByDepartmentId(int departmentId) {
-        if (departmentId <= 0) {
-            throw new IllegalArgumentException("Invalid department ID.");
-        }
-        return departmentBudgetDAO.findAll(); // Replace with a DAO method to find by departmentId if needed.
+        return departmentBudgetDAO.findByDepartmentId(departmentId);
     }
 }

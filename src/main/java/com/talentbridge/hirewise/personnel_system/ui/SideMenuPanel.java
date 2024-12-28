@@ -166,55 +166,46 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFitHome = iconHome.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconHome.setImage(imgFitHome);
         cCSideMenuList1.addItem(new Item("Home", iconHome, MainFrame.instance.getWelcomePage()));
-        
-        
+
         // 2) Profile
         ImageIcon iconProfile = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFitProfile = iconProfile.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconProfile.setImage(imgFitProfile);
         cCSideMenuList1.addItem(new Item("Profile", iconProfile, MainFrame.instance.getProfilePage()));
-        
-        
-        // 3) İzinleri Görüntüle
-        // Bunun için bir "LeaveRecordViewPanel" gibi paneliniz olduğunu varsayıyoruz
+
+        // 3) Leave Record View
         ImageIcon iconLeave = new ImageIcon(ImageLib.getLeaveIconPath());
         Image imgFitLeave = iconLeave.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconLeave.setImage(imgFitLeave);
         //Burada getLeaveRecordPage() gibi bir panel oluşturduğunuzu varsayalım
         cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getLeaveRecordPage()));
-        // Eğer henüz böyle bir panel yoksa, placeholder olarak DepartmentPanel veya ShowTasksPanel kullanılabilir:
-        //cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getDepartmentPage()));
-        
-        // 4) Departman Bütçe
-        //Varsayılan bir "DepartmentBudgetPanel" paneliniz olduğunu düşünelim:
+
+        // 4) Departmant Budget
         ImageIcon iconBudget = new ImageIcon(ImageLib.getBudgetIconPath());
         Image imgFitBudget = iconBudget.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconBudget.setImage(imgFitBudget);
-        // cCSideMenuList1.addItem(new Item("Departman Bütçe", iconBudget, MainFrame.instance.getDepartmentBudgetPage()));
-        // Elinizde yoksa placeholder bir panel seçebilirsiniz
-        cCSideMenuList1.addItem(new Item("Departmant Budget", iconBudget, MainFrame.instance.getDepartmentPage()));
+        cCSideMenuList1.addItem(new Item("Departmant Budget", iconBudget, MainFrame.instance.getDepartmentBudgetPage()));
 
-        // 6) Pozisyon Oluştur
-        // Varsayalım "CreatePositionPanel" isimli bir panel varsa:
+        // 6) Pozitions
         ImageIcon iconPosCreate = new ImageIcon(ImageLib.getPositionsIconPath());
         Image imgFitPosCreate = iconPosCreate.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconPosCreate.setImage(imgFitPosCreate);
-        // cCSideMenuList1.addItem(new Item("Pozisyon Oluştur", iconPosCreate, MainFrame.instance.getCreatePositionPage()));
+        // cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getCreatePositionPage()));
         // Geçici olarak DepartmentPanel gibi bir placeholder verilebilir
         cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getDepartmentPage()));
 
-        // 7) Tasklar
+        // 7) Tasks
         ImageIcon iconTask = new ImageIcon(ImageLib.getTaskIconPath());
         Image imgFitTask = iconTask.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconTask.setImage(imgFitTask);
         cCSideMenuList1.addItem(new Item("Tasks", iconTask, MainFrame.instance.getShowTasksPage()));
 
-        // 8) Review Ver
+        // 8) Reviews
         // Belki "PerformanceReviewPanel" gibi bir paneliniz vardır
         ImageIcon iconReview = new ImageIcon(ImageLib.getReviewIconPath());
         Image imgFitReview = iconReview.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconReview.setImage(imgFitReview);
-        // cCSideMenuList1.addItem(new Item("Review Ver", iconReview, MainFrame.instance.getPerformanceReviewPage()));
+        // cCSideMenuList1.addItem(new Item("Give Review", iconReview, MainFrame.instance.getPerformanceReviewPage()));
         cCSideMenuList1.addItem(new Item("Give Review", iconReview, MainFrame.instance.getWelcomePage()));
 
         // Yeni öğeler eklendikten sonra ilk elemanı seçili yapıyoruz (opsiyonel)
@@ -236,13 +227,13 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Position Details", icon2, MainFrame.instance.getPositionDetailPage()));
-        
+
         //------------ Show Tasks -------------
         ImageIcon icon3 = new ImageIcon(ImageLib.getTaskIconPath());
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
-        
+
         cCSideMenuList1.setSelectedIndex(0);
     }
 

@@ -100,4 +100,31 @@ public class DepartmentBudgetDAO {
             e.printStackTrace();
         }
     }
+    
+    public List<DepartmentBudget> findByDepartmentId(int deptId) {
+    String sql = "SELECT budget_id, department_id, fiscal_year, total_budget, allocated_for_salaries, allocated_for_hiring "
+               + "FROM DepartmentBudget WHERE department_id = ?";
+    List<DepartmentBudget> budgets = new ArrayList<>();
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, deptId);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                DepartmentBudget b = new DepartmentBudget();
+                b.setBudgetId(rs.getInt("budget_id"));
+                b.setDepartmentId(rs.getInt("department_id"));
+                b.setFiscalYear(rs.getInt("fiscal_year"));
+                b.setTotalBudget(rs.getDouble("total_budget"));
+                b.setAllocatedForSalaries(rs.getDouble("allocated_for_salaries"));
+                b.setAllocatedForHiring(rs.getDouble("allocated_for_hiring"));
+                budgets.add(b);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return budgets;
+}
+
 }
