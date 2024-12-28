@@ -18,6 +18,7 @@ com\talentbridge\hirewise\job_posting_system\dao\ApplicationStageHistoryDAO.clas
 com\talentbridge\hirewise\personnel_system\ui\HeaderPanel.class
 com\talentbridge\hirewise\job_posting_system\model\Applicant.class
 com\talentbridge\hirewise\job_posting_system\dao\OrganizationDAO.class
+com\talentbridge\hirewise\personnel_system\ui\LoginPanel$1.class
 com\talentbridge\hirewise\job_posting_system\dao\SkillDAO.class
 com\talentbridge\hirewise\personnel_system\dao\TaskDAO.class
 com\talentbridge\hirewise\job_posting_system\dao\CVDAO.class
@@ -37,6 +38,7 @@ com\talentbridge\hirewise\job_posting_system\model\Application.class
 com\talentbridge\hirewise\job_posting_system\service\ApplicantService.class
 com\talentbridge\hirewise\custom_components\CCSideMenuList.class
 com\talentbridge\hirewise\custom_components\Item.class
+com\talentbridge\hirewise\personnel_system\ui\LoginPanel$2.class
 com\talentbridge\hirewise\custom_components\CCAvatarImageLabel.class
 com\talentbridge\hirewise\custom_components\CCSideMenuList$3.class
 com\talentbridge\hirewise\job_posting_system\dao\ApplicationDAO.class
@@ -75,6 +77,7 @@ com\talentbridge\hirewise\custom_components\CCSideMenuList$2.class
 com\talentbridge\hirewise\personnel_system\service\LeaveRecordService.class
 com\talentbridge\hirewise\personnel_system\service\DepartmentService.class
 com\talentbridge\hirewise\personnel_system\ui\DepartmentPanel.class
+com\talentbridge\hirewise\personnel_system\ui\LoginPanel$3.class
 com\talentbridge\hirewise\job_posting_system\dao\ApplicantDAO.class
 com\talentbridge\hirewise\custom_components\Label.class
 com\talentbridge\hirewise\custom_components\Button.class

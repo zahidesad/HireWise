@@ -1,6 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
+import com.talentbridge.hirewise.User;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -13,12 +14,7 @@ public class HeaderPanel extends javax.swing.JPanel {
     public HeaderPanel() {
         initComponents();
         
-        ImageIcon icon = new ImageIcon(ImageLib.getPPIconPath());
-        Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_AREA_AVERAGING);
-        icon.setImage(imgFit);
-        cCAvatarImageLabel1.setImage(icon);
-        
-        usernameText.setText("Login Waiting...");
+        adjustHeader(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -62,37 +58,30 @@ public class HeaderPanel extends javax.swing.JPanel {
         MainFrame.instance.logout();
     }//GEN-LAST:event_logoutLabelMouseClicked
 
-    public void adjustHeader() {
-        usernameText.setText("Login Waiting...");
-        // ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\user.png");
-        // Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        // icon.setImage(imgFit);
-        // cCAvatarImageLabel1.setImage(icon);
-        logoutLabel.setIcon(null);
-        
-        /*if (account == null) {
+    public final void adjustHeader(User account) {        
+        if (account == null) {
             usernameText.setText("Login Waiting...");
 
-            ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\user.png");
-            Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-            icon.setImage(imgFit);
-            cCAvatarImageLabel1.setImage(icon);
+            ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());
+            Image imgFit2 = icon2.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+            icon2.setImage(imgFit2);
+            cCAvatarImageLabel1.setImage(icon2);
         
             logoutLabel.setIcon(null);
         } else {
-            usernameText.setText(account.toString());
+            usernameText.setText(account.getUsername());
             
-            ImageIcon icon = new ImageIcon(account.getImagePath());
+            ImageIcon icon = new ImageIcon(ImageLib.getPPIconPath());
             Image imgFit = icon.getImage().getScaledInstance(40, 40, Image.SCALE_AREA_AVERAGING);
             icon.setImage(imgFit);
             cCAvatarImageLabel1.setImage(icon);
 
-            ImageIcon icon2 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\exit.png");
-            Image imgFit2 = icon2.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
+            ImageIcon icon2 = new ImageIcon(ImageLib.getLogoutIconPath());
+            Image imgFit2 = icon2.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
             icon2.setImage(imgFit2);
             logoutLabel.setIcon(icon2);
             
-        }*/
+        }
         logoutLabel.repaint();
         cCAvatarImageLabel1.repaint();
         

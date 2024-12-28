@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
+import com.talentbridge.hirewise.User;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,6 +15,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static MainFrame instance;
     
+    private User account; 
+    private String loggedSystem = "";
+    
     private final SideMenuPanel sideMenu;
     private final HeaderPanel header;
     
@@ -24,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-        System.out.println(System.getProperty("user.dir"));
+        
         welcomePage = new WelcomePanel();
         departmentPage = new DepartmentPanel();
         showTasksPage = new ShowTasksPanel();
@@ -54,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void onAfterInit(){
-        sideMenu.adjustSideMenuContent();
+        sideMenu.adjustSideMenuContent("logout");
     }
 
     @SuppressWarnings("unchecked")
@@ -157,6 +161,11 @@ public class MainFrame extends javax.swing.JFrame {
     public LoginPanel getLoginPage(){return this.loginPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     
+    public User getAccount(){return this.account; }
+    public void setAccount(User acc){ this.account = acc; }
+    public String getLoggedSystem() {return loggedSystem;}
+    public void setLoggedSystem(String loggedSystem) {this.loggedSystem = loggedSystem;}
+    
     public final void setPage(JPanel page) {
         mainPanel.removeAll();
         mainPanel.add(page);
@@ -179,8 +188,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void login() {
-        //sideMenu.adjustSideMenuContent(account);
-        //header.adjustHeader(account);
+        sideMenu.adjustSideMenuContent(loggedSystem);
+        header.adjustHeader(account);
+        
+        System.out.println(loggedSystem);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,4 +199,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel sideMenuPanel;
     // End of variables declaration//GEN-END:variables
+
+
+    
 }

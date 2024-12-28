@@ -43,4 +43,12 @@ public class UserService {
     public void deleteUser(int userId) {
         userDAO.delete(userId);
     }
+    
+    public User authenticate(String username, String password) {
+        User user = userDAO.login(username, password);
+        if (user == null) {
+            throw new RuntimeException("Invalid username or password.");
+        }
+        return user;
+    }
 }

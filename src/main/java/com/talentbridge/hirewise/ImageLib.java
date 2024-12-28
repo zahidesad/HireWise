@@ -18,4 +18,16 @@ public class ImageLib {
     public static String getPPIconPath(){
         return projectPath + "\\assets\\pp.jpg";
     }
+    
+    public static String getLogoutIconPath(){
+        return projectPath + "\\assets\\logout.png";
+    }
+    
+    public static String getUserIconPath(){
+        return projectPath + "\\assets\\user.png";
+    }
+    
+    public static String getLoginIconPath(){
+        return projectPath + "\\assets\\login.png";
+    }
 }

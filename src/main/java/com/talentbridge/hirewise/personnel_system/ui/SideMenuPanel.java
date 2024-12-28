@@ -1,6 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
+import com.talentbridge.hirewise.User;
 import com.talentbridge.hirewise.custom_components.Item;
 import java.awt.Color;
 import java.awt.Image;
@@ -108,150 +109,61 @@ public class SideMenuPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public final void adjustSideMenuContent(){
-        testList();
+    public final void adjustSideMenuContent(String account){
+        if (account.equals("hirewise_user")) {
+            hirewiseUserList();
+            logoText.setText("Hirewise User");
+        }else if (account.equals("hirewise_hr")) {
+            hirewiseHRList();
+            logoText.setText("Hirewise HR");
+        }else if (account.equals("talentbridge_emp")) {
+            talentbridgeEmpList();
+            logoText.setText("TalentBridhe Employee");
+        }else if (account.equals("talentbridge_manager")) {
+            talentbridgeManagerList();
+            logoText.setText("TalentBridhe Manager");
+        }else if (account.equals("talentbridge_admin")) {
+            talentbridgeAdminList();
+            logoText.setText("TalentBridhe Admin");
+        }else{
+            logoutList();
+        }
     }    
     
-    /*private void logoutList(){
-        cCSideMenuList1.removeAllItems();
-
-        JPanel page = null;
-        if(MainFrame.instance != null){
-           page = MainFrame.instance.getLoginPage();
-        }
-        
-        // ------------ LOGIN -------------
-        ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\login2.png");
-        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-        icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Login", icon, page));
-
-
-        cCSideMenuList1.setSelectedIndex(0);
-
-    }
-
-    private void adminList() {
-        cCSideMenuList1.removeAllItems();
-        
-        // ------------ HOME -------------
-        ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\home.png");
+    private void logoutList(){
+        //------------ Login -------------
+        ImageIcon icon = new ImageIcon(ImageLib.getLoginIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Home", icon,MainFrame.instance.getAdminHomePage()));
+        cCSideMenuList1.addItem(new Item("Login", icon,MainFrame.instance.getLoginPage()));
         
-         // ------------ MANAGE CLASS -------------
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\classroom.png");
+        //------------ Register -------------
+        ImageIcon icon2 = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
-        cCSideMenuList1.addItem(new Item("Manage Classes", icon2,MainFrame.instance.getAddClassPage()));
-        
-        // ------------ ADD STUDENT' TO CLASS -------------
-        ImageIcon icon3 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\persons-in-a-class.png");
-        Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon3.setImage(imgFit3);
-        cCSideMenuList1.addItem(new Item("Manage Class Students", icon3,MainFrame.instance.getManageClassesStudentsPage()));
-        
-        // ------------ Manage Class' Lessons -------------
-        ImageIcon icon4 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\books.png");
-        Image imgFit4 = icon4.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon4.setImage(imgFit4);
-        cCSideMenuList1.addItem(new Item("Manage Class' Lessons", icon4,MainFrame.instance.getManageClassesPage()));
-        
-         // ------------ ACCOUNT MANAGEMENT -------------
-        ImageIcon icon5 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\accountManagement.png");
-        Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon5.setImage(imgFit5);
-        cCSideMenuList1.addItem(new Item("Manage Acounts", icon5, MainFrame.instance.getAccountManagementPage()));
-        
-        // ------------ CREATE NEW ACCOUNT -------------
-        ImageIcon icon6 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\add-friend.png");
-        Image imgFit6 = icon6.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon6.setImage(imgFit6);
-        cCSideMenuList1.addItem(new Item("Create New Account", icon6,MainFrame.instance.getRegisterPage()));
-        
-         // ------------ MANAGE LESSONS -------------
-        ImageIcon icon7 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\video-lesson.png");
-        Image imgFit7 = icon7.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon7.setImage(imgFit7);
-        cCSideMenuList1.addItem(new Item("Manage Lessons", icon7,MainFrame.instance.getAddLessonPage()));
-        
-         // ------------ ACCOUNT MANAGEMENT NEW -------------
-        ImageIcon icon8 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\accountManagement.png");
-        Image imgFit8 = icon8.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon8.setImage(imgFit8);
-        cCSideMenuList1.addItem(new Item("Account Management NEW", icon8,MainFrame.instance.getShowAccountsNewStylePage()));
-        
-        
-        cCSideMenuList1.setSelectedIndex(0);
+        cCSideMenuList1.addItem(new Item("Register", icon2,MainFrame.instance.getLoginPage()));
+    }
+
+    private void hirewiseHRList(){
+        testList();
     }
     
-    private void instructorList(){
-        cCSideMenuList1.removeAllItems();
-        
-        // ------------ HOME -------------
-        ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\home.png");
-        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Home", icon,MainFrame.instance.getInstructorHomePage()));
-        
-        // ------------ SHOW CLASS' STUDENTS -------------
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\classroom.png");
-        Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon2.setImage(imgFit2);
-        cCSideMenuList1.addItem(new Item("Clas' Students", icon2, MainFrame.instance.getShowClassDeteails_InstructorPage()));
-        
-        // ------------ ADD SESSION -------------
-        ImageIcon icon3 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\session.png");
-        Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon3.setImage(imgFit3);
-        cCSideMenuList1.addItem(new Item("Add Session", icon3, MainFrame.instance.getaddSessionPage()));
-        
-        // ------------ MANAGE SESSIONS -------------
-        ImageIcon icon4 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\timetable.png");
-        Image imgFit4 = icon4.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon4.setImage(imgFit4);
-        cCSideMenuList1.addItem(new Item("Manage Sessions", icon4, MainFrame.instance.getManageSessionsPage()));
-        
-        // ------------ MANAGE TOPICS -------------
-        ImageIcon icon5 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\list.png");
-        Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon5.setImage(imgFit5);
-        cCSideMenuList1.addItem(new Item("Manage Topics", icon5, MainFrame.instance.getManageLessons_InstructorPage()));
-        
-        cCSideMenuList1.setSelectedIndex(0);
+    private void hirewiseUserList(){
+        testList();
     }
     
-    private void studentList(){
-        cCSideMenuList1.removeAllItems();
-        
-        // ------------ HOME -------------
-        ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\home.png");
-        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Home", icon,MainFrame.instance.getStudentHomePage()));
-        
-         // ------------ SHOW CLASS' STUDENTS -------------
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\classroom.png");
-        Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon2.setImage(imgFit2);
-        cCSideMenuList1.addItem(new Item("Class Details", icon2,MainFrame.instance.getShowClass_StudentPage()));
-        
-        // ------------ SHOW SESSIONS -------------
-        ImageIcon icon3 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\timetable.png");
-        Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon3.setImage(imgFit3);
-        cCSideMenuList1.addItem(new Item("Lesson Sessions", icon3,MainFrame.instance.getShowSessionDetailsPage()));
-        
-        // ------------ LESSON TOPICS -------------
-        ImageIcon icon4 = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\sideBarIcons\\list.png");
-        Image imgFit4 = icon4.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon4.setImage(imgFit4);
-        cCSideMenuList1.addItem(new Item("Lesson Topics", icon4,MainFrame.instance.getShowLessonDetailsPage()));
-        
-        cCSideMenuList1.setSelectedIndex(0);
+    private void talentbridgeManagerList(){
+        testList();
     }
-    */
+    
+    private void talentbridgeEmpList(){
+        testList();
+    }
+    
+    private void talentbridgeAdminList(){
+        testList();
+    }
+    
     private void testList(){
         cCSideMenuList1.removeAllItems();
         
@@ -259,13 +171,13 @@ public class SideMenuPanel extends javax.swing.JPanel {
         ImageIcon icon = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Department", icon,MainFrame.instance.getDepartmentPage()));
+        cCSideMenuList1.addItem(new Item("Department", icon,MainFrame.instance.getLoginPage()));
         
         // ------------ Wellcome -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getDepartmentIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
-        cCSideMenuList1.addItem(new Item("Wellcome", icon2, MainFrame.instance.getWelcomePage()));
+        cCSideMenuList1.addItem(new Item("Wellcome", icon2, MainFrame.instance.getDepartmentPage()));
         
         //------------ Show Tasks -------------
         ImageIcon icon3 = new ImageIcon(ImageLib.getWelcomeIconPath());

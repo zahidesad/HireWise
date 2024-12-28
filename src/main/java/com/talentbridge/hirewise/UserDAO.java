@@ -15,7 +15,7 @@ public class UserDAO {
 
     // CREATE
     public void insert(User user) {
-        String sql = "INSERT INTO [User] (username, [password], email, role) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO [Users] (username, [password], email, role) VALUES (?, ?, ?, ?)";
         // Not: tablo adı "User" ise MSSQL'de köşeli parantez kullanmanız gerekebilir: [User]
 
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -39,7 +39,7 @@ public class UserDAO {
     // READ by ID
     public User findById(int userId) {
         String sql = "SELECT user_id, username, [password], email, role, created_at, updated_at "
-                + "FROM [User] WHERE user_id = ?";
+                + "FROM [Users] WHERE user_id = ?";
         User user = null;
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -57,7 +57,7 @@ public class UserDAO {
 
     // READ ALL
     public List<User> findAll() {
-        String sql = "SELECT user_id, username, [password], email, role, created_at, updated_at FROM [User]";
+        String sql = "SELECT user_id, username, [password], email, role, created_at, updated_at FROM [Users]";
         List<User> list = new ArrayList<>();
         try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -73,7 +73,7 @@ public class UserDAO {
 
     // UPDATE
     public void update(User user) {
-        String sql = "UPDATE [User] SET username=?, [password]=?, email=?, role=? WHERE user_id=?";
+        String sql = "UPDATE [Users] SET username=?, [password]=?, email=?, role=? WHERE user_id=?";
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, user.getUsername());
@@ -90,7 +90,7 @@ public class UserDAO {
 
     // DELETE
     public void delete(int userId) {
-        String sql = "DELETE FROM [User] WHERE user_id = ?";
+        String sql = "DELETE FROM [Users] WHERE user_id = ?";
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, userId);
@@ -98,6 +98,25 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public User login(String username, String password) {
+        String sql = "SELECT user_id, username, [password], email, role, created_at, updated_at "
+                   + "FROM [Users] WHERE username = ? AND [password] = ?";
+        User user = null;
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    user = mapRowToUser(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     // Yardımcı metod

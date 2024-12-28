@@ -141,6 +141,50 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
     }
+    
+    public Employee findByUserId(int userId) {
+        String sql = "SELECT employee_id, department_id, position_id, original_applicant_id, "
+                + "last_name, first_name, email, phone, hire_date, employment_status, user_id "
+                + "FROM Employee WHERE user_id = ?";
+
+        Employee emp = null;
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    emp = mapRowToEmployee(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return emp;
+    }
+    
+    // GET EMPLOYEE POSITION TITLE
+    public String getEmployeePositionTitle(int employeeId) {
+        String sql = "SELECT p.position_title "
+                   + "FROM Employee e "
+                   + "INNER JOIN Position p ON e.position_id = p.position_id "
+                   + "WHERE e.employee_id = ?";
+
+        String positionTitle = null;
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, employeeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    positionTitle = rs.getString("position_title");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return positionTitle;
+    }
 
     // Yardımcı metod:
     private Employee mapRowToEmployee(ResultSet rs) throws SQLException {
