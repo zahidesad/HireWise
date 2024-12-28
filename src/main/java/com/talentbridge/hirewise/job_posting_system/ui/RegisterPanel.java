@@ -45,6 +45,8 @@ public class RegisterPanel extends javax.swing.JPanel implements IPage{
 
         jLabel5.setText("Password");
 
+        registerButton.setBackground(new java.awt.Color(204, 204, 204));
+        registerButton.setForeground(new java.awt.Color(0, 0, 0));
         registerButton.setText("Register");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -13,28 +13,23 @@ import javax.swing.ImageIcon;
  */
 public class SideMenuPanel extends javax.swing.JPanel {
 
-    
     public SideMenuPanel() {
         initComponents();
         cCGradientPanel1.setColorAdjustment(0.2f);
-        
+
 //        CCScrollBar sp = new CCScrollBar();
 //        sp.setForeground(new Color(123,52,219));
 //        cCTransparentScrollPane1.setVerticalScrollBar(sp);
 //        CCScrollBar sp2 = new CCScrollBar();
 //        sp2.setOrientation(JScrollBar.HORIZONTAL);
 //        cCTransparentScrollPane1.setHorizontalScrollBar(sp2);
-        
-        
         ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\appIcons\\logo.png");
         Image imgFit = icon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
         icon.setImage(imgFit);
         logoLabel.setIcon(icon);
-        
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,7 +62,6 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.setBackground(new java.awt.Color(122, 51, 219));
         cCSideMenuList1.setBorder(null);
         cCSideMenuList1.setForeground(new java.awt.Color(255, 255, 255));
-        cCSideMenuList1.setOpaque(false);
         cCSideMenuList1.setSelectedColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout cCGradientPanel1Layout = new javax.swing.GroupLayout(cCGradientPanel1);
@@ -108,113 +102,173 @@ public class SideMenuPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    public final void adjustSideMenuContent(String account){
+    public final void adjustSideMenuContent(String account) {
         if (account.equals("hirewise_user")) {
             hirewiseUserList();
             logoText.setText("Hirewise User");
-        }else if (account.equals("hirewise_hr")) {
+        } else if (account.equals("hirewise_hr")) {
             hirewiseHRList();
             logoText.setText("Hirewise HR");
-        }else if (account.equals("talentbridge_emp")) {
+        } else if (account.equals("talentbridge_emp")) {
             talentbridgeEmpList();
             logoText.setText("TalentBridhe Employee");
-        }else if (account.equals("talentbridge_manager")) {
+        } else if (account.equals("talentbridge_manager")) {
             talentbridgeManagerList();
             logoText.setText("TalentBridhe Manager");
-        }else if (account.equals("talentbridge_admin")) {
+        } else if (account.equals("talentbridge_admin")) {
             talentbridgeAdminList();
             logoText.setText("TalentBridhe Admin");
-        }else{
+        } else {
             logoutList();
         }
-    }    
-    
-    private void logoutList(){
+    }
+
+    private void logoutList() {
         cCSideMenuList1.removeAllItems();
-        
+
         //------------ Login -------------
         ImageIcon icon = new ImageIcon(ImageLib.getLoginIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Login", icon,MainFrame.instance.getLoginPage()));
-        
+        cCSideMenuList1.addItem(new Item("Login", icon, MainFrame.instance.getLoginPage()));
+
         //------------ Register -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getRegisterIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
-        cCSideMenuList1.addItem(new Item("Register", icon2,MainFrame.instance.getRegisterPage()));
-        
+        cCSideMenuList1.addItem(new Item("Register", icon2, MainFrame.instance.getRegisterPage()));
+
         cCSideMenuList1.setSelectedIndex(0);
     }
 
-    private void hirewiseHRList(){
+    private void hirewiseHRList() {
         testList();
     }
-    
-    private void hirewiseUserList(){
+
+    private void hirewiseUserList() {
         cCSideMenuList1.removeAllItems();
-        
+
         //------------ Profile -------------
         ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
         cCSideMenuList1.addItem(new Item("Profile", icon, MainFrame.instance.getProfilePage()));
-        
+
         cCSideMenuList1.setSelectedIndex(0);
     }
-    
-    private void talentbridgeManagerList(){
-        testList();
-    }
-    
-    private void talentbridgeEmpList(){
+
+    private void talentbridgeManagerList() {
+        // Önce menüdeki tüm öğeleri temizliyoruz
         cCSideMenuList1.removeAllItems();
+
+        // 1) Home
+        ImageIcon iconHome = new ImageIcon(ImageLib.getHomeIconPath());
+        Image imgFitHome = iconHome.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconHome.setImage(imgFitHome);
+        cCSideMenuList1.addItem(new Item("Home", iconHome, MainFrame.instance.getWelcomePage()));
         
+        
+        // 2) Profile
+        ImageIcon iconProfile = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFitProfile = iconProfile.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconProfile.setImage(imgFitProfile);
+        cCSideMenuList1.addItem(new Item("Profile", iconProfile, MainFrame.instance.getProfilePage()));
+        
+        
+        // 3) İzinleri Görüntüle
+        // Bunun için bir "LeaveRecordViewPanel" gibi paneliniz olduğunu varsayıyoruz
+        ImageIcon iconLeave = new ImageIcon(ImageLib.getLeaveIconPath());
+        Image imgFitLeave = iconLeave.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconLeave.setImage(imgFitLeave);
+        // Burada getLeaveRecordPage() gibi bir panel oluşturduğunuzu varsayalım
+        //cCSideMenuList1.addItem(new Item("İzinleri Görüntüle", iconLeave, MainFrame.instance.getLeaveRecordPage()));
+        // Eğer henüz böyle bir panel yoksa, placeholder olarak DepartmentPanel veya ShowTasksPanel kullanılabilir:
+        cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getDepartmentPage()));
+        
+        // 4) Departman Bütçe
+        //Varsayılan bir "DepartmentBudgetPanel" paneliniz olduğunu düşünelim:
+        ImageIcon iconBudget = new ImageIcon(ImageLib.getBudgetIconPath());
+        Image imgFitBudget = iconBudget.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconBudget.setImage(imgFitBudget);
+        // cCSideMenuList1.addItem(new Item("Departman Bütçe", iconBudget, MainFrame.instance.getDepartmentBudgetPage()));
+        // Elinizde yoksa placeholder bir panel seçebilirsiniz
+        cCSideMenuList1.addItem(new Item("Departmant Budget", iconBudget, MainFrame.instance.getDepartmentPage()));
+
+        // 6) Pozisyon Oluştur
+        // Varsayalım "CreatePositionPanel" isimli bir panel varsa:
+        ImageIcon iconPosCreate = new ImageIcon(ImageLib.getPositionsIconPath());
+        Image imgFitPosCreate = iconPosCreate.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconPosCreate.setImage(imgFitPosCreate);
+        // cCSideMenuList1.addItem(new Item("Pozisyon Oluştur", iconPosCreate, MainFrame.instance.getCreatePositionPage()));
+        // Geçici olarak DepartmentPanel gibi bir placeholder verilebilir
+        cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getDepartmentPage()));
+
+        // 7) Tasklar
+        ImageIcon iconTask = new ImageIcon(ImageLib.getTaskIconPath());
+        Image imgFitTask = iconTask.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconTask.setImage(imgFitTask);
+        cCSideMenuList1.addItem(new Item("Tasks", iconTask, MainFrame.instance.getShowTasksPage()));
+
+        // 8) Review Ver
+        // Belki "PerformanceReviewPanel" gibi bir paneliniz vardır
+        ImageIcon iconReview = new ImageIcon(ImageLib.getReviewIconPath());
+        Image imgFitReview = iconReview.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconReview.setImage(imgFitReview);
+        // cCSideMenuList1.addItem(new Item("Review Ver", iconReview, MainFrame.instance.getPerformanceReviewPage()));
+        cCSideMenuList1.addItem(new Item("Give Review", iconReview, MainFrame.instance.getWelcomePage()));
+
+        // Yeni öğeler eklendikten sonra ilk elemanı seçili yapıyoruz (opsiyonel)
+        cCSideMenuList1.setSelectedIndex(0);
+
+    }
+
+    private void talentbridgeEmpList() {
+        cCSideMenuList1.removeAllItems();
+
         //------------ Profile -------------
         ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
         cCSideMenuList1.addItem(new Item("Profile", icon, MainFrame.instance.getProfilePage()));
-        
+
         //------------ Position Details -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getPositionIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Position Details", icon2, MainFrame.instance.getPositionDetailPage()));
-        
+
         cCSideMenuList1.setSelectedIndex(0);
     }
-    
-    private void talentbridgeAdminList(){
+
+    private void talentbridgeAdminList() {
         testList();
     }
-    
-    private void testList(){
+
+    private void testList() {
         cCSideMenuList1.removeAllItems();
-        
+
         //------------ Department -------------
         ImageIcon icon = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Department", icon,MainFrame.instance.getLoginPage()));
-        
+        cCSideMenuList1.addItem(new Item("Department", icon, MainFrame.instance.getLoginPage()));
+
         // ------------ Wellcome -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getDepartmentIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Wellcome", icon2, MainFrame.instance.getDepartmentPage()));
-        
+
         //------------ Show Tasks -------------
         ImageIcon icon3 = new ImageIcon(ImageLib.getWelcomeIconPath());
         Image imgFit3 = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
-        
+
         cCSideMenuList1.setSelectedIndex(0);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.talentbridge.hirewise.custom_components.CCGradientPanel cCGradientPanel1;
     private com.talentbridge.hirewise.custom_components.CCSideMenuList<String> cCSideMenuList1;

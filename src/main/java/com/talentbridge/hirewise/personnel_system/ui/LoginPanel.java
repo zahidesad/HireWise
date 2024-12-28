@@ -39,6 +39,8 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
 
         jLabel1.setText("Username");
 
+        loginButton.setBackground(new java.awt.Color(204, 204, 204));
+        loginButton.setForeground(new java.awt.Color(0, 0, 0));
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

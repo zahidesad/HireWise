@@ -70,4 +70,28 @@ public class ImageLib {
         Files.copy(selectedFile.toPath(), destinationFile.toPath());
         return destinationFile.getAbsolutePath();
     }
+    
+    public static String getHomeIconPath(){
+        return projectPath + "\\assets\\home.png";
+    }
+    
+    public static String getLeaveIconPath(){
+        return projectPath + "\\assets\\leave.png";
+    }
+    
+    public static String getBudgetIconPath(){
+        return projectPath + "\\assets\\budget.png";
+    }
+
+    public static String getPositionsIconPath() {
+       return projectPath + "\\assets\\position.png";
+    }
+
+    public static String getTaskIconPath() {
+        return projectPath + "\\assets\\task.png";
+    }
+
+    public static String getReviewIconPath() {
+        return projectPath + "\\assets\\review.png";
+    }
 }

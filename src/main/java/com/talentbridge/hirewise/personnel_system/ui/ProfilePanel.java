@@ -47,6 +47,8 @@ public class ProfilePanel extends javax.swing.JPanel implements IPage {
 
         jLabel4.setText("Password");
 
+        setPPButton.setBackground(new java.awt.Color(204, 204, 204));
+        setPPButton.setForeground(new java.awt.Color(0, 0, 0));
         setPPButton.setText("Set Profile Picture");
         setPPButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +56,8 @@ public class ProfilePanel extends javax.swing.JPanel implements IPage {
             }
         });
 
+        updateButton.setBackground(new java.awt.Color(204, 204, 204));
+        updateButton.setForeground(new java.awt.Color(0, 0, 0));
         updateButton.setText("Update Information");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
