@@ -37,40 +37,27 @@ public class CCTaskElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new com.talentbridge.hirewise.custom_components.Label();
-        label2 = new com.talentbridge.hirewise.custom_components.Label();
-        taskNameLabel = new javax.swing.JLabel();
-        taskDescriptionLabel = new javax.swing.JLabel();
-        label3 = new com.talentbridge.hirewise.custom_components.Label();
-        taskDateLabel = new javax.swing.JLabel();
-        label4 = new com.talentbridge.hirewise.custom_components.Label();
-        taskEndDateLabel = new javax.swing.JLabel();
+        cCGradientPanel1 = new com.talentbridge.hirewise.custom_components.CCGradientPanel();
         statusComboBox = new javax.swing.JComboBox<>();
         saveButton = new com.talentbridge.hirewise.custom_components.Button();
+        taskDateLabel = new javax.swing.JLabel();
+        taskEndDateLabel = new javax.swing.JLabel();
+        taskNameLabel = new javax.swing.JLabel();
+        taskDescriptionLabel = new javax.swing.JLabel();
+        cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle4 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle2 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle5 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
         setBackground(new java.awt.Color(102, 51, 255));
 
-        label1.setBackground(new java.awt.Color(255, 153, 102));
-        label1.setForeground(new java.awt.Color(255, 153, 102));
-
-        label2.setBackground(new java.awt.Color(255, 153, 102));
-        label2.setForeground(new java.awt.Color(255, 153, 102));
-
-        taskNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        taskNameLabel.setText("Task Name");
-
-        taskDescriptionLabel.setText("Task Description");
-
-        label3.setBackground(new java.awt.Color(255, 153, 102));
-        label3.setForeground(new java.awt.Color(255, 153, 102));
-
-        taskDateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        taskDateLabel.setText("Task Name");
-
-        label4.setBackground(new java.awt.Color(255, 153, 102));
-        label4.setForeground(new java.awt.Color(255, 153, 102));
-
-        taskEndDateLabel.setText("Task Description");
+        cCGradientPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        cCGradientPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cCGradientPanel1.setForeground(new java.awt.Color(204, 204, 255));
+        cCGradientPanel1.setColorAdjustment(0.3F);
+        cCGradientPanel1.setGradientEndd(new java.awt.Color(255, 204, 255));
+        cCGradientPanel1.setGradientStart(new java.awt.Color(204, 204, 255));
 
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "In Progress", "Completed" }));
 
@@ -81,65 +68,174 @@ public class CCTaskElement extends javax.swing.JPanel {
             }
         });
 
+        taskDateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        taskDateLabel.setText("Task Name");
+
+        taskEndDateLabel.setText("Task Description");
+
+        taskNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        taskNameLabel.setText("Task Name");
+
+        taskDescriptionLabel.setText("Task Description");
+
+        cCPaintedCircle1.setColor(new java.awt.Color(255, 153, 102));
+        cCPaintedCircle1.setDiameter(20);
+        cCPaintedCircle1.setOpaque(false);
+
+        cCPaintedCircle4.setColor(new java.awt.Color(255, 153, 102));
+        cCPaintedCircle4.setDiameter(20);
+
+        javax.swing.GroupLayout cCPaintedCircle4Layout = new javax.swing.GroupLayout(cCPaintedCircle4);
+        cCPaintedCircle4.setLayout(cCPaintedCircle4Layout);
+        cCPaintedCircle4Layout.setHorizontalGroup(
+            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle4Layout.setVerticalGroup(
+            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cCPaintedCircle1Layout = new javax.swing.GroupLayout(cCPaintedCircle1);
+        cCPaintedCircle1.setLayout(cCPaintedCircle1Layout);
+        cCPaintedCircle1Layout.setHorizontalGroup(
+            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cCPaintedCircle1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        cCPaintedCircle1Layout.setVerticalGroup(
+            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cCPaintedCircle1Layout.createSequentialGroup()
+                    .addGap(38, 38, 38)
+                    .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        cCPaintedCircle2.setColor(new java.awt.Color(255, 153, 102));
+        cCPaintedCircle2.setDiameter(20);
+        cCPaintedCircle2.setOpaque(false);
+
+        javax.swing.GroupLayout cCPaintedCircle2Layout = new javax.swing.GroupLayout(cCPaintedCircle2);
+        cCPaintedCircle2.setLayout(cCPaintedCircle2Layout);
+        cCPaintedCircle2Layout.setHorizontalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle2Layout.setVerticalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        cCPaintedCircle3.setColor(new java.awt.Color(255, 153, 102));
+        cCPaintedCircle3.setDiameter(20);
+        cCPaintedCircle3.setOpaque(false);
+
+        javax.swing.GroupLayout cCPaintedCircle3Layout = new javax.swing.GroupLayout(cCPaintedCircle3);
+        cCPaintedCircle3.setLayout(cCPaintedCircle3Layout);
+        cCPaintedCircle3Layout.setHorizontalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle3Layout.setVerticalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        cCPaintedCircle5.setColor(new java.awt.Color(255, 153, 102));
+        cCPaintedCircle5.setDiameter(20);
+        cCPaintedCircle5.setOpaque(false);
+
+        javax.swing.GroupLayout cCPaintedCircle5Layout = new javax.swing.GroupLayout(cCPaintedCircle5);
+        cCPaintedCircle5.setLayout(cCPaintedCircle5Layout);
+        cCPaintedCircle5Layout.setHorizontalGroup(
+            cCPaintedCircle5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle5Layout.setVerticalGroup(
+            cCPaintedCircle5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cCGradientPanel1Layout = new javax.swing.GroupLayout(cCGradientPanel1);
+        cCGradientPanel1.setLayout(cCGradientPanel1Layout);
+        cCGradientPanel1Layout.setHorizontalGroup(
+            cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cCGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(taskDescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(taskNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(taskDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(cCPaintedCircle5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(taskEndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)))
+                .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
+        );
+        cCGradientPanel1Layout.setVerticalGroup(
+            cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                            .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(taskDateLabel)
+                                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(taskEndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cCPaintedCircle5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                            .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(taskNameLabel)
+                                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(cCGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(taskDescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(cCGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(taskDescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(taskNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(taskEndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(taskDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
-                        .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(cCGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taskNameLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(taskDescriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(taskDateLabel)
-                                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(taskEndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+            .addComponent(cCGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,10 +249,12 @@ public class CCTaskElement extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.talentbridge.hirewise.custom_components.Label label1;
-    private com.talentbridge.hirewise.custom_components.Label label2;
-    private com.talentbridge.hirewise.custom_components.Label label3;
-    private com.talentbridge.hirewise.custom_components.Label label4;
+    private com.talentbridge.hirewise.custom_components.CCGradientPanel cCGradientPanel1;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle2;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle4;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle5;
     private com.talentbridge.hirewise.custom_components.Button saveButton;
     private javax.swing.JComboBox<String> statusComboBox;
     private javax.swing.JLabel taskDateLabel;

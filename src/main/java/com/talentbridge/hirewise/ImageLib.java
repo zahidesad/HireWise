@@ -43,6 +43,10 @@ public class ImageLib {
     public static String getPositionIconPath() {
         return projectPath + "\\assets\\position.png";
     }
+    
+    /*public static String getTaskIconPath() {
+        return projectPath + "\\assets\\clipboard.png";
+    }*/
 
     public static String getPPIconPath(String username) {
         File destinationDir = new File(projectPath + "\\assets\\");

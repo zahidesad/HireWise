@@ -112,6 +112,27 @@ public class TaskDAO {
             e.printStackTrace();
         }
     }
+    
+    public List<Task> getEmployeeTasks(int employeeId) {
+        String sql = "SELECT task_id, assigned_to, task_name, task_description, start_date, end_date, status "
+                   + "FROM Task WHERE assigned_to = ?";
+        List<Task> tasks = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, employeeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Task task = mapRowToTask(rs);
+                    tasks.add(task);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tasks;
+    }
 
     private Task mapRowToTask(ResultSet rs) throws SQLException {
         Task task = new Task();

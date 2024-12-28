@@ -36,4 +36,9 @@ public class TaskService {
     public void deleteTask(int taskId) {
         taskDAO.delete(taskId);
     }
+    
+    public List<Task> getEmployeeTasks(int employeeId) {
+        List<Task> tasks = taskDAO.getEmployeeTasks(employeeId);
+        return tasks;
+    }
 }

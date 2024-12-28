@@ -2,16 +2,19 @@ package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
 import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.custom_components.CCPerformansReviewElement;
 import com.talentbridge.hirewise.custom_components.CCSalaryHistoryElement;
 import com.talentbridge.hirewise.custom_components.CCScrollBar;
 import com.talentbridge.hirewise.custom_components.CCTaskElement;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Department;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
+import com.talentbridge.hirewise.personnel_system.model.PerformanceReview;
 import com.talentbridge.hirewise.personnel_system.model.Position;
 import com.talentbridge.hirewise.personnel_system.model.SalaryRecord;
 import com.talentbridge.hirewise.personnel_system.model.Task;
 import com.talentbridge.hirewise.personnel_system.service.DepartmentService;
+import com.talentbridge.hirewise.personnel_system.service.PerformanceReviewService;
 import com.talentbridge.hirewise.personnel_system.service.PositionService;
 import com.talentbridge.hirewise.personnel_system.service.SalaryRecordService;
 import java.awt.GridLayout;
@@ -30,6 +33,7 @@ public class PositionDetailsPanel extends javax.swing.JPanel implements IPage{
     Employee emp;
     User user;
     SalaryRecordService salaryRecordService = new SalaryRecordService();
+    PerformanceReviewService performanceReviewService = new PerformanceReviewService();
     PositionService positionService = new PositionService();
     DepartmentService departmentService = new DepartmentService();
     public PositionDetailsPanel() {
@@ -105,9 +109,9 @@ public class PositionDetailsPanel extends javax.swing.JPanel implements IPage{
                         .addComponent(salaryHistoryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(performanceScrollPane)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(cCAvatarImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cCAvatarImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(performanceScrollPane, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -184,6 +188,30 @@ public class PositionDetailsPanel extends javax.swing.JPanel implements IPage{
         sp.setOrientation(JScrollBar.HORIZONTAL);
         salaryHistoryScrollPane.setHorizontalScrollBar(sp);
     }
+    
+    private void createPerformanceList(){ 
+        
+        List<PerformanceReview> performanceReviews = performanceReviewService.getEmployeeReviews(MainFrame.instance.getEmployee().getEmployeeId());
+        
+        JPanel resultConteiner = new JPanel();
+        resultConteiner.setSize(300, 60 * performanceReviews.size());
+        GridLayout gridLayout = new GridLayout(performanceReviews.size(), 1);
+        gridLayout.setVgap(0);
+        resultConteiner.setLayout(gridLayout);
+        
+        for (PerformanceReview review : performanceReviews) {
+            CCPerformansReviewElement salaryListElement = new CCPerformansReviewElement(review);
+            salaryListElement.setSize(280, 58);
+            resultConteiner.add(salaryListElement);
+        }
+        
+        performanceScrollPane.setViewportView(resultConteiner);
+        
+        performanceScrollPane.setVerticalScrollBar(new CCScrollBar());
+        CCScrollBar sp = new CCScrollBar();
+        sp.setOrientation(JScrollBar.HORIZONTAL);
+        performanceScrollPane.setHorizontalScrollBar(sp);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DetailsLabel;
@@ -205,6 +233,7 @@ public class PositionDetailsPanel extends javax.swing.JPanel implements IPage{
     @Override
     public void onPageSetted() {
         createSalaryList();
+        createPerformanceList();
         
         emp = MainFrame.instance.getEmployee();
         user = MainFrame.instance.getAccount();

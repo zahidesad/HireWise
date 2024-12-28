@@ -108,6 +108,27 @@ public class PerformanceReviewDAO {
             e.printStackTrace();
         }
     }
+    
+    public List<PerformanceReview> getEmployeeReviews(int employeeId) {
+        String sql = "SELECT review_id, employee_id, review_date, performance_score, comments "
+                   + "FROM PerformanceReview WHERE employee_id = ?";
+        List<PerformanceReview> reviews = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, employeeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PerformanceReview review = mapRowToPerformanceReview(rs);
+                    reviews.add(review);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reviews;
+    }
 
     private PerformanceReview mapRowToPerformanceReview(ResultSet rs) throws SQLException {
         PerformanceReview pr = new PerformanceReview();
