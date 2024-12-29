@@ -43,15 +43,13 @@ public class MainFrame extends javax.swing.JFrame {
     private final ProfilePanel profilePage;
     private final PositionDetailsPanel positionDetailsPage;
     private final LeaveRecordPanel leaveRecordPage;
-<<<<<<< Updated upstream
+
     private final DepartmentBudgetPanel departmentBudgetPage;
     private final AddNewDepartmentBudgetPanel addNewDepartmentBudgetPage;
-=======
+
     
     
     
-    
->>>>>>> Stashed changes
 
     public MainFrame() {
         initComponents();

@@ -87,7 +87,7 @@ public class ImageLib {
     }
 
     public static String getPositionsIconPath() {
-        return projectPath + "\\assets\\postions.png";
+        return projectPath + "\\assets\\positions.png";
     }
 
     public static String getTaskIconPath() {
