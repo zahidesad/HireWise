@@ -2,6 +2,9 @@ package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.User;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
+import com.talentbridge.hirewise.job_posting_system.ui.ApplicantProfilePanel;
+import com.talentbridge.hirewise.job_posting_system.ui.HomePanel;
+import com.talentbridge.hirewise.job_posting_system.ui.JobPostsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
@@ -18,6 +21,8 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static MainFrame instance;
     
+    
+  
     private User account; 
     private Employee employee; 
     private Applicant applicant; 
@@ -25,6 +30,10 @@ public class MainFrame extends javax.swing.JFrame {
     
     private final SideMenuPanel sideMenu;
     private final HeaderPanel header;
+    
+    private final HomePanel homePage;
+    private final ApplicantProfilePanel applicantProfilePage;
+    private final JobPostsPanel jobPostsPage;
     
     private final WelcomePanel welcomePage;
     private final DepartmentPanel departmentPage;
@@ -34,11 +43,21 @@ public class MainFrame extends javax.swing.JFrame {
     private final ProfilePanel profilePage;
     private final PositionDetailsPanel positionDetailsPage;
     private final LeaveRecordPanel leaveRecordPage;
+<<<<<<< Updated upstream
     private final DepartmentBudgetPanel departmentBudgetPage;
     private final AddNewDepartmentBudgetPanel addNewDepartmentBudgetPage;
+=======
+    
+    
+    
+    
+>>>>>>> Stashed changes
 
     public MainFrame() {
         initComponents();
+        homePage= new HomePanel();
+        applicantProfilePage = new ApplicantProfilePanel();
+        jobPostsPage = new JobPostsPanel();
         
         welcomePage = new WelcomePanel();
         departmentPage = new DepartmentPanel();
@@ -174,13 +193,23 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    
+    public HomePanel getHomePage(){
+        return this.homePage;
+    }
+    public ApplicantProfilePanel getApplicantProfilePage(){
+        return this.applicantProfilePage;
+    }
+    public JobPostsPanel getJobPostsPage(){
+        return this.jobPostsPage;
+    }
+
     public DepartmentPanel getDepartmentPage(){return this.departmentPage; }
     public WelcomePanel getWelcomePage(){return this.welcomePage; }
     public LoginPanel getLoginPage(){return this.loginPage; }
     public RegisterPanel getRegisterPage(){return this.registerPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     public ProfilePanel getProfilePage(){return this.profilePage; }
+    
     public PositionDetailsPanel getPositionDetailPage(){return this.positionDetailsPage; }
     public LeaveRecordPanel getLeaveRecordPage(){return this.leaveRecordPage; }
     public DepartmentBudgetPanel getDepartmentBudgetPage(){return this.departmentBudgetPage; }

@@ -4,11 +4,24 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.custom_components.CCJobPostElement;
+import com.talentbridge.hirewise.custom_components.CCScrollBar;
+import com.talentbridge.hirewise.custom_components.CCTaskElement;
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import com.talentbridge.hirewise.job_posting_system.service.JobPostingService;
+import com.talentbridge.hirewise.personnel_system.core.IPage;
+import com.talentbridge.hirewise.personnel_system.model.Task;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
+import java.awt.GridLayout;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+
 /**
  *
  * @author Lenovo
  */
-public class JobPostsPanel extends javax.swing.JPanel {
+public class JobPostsPanel extends javax.swing.JPanel implements IPage{
 
     /**
      * Creates new form JobPostsPanel
@@ -16,6 +29,37 @@ public class JobPostsPanel extends javax.swing.JPanel {
     public JobPostsPanel() {
         initComponents();
     }
+    
+    public List<JobPosting> getJobPosts(){        
+        JobPostingService jobPostService = new JobPostingService();
+        return jobPostService.getAllJobPostings();
+    }
+    
+    private void createJobPostsList(){ 
+        
+        List<JobPosting> jobPosts = getJobPosts();
+        
+        JPanel resultConteiner = new JPanel();
+        resultConteiner.setSize(570, 100 * jobPosts.size());
+        GridLayout gridLayout = new GridLayout(jobPosts.size(), 1);
+        gridLayout.setVgap(5);
+        resultConteiner.setLayout(gridLayout);
+        
+        for (JobPosting jobPost : jobPosts) {
+            CCJobPostElement userListElement = new CCJobPostElement(jobPost);
+            userListElement.setSize(550, 100);
+            resultConteiner.add(userListElement);
+        }
+        
+        jScrollPane1.setViewportView(resultConteiner);
+        
+        jScrollPane1.setVerticalScrollBar(new CCScrollBar());
+        CCScrollBar sp = new CCScrollBar();
+        sp.setOrientation(JScrollBar.HORIZONTAL);
+        jScrollPane1.setHorizontalScrollBar(sp);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +70,35 @@ public class JobPostsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+
         setPreferredSize(new java.awt.Dimension(750, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onPageSetted() {
+        createJobPostsList();
+    }
 }

@@ -105,47 +105,17 @@ public class HomePanel extends javax.swing.JPanel implements IPage{
 
     private void JobPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JobPostButtonActionPerformed
        
-    JobPostsPanel jobPostsPanel = new JobPostsPanel(); 
-
-
-    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-    if (currentFrame != null) {
-       
-        currentFrame.getContentPane().removeAll();
-        currentFrame.getContentPane().add(jobPostsPanel); 
-        currentFrame.revalidate(); 
-        currentFrame.repaint(); 
-    }
+    MainFrame.instance.setPage(MainFrame.instance.getJobPostsPage());
     }//GEN-LAST:event_JobPostButtonActionPerformed
 
     private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
   
-    ApplicantProfilePanel applicantProfilePanel = new ApplicantProfilePanel(); 
-
-    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-    if (currentFrame != null) {
-        
-        currentFrame.getContentPane().removeAll();
-        currentFrame.getContentPane().add(applicantProfilePanel); 
-        currentFrame.revalidate(); 
-        currentFrame.repaint(); 
-    }
+    MainFrame.instance.setPage(MainFrame.instance.getApplicantProfilePage());
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
     private void ApplicationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplicationsButtonActionPerformed
-       ApplicationsPanel applicationsPanel = new ApplicationsPanel(); 
 
-    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-    if (currentFrame != null) {
-        
-        currentFrame.getContentPane().removeAll();
-        currentFrame.getContentPane().add(applicationsPanel); 
-        currentFrame.revalidate(); 
-        currentFrame.repaint(); 
-    }
+    MainFrame.instance.setPage(MainFrame.instance.getApplicantProfilePage());
     }//GEN-LAST:event_ApplicationsButtonActionPerformed
 
     

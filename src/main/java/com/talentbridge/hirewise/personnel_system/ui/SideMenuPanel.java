@@ -143,18 +143,35 @@ public class SideMenuPanel extends javax.swing.JPanel {
 
     private void hirewiseHRList() {
         testList();
+        
+       
+        
     }
 
     private void hirewiseUserList() {
         cCSideMenuList1.removeAllItems();
-
-        //------------ Profile -------------
+        
+         //------------ Home -------------
         ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Profile", icon, MainFrame.instance.getProfilePage()));
+        cCSideMenuList1.addItem(new Item("Home", icon, MainFrame.instance.getHomePage()));
 
-        cCSideMenuList1.setSelectedIndex(0);
+        //------------ Profile -------------
+        ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon2.setImage(imgFit2);
+        cCSideMenuList1.addItem(new Item("Profile", icon2, MainFrame.instance.getApplicantProfilePage()));
+        
+         //------------ Job Posts -------------
+        ImageIcon icon3 = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon3.setImage(imgFit3);
+        cCSideMenuList1.addItem(new Item("Job Posts", icon3, MainFrame.instance.getJobPostsPage()));
+        
+        
+        
+        
     }
 
     private void talentbridgeManagerList() {
