@@ -26,3 +26,4 @@ replay_pid*
 target/classes/.netbeans_automatic_build
 /target/test-classes
 /target/maven-status
+/target/maven-status/maven-compiler-plugin
