@@ -37,7 +37,7 @@ public class EmployeeService {
     public void deleteEmployee(int employeeId) {
         employeeDAO.delete(employeeId);
     }
-    
+
     public Employee getEmployeeByUserId(int userId) {
         if (userId <= 0) {
             throw new IllegalArgumentException("Invalid User ID.");
@@ -48,7 +48,7 @@ public class EmployeeService {
         }
         return employee;
     }
-    
+
     public String getPositionTitleForEmployee(int employeeId) {
         if (employeeId <= 0) {
             throw new IllegalArgumentException("Invalid Employee ID.");
@@ -59,4 +59,9 @@ public class EmployeeService {
         }
         return positionTitle;
     }
+
+    public int countEmployeesByPositionId(int posId) {
+        return employeeDAO.countByPositionId(posId);
+    }
+
 }

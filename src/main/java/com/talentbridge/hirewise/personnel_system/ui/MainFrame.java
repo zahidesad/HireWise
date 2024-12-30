@@ -57,6 +57,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private final DepartmentBudgetPanel departmentBudgetPage;
     private final AddNewDepartmentBudgetPanel addNewDepartmentBudgetPage;
+    private final ShowPositionsPanel showPositionsPage;
+    private final AddNewPositionPanel addNewPositionPage;
 
     
     
@@ -84,6 +86,8 @@ public class MainFrame extends javax.swing.JFrame {
         leaveRecordPage = new LeaveRecordPanel();
         departmentBudgetPage = new DepartmentBudgetPanel();
         addNewDepartmentBudgetPage = new AddNewDepartmentBudgetPanel();
+        showPositionsPage = new ShowPositionsPanel();
+        addNewPositionPage = new AddNewPositionPanel();
         // -------------------------------------
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -240,6 +244,8 @@ public class MainFrame extends javax.swing.JFrame {
     public LeaveRecordPanel getLeaveRecordPage(){return this.leaveRecordPage; }
     public DepartmentBudgetPanel getDepartmentBudgetPage(){return this.departmentBudgetPage; }
     public AddNewDepartmentBudgetPanel getAddNewDepartmentBudgetPage(){ return this.addNewDepartmentBudgetPage; }
+    public ShowPositionsPanel getShowPositionsPage(){ return this.showPositionsPage; }
+    public AddNewPositionPanel getAddNewPositionPage () {return this.addNewPositionPage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }

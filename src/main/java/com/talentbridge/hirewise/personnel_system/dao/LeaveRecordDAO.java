@@ -123,6 +123,36 @@ public class LeaveRecordDAO {
         }
     }
 
+    public List<LeaveRecord> findByDepartmentId(int departmentId) {
+        List<LeaveRecord> leaves = new ArrayList<>();
+        String sql = """
+        SELECT lr.leave_id,
+               lr.employee_id,
+               lr.approved_by,
+               lr.leave_type,
+               lr.start_date,
+               lr.end_date,
+               lr.status
+          FROM LeaveRecord lr
+          JOIN Employee e ON lr.employee_id = e.employee_id
+         WHERE e.department_id = ?
+    """;
+
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, departmentId);
+            try ( ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    LeaveRecord lr = mapRowToLeaveRecord(rs);
+                    leaves.add(lr);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return leaves;
+    }
+
     private LeaveRecord mapRowToLeaveRecord(ResultSet rs) throws SQLException {
         LeaveRecord lr = new LeaveRecord();
         lr.setLeaveId(rs.getInt("leave_id"));

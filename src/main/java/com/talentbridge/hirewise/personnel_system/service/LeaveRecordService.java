@@ -37,4 +37,9 @@ public class LeaveRecordService {
     public void deleteLeaveRecord(int leaveId) {
         leaveRecordDAO.delete(leaveId);
     }
+
+    public List<LeaveRecord> getLeavesByDepartmentId(int deptId) {
+        return leaveRecordDAO.findByDepartmentId(deptId);
+    }
+
 }

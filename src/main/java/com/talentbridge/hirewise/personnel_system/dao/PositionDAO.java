@@ -101,6 +101,29 @@ public class PositionDAO {
         }
     }
 
+    public List<Position> findByDepartmentId(int deptId) {
+        String sql = """
+        SELECT position_id, department_id, position_title, position_description, base_salary
+        FROM Position
+        WHERE department_id = ?
+        """;
+
+        List<Position> list = new ArrayList<>();
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, deptId);
+            try ( ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Position pos = mapRowToPosition(rs);
+                    list.add(pos);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     private Position mapRowToPosition(ResultSet rs) throws SQLException {
         Position pos = new Position();
         pos.setPositionId(rs.getInt("position_id"));

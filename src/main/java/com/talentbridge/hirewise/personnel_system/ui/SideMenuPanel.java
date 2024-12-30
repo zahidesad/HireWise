@@ -227,13 +227,12 @@ public class SideMenuPanel extends javax.swing.JPanel {
         iconBudget.setImage(imgFitBudget);
         cCSideMenuList1.addItem(new Item("Departmant Budget", iconBudget, MainFrame.instance.getDepartmentBudgetPage()));
 
-        // 6) Pozitions
+        // 6) Positions
         ImageIcon iconPosCreate = new ImageIcon(ImageLib.getPositionsIconPath());
         Image imgFitPosCreate = iconPosCreate.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconPosCreate.setImage(imgFitPosCreate);
-        // cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getCreatePositionPage()));
-        // Geçici olarak DepartmentPanel gibi bir placeholder verilebilir
-        cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getDepartmentPage()));
+        cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getShowPositionsPage()));
+        
 
         // 7) Tasks
         ImageIcon iconTask = new ImageIcon(ImageLib.getTaskIconPath());

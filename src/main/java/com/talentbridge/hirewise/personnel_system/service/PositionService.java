@@ -37,4 +37,9 @@ public class PositionService {
     public void deletePosition(int positionId) {
         positionDAO.delete(positionId);
     }
+
+    public List<Position> getPositionsByDepartmentId(int deptId) {
+        return positionDAO.findByDepartmentId(deptId);
+    }
+
 }

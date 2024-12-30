@@ -27,7 +27,6 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        loginButton = new com.talentbridge.hirewise.custom_components.Button();
         usernameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JTextField();
@@ -36,17 +35,9 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
         hirewiseRadioBtn = new javax.swing.JRadioButton();
         talentBridgeRadioBtn = new javax.swing.JRadioButton();
         warningLabel = new javax.swing.JLabel();
+        loginButton = new javax.swing.JButton();
 
         jLabel1.setText("Username");
-
-        loginButton.setBackground(new java.awt.Color(204, 204, 204));
-        loginButton.setForeground(new java.awt.Color(0, 0, 0));
-        loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Password");
 
@@ -75,6 +66,13 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
 
         warningLabel.setText(" ");
 
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,10 +88,10 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                     .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(usernameField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(390, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,8 +116,8 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                 .addGap(22, 22, 22)
                 .addComponent(warningLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addComponent(loginButton)
+                .addGap(150, 150, 150))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -204,7 +202,7 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private com.talentbridge.hirewise.custom_components.Button loginButton;
+    private javax.swing.JButton loginButton;
     private javax.swing.JTextField passwordField;
     private javax.swing.JRadioButton talentBridgeRadioBtn;
     private javax.swing.JTextField usernameField;

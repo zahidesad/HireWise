@@ -141,17 +141,17 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
     }
-    
+
     public Employee findByUserId(int userId) {
         String sql = "SELECT employee_id, department_id, position_id, original_applicant_id, "
                 + "last_name, first_name, email, phone, hire_date, employment_status, user_id "
                 + "FROM Employee WHERE user_id = ?";
 
         Employee emp = null;
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, userId);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     emp = mapRowToEmployee(rs);
                 }
@@ -161,20 +161,20 @@ public class EmployeeDAO {
         }
         return emp;
     }
-    
+
     // GET EMPLOYEE POSITION TITLE
     public String getEmployeePositionTitle(int employeeId) {
         String sql = "SELECT p.position_title "
-                   + "FROM Employee e "
-                   + "INNER JOIN Position p ON e.position_id = p.position_id "
-                   + "WHERE e.employee_id = ?";
+                + "FROM Employee e "
+                + "INNER JOIN Position p ON e.position_id = p.position_id "
+                + "WHERE e.employee_id = ?";
 
         String positionTitle = null;
 
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, employeeId);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     positionTitle = rs.getString("position_title");
                 }
@@ -186,7 +186,21 @@ public class EmployeeDAO {
         return positionTitle;
     }
 
-    // Yardımcı metod:
+    public int countByPositionId(int positionId) {
+        String sql = "SELECT COUNT(*) AS cnt FROM Employee WHERE position_id = ?";
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, positionId);
+            try ( ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("cnt");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0; // fallback
+    }
+
     private Employee mapRowToEmployee(ResultSet rs) throws SQLException {
         Employee emp = new Employee();
         emp.setEmployeeId(rs.getInt("employee_id"));

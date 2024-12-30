@@ -27,27 +27,14 @@ public class LeaveRecordPanel extends javax.swing.JPanel implements IPage {
         Employee managerEmp = MainFrame.instance.getEmployee();
         int managerDeptId = managerEmp.getDepartmentId();
 
-        createLeaveRecordList(managerDeptId);
-    }
-
-    public List<LeaveRecord> getLeaveRecordsForManager(int managerDeptId) {
+        // Servis üzerinden direkt departmanId filtreli veriyi çekiyoruz:
         LeaveRecordService leaveRecordService = new LeaveRecordService();
+        List<LeaveRecord> leaveRecords = leaveRecordService.getLeavesByDepartmentId(managerDeptId);
 
-        List<LeaveRecord> allLeaves = leaveRecordService.getAllLeaveRecords();
-        List<LeaveRecord> filteredLeaves = new ArrayList<>();
-
-        for (LeaveRecord lr : allLeaves) {
-            if (lr.getEmployee() != null && lr.getEmployee().getDepartmentId() == managerDeptId) {
-                filteredLeaves.add(lr);
-            }
-        }
-        return filteredLeaves;
+        createLeaveRecordList(leaveRecords);
     }
 
-    private void createLeaveRecordList(int managerDeptId) {
-
-        List<LeaveRecord> leaveRecords = getLeaveRecordsForManager(managerDeptId);
-
+    private void createLeaveRecordList(List<LeaveRecord> leaveRecords) {
         JPanel resultConteiner = new JPanel();
         resultConteiner.setSize(800, 100 * leaveRecords.size());
         GridLayout gridLayout = new GridLayout(leaveRecords.size(), 1);
