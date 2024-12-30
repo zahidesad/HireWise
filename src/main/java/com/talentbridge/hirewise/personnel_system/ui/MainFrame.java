@@ -24,6 +24,7 @@ import javax.swing.JPanel;
  */
 public class MainFrame extends javax.swing.JFrame {
     
+        
     public static MainFrame instance;
     
     
@@ -59,6 +60,8 @@ public class MainFrame extends javax.swing.JFrame {
     private final AddNewDepartmentBudgetPanel addNewDepartmentBudgetPage;
     private final ShowPositionsPanel showPositionsPage;
     private final AddNewPositionPanel addNewPositionPage;
+    private final ShowTasksManagerPanel showTasksManagerPage;
+    private final AddNewTaskManagerPanel addNewTaskManagerPage;
 
     
     
@@ -88,6 +91,8 @@ public class MainFrame extends javax.swing.JFrame {
         addNewDepartmentBudgetPage = new AddNewDepartmentBudgetPanel();
         showPositionsPage = new ShowPositionsPanel();
         addNewPositionPage = new AddNewPositionPanel();
+        showTasksManagerPage = new ShowTasksManagerPanel();
+        addNewTaskManagerPage = new AddNewTaskManagerPanel();
         // -------------------------------------
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -246,6 +251,8 @@ public class MainFrame extends javax.swing.JFrame {
     public AddNewDepartmentBudgetPanel getAddNewDepartmentBudgetPage(){ return this.addNewDepartmentBudgetPage; }
     public ShowPositionsPanel getShowPositionsPage(){ return this.showPositionsPage; }
     public AddNewPositionPanel getAddNewPositionPage () {return this.addNewPositionPage; }
+    public ShowTasksManagerPanel getShowTasksManagerPage (){return this.showTasksManagerPage; }
+    public AddNewTaskManagerPanel getAddNewTaskManagerPage () {return this.addNewTaskManagerPage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }

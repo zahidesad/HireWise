@@ -238,7 +238,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         ImageIcon iconTask = new ImageIcon(ImageLib.getTaskIconPath());
         Image imgFitTask = iconTask.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconTask.setImage(imgFitTask);
-        cCSideMenuList1.addItem(new Item("Tasks", iconTask, MainFrame.instance.getShowTasksPage()));
+        cCSideMenuList1.addItem(new Item("Tasks", iconTask, MainFrame.instance.getShowTasksManagerPage()));
 
         // 8) Reviews
         // Belki "PerformanceReviewPanel" gibi bir paneliniz vardır
