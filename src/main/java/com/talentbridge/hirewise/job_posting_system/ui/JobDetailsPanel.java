@@ -4,11 +4,14 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.personnel_system.core.IPage;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
+
 /**
  *
  * @author Lenovo
  */
-public class JobDetailsPanel extends javax.swing.JPanel {
+public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
 
     /**
      * Creates new form JobDetailsPanel
@@ -26,19 +29,159 @@ public class JobDetailsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JobPositionLabel = new javax.swing.JLabel();
+        StartDateLabel = new javax.swing.JLabel();
+        EndDateLabel = new javax.swing.JLabel();
+        StatusLabel = new javax.swing.JLabel();
+        cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle2 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        JobDescriptionLabel = new javax.swing.JLabel();
+        ApplyButton = new javax.swing.JButton();
+        JobDetailsLabel = new javax.swing.JLabel();
+
+        JobPositionLabel.setText("jLabel1");
+
+        StartDateLabel.setText("jLabel2");
+
+        EndDateLabel.setText("jLabel3");
+
+        StatusLabel.setText("jLabel4");
+
+        javax.swing.GroupLayout cCPaintedCircle1Layout = new javax.swing.GroupLayout(cCPaintedCircle1);
+        cCPaintedCircle1.setLayout(cCPaintedCircle1Layout);
+        cCPaintedCircle1Layout.setHorizontalGroup(
+            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        cCPaintedCircle1Layout.setVerticalGroup(
+            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cCPaintedCircle2Layout = new javax.swing.GroupLayout(cCPaintedCircle2);
+        cCPaintedCircle2.setLayout(cCPaintedCircle2Layout);
+        cCPaintedCircle2Layout.setHorizontalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle2Layout.setVerticalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 19, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cCPaintedCircle3Layout = new javax.swing.GroupLayout(cCPaintedCircle3);
+        cCPaintedCircle3.setLayout(cCPaintedCircle3Layout);
+        cCPaintedCircle3Layout.setHorizontalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle3Layout.setVerticalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 19, Short.MAX_VALUE)
+        );
+
+        JobDescriptionLabel.setText("jLabel1");
+
+        ApplyButton.setText("Apply");
+
+        JobDetailsLabel.setText("Job Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JobPositionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(JobDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(StartDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(EndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(JobDescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(255, 255, 255)
+                        .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(StartDateLabel)
+                                    .addComponent(EndDateLabel)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(JobDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JobPositionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(StatusLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(JobDescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ApplyButton;
+    private javax.swing.JLabel EndDateLabel;
+    private javax.swing.JLabel JobDescriptionLabel;
+    private javax.swing.JLabel JobDetailsLabel;
+    private javax.swing.JLabel JobPositionLabel;
+    private javax.swing.JLabel StartDateLabel;
+    private javax.swing.JLabel StatusLabel;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle2;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onPageSetted() {
+       var postedJob = MainFrame.instance.getPostedJob();
+
+        JobPositionLabel.setText(postedJob.getTitle());
+        StartDateLabel.setText(postedJob.getPostingDate().toString());
+        EndDateLabel.setText(postedJob.getExpiryDate().toString());
+        StatusLabel.setText(postedJob.getStatus());
+    }
 }

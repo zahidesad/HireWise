@@ -143,7 +143,18 @@ public class SideMenuPanel extends javax.swing.JPanel {
 
     private void hirewiseHRList() {
         testList();
+        //------------ HR Job Details -------------
+        ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon.setImage(imgFit);
+        cCSideMenuList1.addItem(new Item("Job Details", icon, MainFrame.instance.getHRJobDetailsPage()));
         
+        
+        //------------ HR Job Publish -------------
+        ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon2.setImage(imgFit2);
+        cCSideMenuList1.addItem(new Item("Publish Job", icon2, MainFrame.instance.getHRJobPublishPage()));
        
         
     }
@@ -168,6 +179,19 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Job Posts", icon3, MainFrame.instance.getJobPostsPage()));
+        
+         //------------ Job Detail Page -------------
+        ImageIcon icon4 = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit4 = icon4.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon4.setImage(imgFit4);
+        cCSideMenuList1.addItem(new Item("Job Details", icon4, MainFrame.instance.getJobDetailsPage()));
+        
+        ImageIcon icon5 = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        icon5.setImage(imgFit5);
+        cCSideMenuList1.addItem(new Item("Application Details", icon5, MainFrame.instance.getApplicationsDetailPage()));
+        
+        
         
         
         
@@ -250,6 +274,8 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
+        
+        
 
         cCSideMenuList1.setSelectedIndex(0);
     }

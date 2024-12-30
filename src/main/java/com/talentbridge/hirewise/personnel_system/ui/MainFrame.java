@@ -2,8 +2,13 @@ package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.User;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicantProfilePanel;
+import com.talentbridge.hirewise.job_posting_system.ui.ApplicationsDetailPanel;
+import com.talentbridge.hirewise.job_posting_system.ui.HRJobDetailsPanel;
+import com.talentbridge.hirewise.job_posting_system.ui.HRJobPublishPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.HomePanel;
+import com.talentbridge.hirewise.job_posting_system.ui.JobDetailsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.JobPostsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
@@ -27,6 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
     private Employee employee; 
     private Applicant applicant; 
     private String loggedSystem = "";
+    private JobPosting postedJob;
+    
     
     private final SideMenuPanel sideMenu;
     private final HeaderPanel header;
@@ -34,6 +41,10 @@ public class MainFrame extends javax.swing.JFrame {
     private final HomePanel homePage;
     private final ApplicantProfilePanel applicantProfilePage;
     private final JobPostsPanel jobPostsPage;
+    private final JobDetailsPanel jobDetailsPage;
+    private final ApplicationsDetailPanel applicationDetailsPage;
+    private final HRJobDetailsPanel hrJobDetailsPage;
+    private final HRJobPublishPanel hrJobPublishPage;
     
     private final WelcomePanel welcomePage;
     private final DepartmentPanel departmentPage;
@@ -56,6 +67,10 @@ public class MainFrame extends javax.swing.JFrame {
         homePage= new HomePanel();
         applicantProfilePage = new ApplicantProfilePanel();
         jobPostsPage = new JobPostsPanel();
+        jobDetailsPage = new JobDetailsPanel();
+        applicationDetailsPage = new ApplicationsDetailPanel();
+        hrJobDetailsPage = new HRJobDetailsPanel();
+        hrJobPublishPage = new HRJobPublishPanel();
         
         welcomePage = new WelcomePanel();
         departmentPage = new DepartmentPanel();
@@ -200,13 +215,26 @@ public class MainFrame extends javax.swing.JFrame {
     public JobPostsPanel getJobPostsPage(){
         return this.jobPostsPage;
     }
+    public JobDetailsPanel getJobDetailsPage(){
+        return this.jobDetailsPage;
+    }
+    public ApplicationsDetailPanel getApplicationsDetailPage(){
+        return this.applicationDetailsPage;
+    }
+    public HRJobDetailsPanel getHRJobDetailsPage(){
+        return this.hrJobDetailsPage;
+    }
 
+    public HRJobPublishPanel getHRJobPublishPage(){
+        return this.hrJobPublishPage;
+    }
     public DepartmentPanel getDepartmentPage(){return this.departmentPage; }
     public WelcomePanel getWelcomePage(){return this.welcomePage; }
     public LoginPanel getLoginPage(){return this.loginPage; }
     public RegisterPanel getRegisterPage(){return this.registerPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     public ProfilePanel getProfilePage(){return this.profilePage; }
+    
     
     public PositionDetailsPanel getPositionDetailPage(){return this.positionDetailsPage; }
     public LeaveRecordPanel getLeaveRecordPage(){return this.leaveRecordPage; }
@@ -221,6 +249,11 @@ public class MainFrame extends javax.swing.JFrame {
     public void setApplicant(Applicant applicant){ this.applicant = applicant; }
     public String getLoggedSystem() {return loggedSystem;}
     public void setLoggedSystem(String loggedSystem) {this.loggedSystem = loggedSystem;}
+    
+    public JobPosting getPostedJob(){
+        return this.postedJob;
+    }
+     public void setPostedJob(JobPosting postedJob){ this.postedJob = postedJob; }
     
     public final void setPage(JPanel page) {
         mainPanel.removeAll();
