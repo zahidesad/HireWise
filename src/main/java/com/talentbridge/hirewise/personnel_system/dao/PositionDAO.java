@@ -124,6 +124,28 @@ public class PositionDAO {
         return list;
     }
 
+    public Position findByTitle(String title) {
+        String sql = """
+        SELECT TOP 1 position_id, department_id, position_title, position_description, base_salary
+        FROM Position
+        WHERE position_title = ?
+    """;
+
+        Position pos = null;
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, title);
+            try ( ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    pos = mapRowToPosition(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pos;
+    }
+
     private Position mapRowToPosition(ResultSet rs) throws SQLException {
         Position pos = new Position();
         pos.setPositionId(rs.getInt("position_id"));

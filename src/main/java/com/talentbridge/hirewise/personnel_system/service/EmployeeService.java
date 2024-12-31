@@ -64,4 +64,8 @@ public class EmployeeService {
         return employeeDAO.countByPositionId(posId);
     }
 
+    public List<Employee> getAllNonManagerEmployees() {
+        return employeeDAO.findAllNonManagers();
+    }
+
 }

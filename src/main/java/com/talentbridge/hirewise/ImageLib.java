@@ -101,4 +101,12 @@ public class ImageLib {
     public static String getBackArrowPath() {
         return projectPath + "\\assets\\back-arrow.png";
     }
+    
+    public static String getDepartmentPath() {
+        return projectPath + "\\assets\\departments.png";
+    }
+    
+    public static String getPromotionIconPath() {
+        return projectPath + "\\assets\\promotion.png";
+    }
 }

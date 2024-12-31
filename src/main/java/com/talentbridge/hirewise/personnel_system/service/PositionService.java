@@ -42,4 +42,12 @@ public class PositionService {
         return positionDAO.findByDepartmentId(deptId);
     }
 
+    public int getPositionIdByTitle(String title) {
+        Position pos = positionDAO.findByTitle(title);
+        if (pos == null) {
+            throw new RuntimeException("Position not found for title: " + title);
+        }
+        return pos.getPositionId();
+    }
+
 }

@@ -119,9 +119,6 @@ public class EmployeeDAO {
             }
             ps.setString(9, emp.getEmploymentStatus());
             ps.setInt(10, emp.getUserId());
-
-            ps.setNull(10, Types.INTEGER);
-
             ps.setInt(11, emp.getEmployeeId());
             ps.executeUpdate();
 
@@ -199,6 +196,37 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
         return 0; // fallback
+    }
+
+    public List<Employee> findAllNonManagers() {
+        String sql = """
+        SELECT e.employee_id,
+               e.department_id,
+               e.position_id,
+               e.original_applicant_id,
+               e.last_name,
+               e.first_name,
+               e.email,
+               e.phone,
+               e.hire_date,
+               e.employment_status,
+               e.user_id
+          FROM Employee e
+          JOIN Position p ON e.position_id = p.position_id
+         WHERE p.position_title <> 'Manager';
+    """;
+
+        List<Employee> list = new ArrayList<>();
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Employee emp = mapRowToEmployee(rs);
+                list.add(emp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     private Employee mapRowToEmployee(ResultSet rs) throws SQLException {

@@ -259,7 +259,33 @@ public class SideMenuPanel extends javax.swing.JPanel {
     }
 
     private void talentbridgeAdminList() {
-        testList();
+        cCSideMenuList1.removeAllItems();
+        
+        // 1) Home
+        ImageIcon iconHome = new ImageIcon(ImageLib.getHomeIconPath());
+        Image imgFitHome = iconHome.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconHome.setImage(imgFitHome);
+        cCSideMenuList1.addItem(new Item("Home", iconHome, MainFrame.instance.getAdminHomePage(cCSideMenuList1)));
+
+        // 2) Profile
+        ImageIcon iconProfile = new ImageIcon(ImageLib.getUserIconPath());
+        Image imgFitProfile = iconProfile.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconProfile.setImage(imgFitProfile);
+        cCSideMenuList1.addItem(new Item("Profile", iconProfile, MainFrame.instance.getProfilePage()));
+
+        // 3) Departments
+        ImageIcon iconDepartment = new ImageIcon(ImageLib.getDepartmentPath());
+        Image imgFitDept = iconDepartment.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconDepartment.setImage(imgFitDept);
+        cCSideMenuList1.addItem(new Item("Show Departments", iconDepartment, MainFrame.instance.getShowDepartmentsPage()));
+        
+        // 4) Promote Employee to Admin
+        ImageIcon promoteIcon = new ImageIcon(ImageLib.getPromotionIconPath());
+        Image imgFitPromote = promoteIcon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        promoteIcon.setImage(imgFitPromote);
+        cCSideMenuList1.addItem(new Item("Promote Employee", promoteIcon, MainFrame.instance.getPromoteEmployeePage()));
+        
+        cCSideMenuList1.setSelectedIndex(1);
     }
 
     private void testList() {

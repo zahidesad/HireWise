@@ -28,9 +28,9 @@ public class RegisterPanel extends javax.swing.JPanel implements IPage{
         jLabel5 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JTextField();
         registerButton = new com.talentbridge.hirewise.custom_components.Button();
         warningLabel = new javax.swing.JLabel();
+        passwordField = new javax.swing.JPasswordField();
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -63,9 +63,9 @@ public class RegisterPanel extends javax.swing.JPanel implements IPage{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(368, 368, 368)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordField)
                     .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(registerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(passwordField)
                     .addComponent(usernameField)
                     .addComponent(emailField)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,7 +129,7 @@ public class RegisterPanel extends javax.swing.JPanel implements IPage{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private com.talentbridge.hirewise.custom_components.Button registerButton;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel warningLabel;

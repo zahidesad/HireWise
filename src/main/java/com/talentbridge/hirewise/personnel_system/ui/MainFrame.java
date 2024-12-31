@@ -24,6 +24,10 @@ import com.talentbridge.hirewise.job_posting_system.ui.JobPostsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
+import com.talentbridge.hirewise.personnel_system.ui.admin_screens.AddNewDepartmentPanel;
+import com.talentbridge.hirewise.personnel_system.ui.admin_screens.AdminHomePanel;
+import com.talentbridge.hirewise.personnel_system.ui.admin_screens.PromoteEmployeePanel;
+import com.talentbridge.hirewise.personnel_system.ui.admin_screens.ShowDepartmentsPanel;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
@@ -65,6 +69,13 @@ public class MainFrame extends javax.swing.JFrame {
     private final PositionDetailsPanel positionDetailsPage;
     private final LeaveRecordPanel leaveRecordPage;
 
+    private final AdminHomePanel adminHomePage;
+    private final ShowDepartmentsPanel showDepartmentsPage;
+    private final AddNewDepartmentPanel addNewDepartmentPage;
+    private final PromoteEmployeePanel promoteEmployeePage;
+    
+    
+    
     private final DepartmentBudgetPanel departmentBudgetPage;
     private final AddNewDepartmentBudgetPanel addNewDepartmentBudgetPage;
     private final ShowPositionsPanel showPositionsPage;
@@ -97,7 +108,14 @@ public class MainFrame extends javax.swing.JFrame {
         profilePage = new ProfilePanel();
         positionDetailsPage = new PositionDetailsPanel();
         
-        // ----------Department Panels----------
+        // ----------Admin Panels----------
+        showDepartmentsPage = new ShowDepartmentsPanel();
+        addNewDepartmentPage = new AddNewDepartmentPanel();
+        promoteEmployeePage = new PromoteEmployeePanel();
+        // ------------------------------------
+        
+        
+        // ----------Manager Panels----------
         leaveRecordPage = new LeaveRecordPanel();
         departmentBudgetPage = new DepartmentBudgetPanel();
         addNewDepartmentBudgetPage = new AddNewDepartmentBudgetPanel();
@@ -107,7 +125,7 @@ public class MainFrame extends javax.swing.JFrame {
         addNewTaskManagerPage = new AddNewTaskManagerPanel();
         showPerformanceReviewPage = new ShowPerformanceReviewPanel();
         givePerformanceReviewPage = new GivePerformanceReviewPanel();
-        // -------------------------------------
+        // ------------------------------------
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
         header.setSize(headerPanel.getWidth(), headerPanel.getWidth());
@@ -129,7 +147,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         // Manager Home Page 
         managerHomePage = new ManagerHomePanel(sideMenu.getCCSideMenuList());
-        
+        // Admin Home Page
+         adminHomePage = new AdminHomePanel(sideMenu.getCCSideMenuList());
         
         // ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\appIcons\\logo.png");
         // this.setIconImage(icon.getImage());
@@ -265,6 +284,11 @@ public class MainFrame extends javax.swing.JFrame {
     public ProfilePanel getProfilePage(){return this.profilePage; }
     
     
+    public AdminHomePanel getAdminHomePage(CCSideMenuList cCSideMenuList) { return this.adminHomePage; }
+    public ShowDepartmentsPanel getShowDepartmentsPage () { return this.showDepartmentsPage; }
+    public AddNewDepartmentPanel getAddNewDepartmentPage () { return this.addNewDepartmentPage; }
+    public PromoteEmployeePanel getPromoteEmployeePage () { return this.promoteEmployeePage; }
+    
     public PositionDetailsPanel getPositionDetailPage(){return this.positionDetailsPage; }
     public LeaveRecordPanel getLeaveRecordPage(){return this.leaveRecordPage; }
     public DepartmentBudgetPanel getDepartmentBudgetPage(){return this.departmentBudgetPage; }
@@ -275,7 +299,6 @@ public class MainFrame extends javax.swing.JFrame {
     public AddNewTaskManagerPanel getAddNewTaskManagerPage () { return this.addNewTaskManagerPage; }
     public ShowPerformanceReviewPanel getShowPerformanceReviewPage () { return this.showPerformanceReviewPage; }
     public GivePerformanceReviewPanel getGivePerformanceReviewPage () { return this.givePerformanceReviewPage; }
-    public ManagerHomePanel getManagerHomePage () { return this.managerHomePage; }
     public ManagerHomePanel getManagerHomePage (CCSideMenuList cCSideMenuList) { return this.managerHomePage; }
     
     public User getAccount(){return this.account; }
