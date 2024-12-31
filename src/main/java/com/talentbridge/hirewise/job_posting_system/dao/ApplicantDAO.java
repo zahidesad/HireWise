@@ -108,6 +108,25 @@ public class ApplicantDAO {
             e.printStackTrace();
         }
     }
+    
+    // READ SINGLE APPLICANT BY USER ID
+public Applicant getApplicantByUserId(int userId) {
+    String sql = "SELECT applicant_id, user_id, first_name, last_name, email, phone, cv_id FROM Applicant WHERE user_id=?";
+    Applicant applicant = null;
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, userId);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                applicant = mapRowToApplicant(rs);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return applicant;
+}
 
     private Applicant mapRowToApplicant(ResultSet rs) throws SQLException {
         Applicant applicant = new Applicant();

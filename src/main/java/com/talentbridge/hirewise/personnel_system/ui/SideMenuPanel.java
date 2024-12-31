@@ -182,7 +182,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         ImageIcon icon5 = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon5.setImage(imgFit5);
-        cCSideMenuList1.addItem(new Item("Application Details", icon5, MainFrame.instance.getApplicationsDetailPage()));
+        cCSideMenuList1.addItem(new Item("Create CV", icon5, MainFrame.instance.getCVPage()));
 
     }
 

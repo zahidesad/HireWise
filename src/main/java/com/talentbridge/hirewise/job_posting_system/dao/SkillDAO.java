@@ -18,6 +18,10 @@ import java.util.List;
  */
 public class SkillDAO {
    // CREATE
+    public SkillDAO(){
+        
+    }
+    
     public void insert(Skill skill) {
         String sql = "INSERT INTO Skill (cv_id, skill_name, skill_area) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();

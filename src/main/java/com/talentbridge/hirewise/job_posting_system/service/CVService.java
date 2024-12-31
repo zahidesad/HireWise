@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.talentbridge.hirewise.job_posting_system.service;
+import com.talentbridge.hirewise.job_posting_system.dao.ApplicantDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.CVDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.OrganizationDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.SkillDAO;
+import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.model.CV;
 import com.talentbridge.hirewise.job_posting_system.model.Organization;
 import com.talentbridge.hirewise.job_posting_system.model.Skill;
+import com.talentbridge.hirewise.user.User;
 import java.util.List;
 /**
  *
@@ -82,4 +85,5 @@ public class CVService {
         OrganizationDAO organizationDAO = new OrganizationDAO();
         return organizationDAO.findByCvId(cvId);
     }
+    
 }

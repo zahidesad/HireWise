@@ -51,4 +51,13 @@ public class ApplicantService {
         }
         applicantDAO.delete(applicantId);
     }
+    
+    // Get an applicant by User ID
+public Applicant getApplicantByUserId(int userId) {
+    if (userId <= 0) {
+        System.out.println("Invalid user ID!");
+        return null;
+    }
+    return applicantDAO.getApplicantByUserId(userId);
+}
 }

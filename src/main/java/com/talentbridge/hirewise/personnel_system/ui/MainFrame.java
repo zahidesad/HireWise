@@ -16,11 +16,13 @@ import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicantProfilePanel;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicationsDetailPanel;
+import com.talentbridge.hirewise.job_posting_system.ui.CVPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.HRJobDetailsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.HRJobPublishPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.HomePanel;
 import com.talentbridge.hirewise.job_posting_system.ui.JobDetailsPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.JobPostsPanel;
+import com.talentbridge.hirewise.job_posting_system.ui.OrganizationAddPanel;
 import com.talentbridge.hirewise.job_posting_system.ui.RegisterPanel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
@@ -55,10 +57,13 @@ public class MainFrame extends javax.swing.JFrame {
     private final HomePanel homePage;
     private final ApplicantProfilePanel applicantProfilePage;
     private final JobPostsPanel jobPostsPage;
+    private final CVPanel cvPage;
+    private final OrganizationAddPanel organizationAddPage;
     private final JobDetailsPanel jobDetailsPage;
     private final ApplicationsDetailPanel applicationDetailsPage;
     private final HRJobDetailsPanel hrJobDetailsPage;
     private final HRJobPublishPanel hrJobPublishPage;
+  
     
     private final WelcomePanel welcomePage;
     private final DepartmentPanel departmentPage;
@@ -95,6 +100,8 @@ public class MainFrame extends javax.swing.JFrame {
         homePage= new HomePanel();
         applicantProfilePage = new ApplicantProfilePanel();
         jobPostsPage = new JobPostsPanel();
+        cvPage = new CVPanel();
+        organizationAddPage = new OrganizationAddPanel();
         jobDetailsPage = new JobDetailsPanel();
         applicationDetailsPage = new ApplicationsDetailPanel();
         hrJobDetailsPage = new HRJobDetailsPanel();
@@ -261,9 +268,16 @@ public class MainFrame extends javax.swing.JFrame {
     public JobPostsPanel getJobPostsPage(){
         return this.jobPostsPage;
     }
+    public CVPanel getCVPage(){
+        return this.cvPage;
+    }
+    public OrganizationAddPanel getOrganizationAddPage(){
+        return this.organizationAddPage;
+    }
     public JobDetailsPanel getJobDetailsPage(){
         return this.jobDetailsPage;
     }
+    
    
     
     public ApplicationsDetailPanel getApplicationsDetailPage(){

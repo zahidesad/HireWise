@@ -5,6 +5,7 @@
 package com.talentbridge.hirewise.job_posting_system.ui;
 
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicantService;
 import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
@@ -188,8 +189,9 @@ public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
     if (response == javax.swing.JOptionPane.YES_OPTION) {
         try {
             // Save application to the database
+            ApplicantService applicantService = new ApplicantService();
             ApplicationService applicationService = new ApplicationService();
-            applicationService.applyForJob(currentUserId, postedJob.getJobPostingId());
+            applicationService.applyForJob(applicantService.getApplicantByUserId(currentUserId).getApplicantId(), postedJob.getJobPostingId());
 
             // Notify the user
             javax.swing.JOptionPane.showMessageDialog(this, 
