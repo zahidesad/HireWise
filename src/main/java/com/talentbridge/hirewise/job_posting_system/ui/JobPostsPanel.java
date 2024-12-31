@@ -26,33 +26,43 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
     /**
      * Creates new form JobPostsPanel
      */
+   
     public JobPostsPanel() {
         initComponents();
+          SearchButton.addActionListener(evt -> onSearch());
+
+        SearchField.addActionListener(evt -> onSearch()); 
+        StatusComboBox.addActionListener(evt -> onSearch());
+        
     }
     
-    public List<JobPosting> getJobPosts(){        
+   public List<JobPosting> getJobPosts(String titleFilter, String statusFilter) {
         JobPostingService jobPostService = new JobPostingService();
-        return jobPostService.getAllJobPostings();
+
+        if ((titleFilter == null || titleFilter.isEmpty()) && (statusFilter == null || statusFilter.isEmpty())) {
+            return jobPostService.getAllJobPostings(); // Tüm kayıtlar
+        } else {
+            return jobPostService.filterJobPostings(titleFilter, statusFilter); // Filtrelenmiş kayıtlar
+        }
     }
     
-    private void createJobPostsList(){ 
-        
-        List<JobPosting> jobPosts = getJobPosts();
-        
-        JPanel resultConteiner = new JPanel();
-        resultConteiner.setSize(570, 100 * jobPosts.size());
+    private void createJobPostsList(String titleFilter, String statusFilter) {
+        List<JobPosting> jobPosts = getJobPosts(titleFilter, statusFilter);
+
+        JPanel resultContainer = new JPanel();
+        resultContainer.setSize(570, 100 * jobPosts.size());
         GridLayout gridLayout = new GridLayout(jobPosts.size(), 1);
         gridLayout.setVgap(5);
-        resultConteiner.setLayout(gridLayout);
-        
+        resultContainer.setLayout(gridLayout);
+
         for (JobPosting jobPost : jobPosts) {
             CCJobPostElement userListElement = new CCJobPostElement(jobPost);
             userListElement.setSize(550, 100);
-            resultConteiner.add(userListElement);
+            resultContainer.add(userListElement);
         }
-        
-        jScrollPane1.setViewportView(resultConteiner);
-        
+
+        jScrollPane1.setViewportView(resultContainer);
+
         jScrollPane1.setVerticalScrollBar(new CCScrollBar());
         CCScrollBar sp = new CCScrollBar();
         sp.setOrientation(JScrollBar.HORIZONTAL);
@@ -71,34 +81,79 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        SearchField = new javax.swing.JTextField();
+        SearchButton = new javax.swing.JButton();
+        StatusComboBox = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(750, 400));
+
+        SearchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchFieldActionPerformed(evt);
+            }
+        });
+
+        SearchButton.setText("Search");
+
+        StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Open", "Closed" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton)
+                    .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+      private void onSearch() {
+        String filterText = SearchField.getText().trim();
+        String statusFilter = (String) StatusComboBox.getSelectedItem();
+
+        // "All" seçiliyse filtreleme yapma
+        if ("All".equals(statusFilter)) {
+            statusFilter = null;
+        }
+
+        createJobPostsList(filterText, statusFilter);
+    }
+    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JTextField SearchField;
+    private javax.swing.JComboBox<String> StatusComboBox;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void onPageSetted() {
-        createJobPostsList();
+        createJobPostsList(null,null);
     }
 }

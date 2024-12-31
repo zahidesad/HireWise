@@ -28,13 +28,11 @@ public class MainFrame extends javax.swing.JFrame {
     public static MainFrame instance;
     
     
-  
+   
     private User account; 
     private Employee employee; 
     private Applicant applicant; 
     private String loggedSystem = "";
-    private JobPosting postedJob;
-    
     
     private final SideMenuPanel sideMenu;
     private final HeaderPanel header;
@@ -227,6 +225,8 @@ public class MainFrame extends javax.swing.JFrame {
     public JobDetailsPanel getJobDetailsPage(){
         return this.jobDetailsPage;
     }
+   
+    
     public ApplicationsDetailPanel getApplicationsDetailPage(){
         return this.applicationDetailsPage;
     }
@@ -263,10 +263,7 @@ public class MainFrame extends javax.swing.JFrame {
     public String getLoggedSystem() {return loggedSystem;}
     public void setLoggedSystem(String loggedSystem) {this.loggedSystem = loggedSystem;}
     
-    public JobPosting getPostedJob(){
-        return this.postedJob;
-    }
-     public void setPostedJob(JobPosting postedJob){ this.postedJob = postedJob; }
+    
     
     public final void setPage(JPanel page) {
         mainPanel.removeAll();
@@ -305,6 +302,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel sideMenuPanel;
     // End of variables declaration//GEN-END:variables
+
+    
 
 
     

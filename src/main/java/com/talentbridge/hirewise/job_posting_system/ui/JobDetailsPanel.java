@@ -4,6 +4,8 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 
@@ -13,11 +15,12 @@ import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
  */
 public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
 
-    /**
-     * Creates new form JobDetailsPanel
-     */
+    public JobPosting postedJob;
+    
     public JobDetailsPanel() {
         initComponents();
+        
+        
     }
 
     /**
@@ -84,6 +87,11 @@ public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
         JobDescriptionLabel.setText("jLabel1");
 
         ApplyButton.setText("Apply");
+        ApplyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApplyButtonActionPerformed(evt);
+            }
+        });
 
         JobDetailsLabel.setText("Job Details");
 
@@ -161,6 +169,43 @@ public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ApplyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButtonActionPerformed
+         // Check if the job posting is valid
+    if (postedJob == null) {
+        System.out.println("No job posting selected to apply.");
+        return;
+    }
+
+  
+    int currentUserId = MainFrame.instance.getAccount().getUserId(); 
+
+    // Confirm the application process
+    int response = javax.swing.JOptionPane.showConfirmDialog(this, 
+        "Are you sure you want to apply for this job: " + postedJob.getTitle() + "?",
+        "Confirm Application", 
+        javax.swing.JOptionPane.YES_NO_OPTION);
+
+    if (response == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+            // Save application to the database
+            ApplicationService applicationService = new ApplicationService();
+            applicationService.applyForJob(currentUserId, postedJob.getJobPostingId());
+
+            // Notify the user
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Your application has been submitted successfully!", 
+                "Application Submitted", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "An error occurred while submitting your application. Please try again.", 
+                "Application Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_ApplyButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyButton;
@@ -177,11 +222,11 @@ public class JobDetailsPanel extends javax.swing.JPanel implements IPage{
 
     @Override
     public void onPageSetted() {
-       var postedJob = MainFrame.instance.getPostedJob();
 
         JobPositionLabel.setText(postedJob.getTitle());
         StartDateLabel.setText(postedJob.getPostingDate().toString());
         EndDateLabel.setText(postedJob.getExpiryDate().toString());
         StatusLabel.setText(postedJob.getStatus());
+        JobDescriptionLabel.setText(postedJob.getDescription());
     }
 }

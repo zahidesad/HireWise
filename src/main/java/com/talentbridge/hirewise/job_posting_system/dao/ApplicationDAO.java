@@ -29,9 +29,9 @@ public class ApplicationDAO {
 
             ps.setInt(1, application.getApplicantId());
             ps.setInt(2, application.getJobPostingId());
-            ps.setString(3, application.getApplicationDate());
+            ps.setDate(3, application.getApplicationDate());
             ps.setString(4, application.getCurrentStage());
-            ps.setString(5, application.getLastUpdated());
+            ps.setDate(5, application.getLastUpdated());
 
             ps.executeUpdate();
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -92,9 +92,9 @@ public class ApplicationDAO {
 
             ps.setInt(1, application.getApplicantId());
             ps.setInt(2, application.getJobPostingId());
-            ps.setString(3, application.getApplicationDate());
+            ps.setString(3, application.getApplicationDate().toString());
             ps.setString(4, application.getCurrentStage());
-            ps.setString(5, application.getLastUpdated());
+            ps.setString(5, application.getLastUpdated().toString());
             ps.setInt(6, application.getApplicationId());
 
             ps.executeUpdate();
@@ -115,15 +115,17 @@ public class ApplicationDAO {
             e.printStackTrace();
         }
     }
+    
+    
 
     private Application mapRowToApplication(ResultSet rs) throws SQLException {
         Application application = new Application();
         application.setApplicationId(rs.getInt("application_id"));
         application.setApplicantId(rs.getInt("applicant_id"));
         application.setJobPostingId(rs.getInt("job_posting_id"));
-        application.setApplicationDate(rs.getString("application_date"));
+        application.setApplicationDate(rs.getDate("application_date"));
         application.setCurrentStage(rs.getString("current_stage"));
-        application.setLastUpdated(rs.getString("last_updated"));
+        application.setLastUpdated(rs.getDate("last_updated"));
         return application;
     }
     

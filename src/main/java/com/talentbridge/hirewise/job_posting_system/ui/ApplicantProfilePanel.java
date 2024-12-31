@@ -55,21 +55,18 @@ public class ApplicantProfilePanel extends javax.swing.JPanel implements IPage{
 
         jLabel3.setText("Password:");
 
-        UsernameTextFeild.setText("jTextField1");
         UsernameTextFeild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsernameTextFeildActionPerformed(evt);
             }
         });
 
-        emailTextField.setText("jTextField2");
         emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailTextFieldActionPerformed(evt);
             }
         });
 
-        passwordTextField.setText("jTextField3");
         passwordTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTextFieldActionPerformed(evt);

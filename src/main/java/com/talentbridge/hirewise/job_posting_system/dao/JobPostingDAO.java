@@ -142,6 +142,43 @@ public class JobPostingDAO {
             e.printStackTrace();
         }
     }
+    // FILTER BY TITLE AND STATUS
+public List<JobPosting> filterJobPostings(String titleFilter, String statusFilter) {
+    String sql = "SELECT job_posting_id, position_id, posted_by, title, description, posting_date, expiry_date, status "
+               + "FROM JobPosting WHERE 1=1";
+
+    // Dynamically build the WHERE clause based on the filters
+    if (titleFilter != null && !titleFilter.trim().isEmpty()) {
+        sql += " AND title LIKE ?";
+    }
+    if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+        sql += " AND status = ?";
+    }
+
+    List<JobPosting> jobPostings = new ArrayList<>();
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        int paramIndex = 1;
+        if (titleFilter != null && !titleFilter.trim().isEmpty()) {
+            ps.setString(paramIndex++, "%" + titleFilter + "%");
+        }
+        if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+            ps.setString(paramIndex++, statusFilter);
+        }
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                JobPosting jobPosting = mapRowToJobPosting(rs);
+                jobPostings.add(jobPosting);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return jobPostings;
+}
+    
 
     private JobPosting mapRowToJobPosting(ResultSet rs) throws SQLException {
         JobPosting jobPosting = new JobPosting();

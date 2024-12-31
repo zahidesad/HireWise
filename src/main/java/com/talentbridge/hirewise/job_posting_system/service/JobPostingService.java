@@ -6,6 +6,7 @@ package com.talentbridge.hirewise.job_posting_system.service;
 
 import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -65,4 +66,16 @@ public class JobPostingService {
         }
         jobPostingDAO.delete(jobPostingId);
     }
+    
+// Filter job postings by title and status
+public List<JobPosting> filterJobPostings(String titleFilter, String statusFilter) {
+    // Validate filters
+    if ((titleFilter == null || titleFilter.trim().isEmpty()) && 
+        (statusFilter == null || statusFilter.trim().isEmpty())) {
+        System.out.println("At least one filter (title or status) must be provided!");
+        return Collections.emptyList(); // Return an empty list if no filters are provided
+    }
+    return jobPostingDAO.filterJobPostings(titleFilter, statusFilter);
+}
+  
 }

@@ -10,6 +10,9 @@ import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.model.Application;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,4 +65,37 @@ public class ApplicationService {
         }
         applicationDAO.delete(applicationId);
     }
+    
+    // Apply for a job
+public void applyForJob(int applicantId, int jobPostingId) {
+    // Validate input
+    if (applicantId <= 0 || jobPostingId <= 0) {
+        System.out.println("Invalid applicant ID or job posting ID!");
+        return;
+    }
+
+    // Create a new Application object
+    Application application = new Application();
+    application.setApplicantId(applicantId);
+    application.setJobPostingId(jobPostingId);
+    
+    // Set application date and initial stage
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    Date applicationDate = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    java.sql.Date sqlDate = new java.sql.Date(applicationDate.getTime());
+
+
+    application.setApplicationDate(sqlDate);
+    application.setCurrentStage("Received");
+    application.setLastUpdated(sqlDate);
+
+    // Insert the application into the database
+    try {
+        applicationDAO.insert(application);
+        System.out.println("Application submitted successfully with ID: " + application.getApplicationId());
+    } catch (Exception e) {
+        System.out.println("Error occurred while applying for the job: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }

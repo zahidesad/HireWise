@@ -180,12 +180,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Job Posts", icon3, MainFrame.instance.getJobPostsPage()));
         
-         //------------ Job Detail Page -------------
-        ImageIcon icon4 = new ImageIcon(ImageLib.getUserIconPath());
-        Image imgFit4 = icon4.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon4.setImage(imgFit4);
-        cCSideMenuList1.addItem(new Item("Job Details", icon4, MainFrame.instance.getJobDetailsPage()));
-        
+      
         ImageIcon icon5 = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon5.setImage(imgFit5);
