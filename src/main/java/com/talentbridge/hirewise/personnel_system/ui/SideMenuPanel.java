@@ -1,7 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
-import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.user.User;
 import com.talentbridge.hirewise.custom_components.CCSideMenuList;
 import com.talentbridge.hirewise.custom_components.Item;
 import java.awt.Color;

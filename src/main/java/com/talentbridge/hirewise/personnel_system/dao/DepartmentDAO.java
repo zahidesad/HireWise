@@ -1,6 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.dao;
 
-import com.talentbridge.hirewise.DBConnection;
+import com.talentbridge.hirewise.connection.DBConnection;
 import com.talentbridge.hirewise.personnel_system.model.Department;
 import com.talentbridge.hirewise.personnel_system.model.DepartmentBudget;
 import com.talentbridge.hirewise.personnel_system.model.ExpenseRecord;

@@ -1,10 +1,11 @@
-package com.talentbridge.hirewise.personnel_system.ui;
+package com.talentbridge.hirewise.personnel_system.ui.manager_screens;
 
 import com.talentbridge.hirewise.ImageLib;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
 import com.talentbridge.hirewise.personnel_system.model.Position;
 import com.talentbridge.hirewise.personnel_system.service.PositionService;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -183,8 +184,6 @@ public class AddNewPositionPanel extends javax.swing.JPanel implements IPage {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.talentbridge.hirewise.custom_components.Button backButton;
-    private com.talentbridge.hirewise.custom_components.Button backButton1;
     private com.talentbridge.hirewise.custom_components.Button backButton2;
     private com.talentbridge.hirewise.custom_components.TextField baseSalaryTxt;
     private com.talentbridge.hirewise.custom_components.Label label1;

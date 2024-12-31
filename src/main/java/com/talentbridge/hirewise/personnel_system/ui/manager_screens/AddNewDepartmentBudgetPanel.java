@@ -1,9 +1,10 @@
-package com.talentbridge.hirewise.personnel_system.ui;
+package com.talentbridge.hirewise.personnel_system.ui.manager_screens;
 
 import com.talentbridge.hirewise.ImageLib;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.DepartmentBudget;
 import com.talentbridge.hirewise.personnel_system.service.DepartmentBudgetService;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

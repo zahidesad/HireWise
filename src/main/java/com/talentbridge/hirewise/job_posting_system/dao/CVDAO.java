@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.talentbridge.hirewise.job_posting_system.dao;
-import com.talentbridge.hirewise.DBConnection;
+import com.talentbridge.hirewise.connection.DBConnection;
 import com.talentbridge.hirewise.job_posting_system.model.CV;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

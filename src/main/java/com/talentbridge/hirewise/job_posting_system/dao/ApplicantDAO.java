@@ -1,6 +1,6 @@
 package com.talentbridge.hirewise.job_posting_system.dao;
 
-import com.talentbridge.hirewise.DBConnection;
+import com.talentbridge.hirewise.connection.DBConnection;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

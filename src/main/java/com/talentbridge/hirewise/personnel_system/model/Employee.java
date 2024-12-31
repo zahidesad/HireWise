@@ -1,9 +1,9 @@
 package com.talentbridge.hirewise.personnel_system.model;
 
 
-import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.user.User;
 import com.talentbridge.hirewise.personnel_system.dao.DepartmentDAO;
-import com.talentbridge.hirewise.UserDAO;
+import com.talentbridge.hirewise.user.UserDAO;
 import com.talentbridge.hirewise.personnel_system.dao.PositionDAO;
 
 import java.util.Date;

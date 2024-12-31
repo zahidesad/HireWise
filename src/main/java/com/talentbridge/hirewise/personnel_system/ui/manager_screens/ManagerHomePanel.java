@@ -1,7 +1,8 @@
-package com.talentbridge.hirewise.personnel_system.ui;
+package com.talentbridge.hirewise.personnel_system.ui.manager_screens;
 
 import com.talentbridge.hirewise.custom_components.CCSideMenuList;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 
 /**
  *

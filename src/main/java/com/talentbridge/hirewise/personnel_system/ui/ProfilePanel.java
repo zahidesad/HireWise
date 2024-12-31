@@ -1,7 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
-import com.talentbridge.hirewise.UserService;
+import com.talentbridge.hirewise.user.UserService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import java.awt.Image;
 import java.io.File;

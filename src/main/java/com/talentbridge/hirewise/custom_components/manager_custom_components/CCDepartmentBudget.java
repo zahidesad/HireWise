@@ -1,4 +1,4 @@
-package com.talentbridge.hirewise.custom_components;
+package com.talentbridge.hirewise.custom_components.manager_custom_components;
 
 import com.talentbridge.hirewise.personnel_system.model.DepartmentBudget;
 import com.talentbridge.hirewise.personnel_system.service.DepartmentBudgetService;

@@ -5,7 +5,7 @@
 package com.talentbridge.hirewise.job_posting_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
-import com.talentbridge.hirewise.UserService;
+import com.talentbridge.hirewise.user.UserService;
 import com.talentbridge.hirewise.custom_components.CCAvatarImageLabel;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;

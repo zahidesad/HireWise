@@ -1,53 +1,97 @@
-package com.talentbridge.hirewise.custom_components;
+package com.talentbridge.hirewise.custom_components.manager_custom_components;
 
-import com.talentbridge.hirewise.personnel_system.model.Position;
+import com.talentbridge.hirewise.personnel_system.model.Employee;
+import com.talentbridge.hirewise.personnel_system.model.Task;
 import com.talentbridge.hirewise.personnel_system.service.EmployeeService;
-import com.talentbridge.hirewise.personnel_system.service.PositionService;
+import com.talentbridge.hirewise.personnel_system.service.TaskService;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author zahid
  */
-public class CCPositionPanel extends javax.swing.JPanel {
+public class CCTaskElementManager extends javax.swing.JPanel {
 
-    private Position position;
+    private Task task;
+    private List<Employee> departmentEmployees;
 
-    public CCPositionPanel(Position position) {
+    public CCTaskElementManager(Task t) {
         initComponents();
-        this.position = position;
-        setPanel(position);
+        this.task = t;
+        setPanelData(t);
     }
 
-    private void setPanel(Position pos) {
-        txtPositionName.setText(pos.getPositionTitle());
-        txtPositionDescription.setText(pos.getPositionDescription());
-        txtbaseSalary.setText(String.valueOf(pos.getBaseSalary()));
+    private void setPanelData(Task t) {
+        Employee managerEmp = MainFrame.instance.getEmployee();
+        int managerDeptId = managerEmp.getDepartmentId();
 
-        // Pozisyonda çalışan sayısını bul:
         EmployeeService empService = new EmployeeService();
-        int count = empService.countEmployeesByPositionId(pos.getPositionId());
-        labelTotalPositionEmployeesValue.setText(String.valueOf(count));
+        List<Employee> allEmp = empService.getAllEmployees();
+        departmentEmployees = new ArrayList<>();
+        for (Employee e : allEmp) {
+            if (e.getDepartmentId() == managerDeptId) {
+                departmentEmployees.add(e);
+            }
+        }
+        // Combobox doldur
+        employeeComboBox.removeAllItems();
+        for (Employee e : departmentEmployees) {
+            employeeComboBox.addItem(e.getFirstName() + " " + e.getLastName() + " (ID=" + e.getEmployeeId() + ")");
+        }
+        int assignedId = t.getAssignedTo();
+        if (assignedId > 0) {
+            for (int i = 0; i < departmentEmployees.size(); i++) {
+                if (departmentEmployees.get(i).getEmployeeId() == assignedId) {
+                    employeeComboBox.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+
+        // 3) Date’ler ve description, status
+        if (t.getStartDate() != null) {
+            txtStartDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(t.getStartDate()));
+        }
+        if (t.getEndDate() != null) {
+            txtEndDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(t.getEndDate()));
+        }
+        txtDescription.setText(t.getTaskDescription());
+        statusComboBox.setSelectedItem(t.getStatus()); // “Pending”, “In Progress”, “Completed”
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        startDate = new com.raven.datechooser.DateChooser();
+        endDate = new com.raven.datechooser.DateChooser();
         cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle4 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        employeeComboBox = new javax.swing.JComboBox<>();
         cCPaintedCircle2 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle5 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        txtStartDate = new javax.swing.JTextField();
         cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle6 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        txtEndDate = new javax.swing.JTextField();
         cCPaintedCircle7 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle8 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
-        labelTotalPositionEmployees = new javax.swing.JLabel();
-        labelTotalPositionEmployeesValue = new javax.swing.JLabel();
-        txtPositionName = new javax.swing.JTextField();
-        txtPositionDescription = new javax.swing.JTextField();
-        txtbaseSalary = new javax.swing.JTextField();
+        txtDescription = new javax.swing.JTextField();
+        statusComboBox = new javax.swing.JComboBox<>();
         updateButton = new com.talentbridge.hirewise.custom_components.Button();
+        deleteButton = new com.talentbridge.hirewise.custom_components.Button();
+
+        startDate.setDateFormat("yyyy-MM-dd");
+        startDate.setTextRefernce(txtStartDate);
+
+        endDate.setDateFormat("yyyy-MM-dd");
+        endDate.setTextRefernce(txtEndDate);
 
         setBackground(new java.awt.Color(153, 153, 153));
 
@@ -89,6 +133,8 @@ public class CCPositionPanel extends javax.swing.JPanel {
                     .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        employeeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee 1", "Employee 2", "Employee 3", "Employee 4" }));
 
         cCPaintedCircle2.setColor(new java.awt.Color(255, 153, 102));
         cCPaintedCircle2.setDiameter(20);
@@ -207,29 +253,10 @@ public class CCPositionPanel extends javax.swing.JPanel {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        labelTotalPositionEmployees.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelTotalPositionEmployees.setText("Total Employees working on this position:");
+        txtDescription.setText("Description");
 
-        labelTotalPositionEmployeesValue.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelTotalPositionEmployeesValue.setText("1232");
+        statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "In Progress", "Completed" }));
 
-        txtPositionName.setBackground(new java.awt.Color(204, 204, 204));
-        txtPositionName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtPositionName.setForeground(new java.awt.Color(0, 0, 0));
-        txtPositionName.setText("Position Name");
-
-        txtPositionDescription.setBackground(new java.awt.Color(204, 204, 204));
-        txtPositionDescription.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtPositionDescription.setForeground(new java.awt.Color(0, 0, 0));
-        txtPositionDescription.setText("Position Description");
-
-        txtbaseSalary.setBackground(new java.awt.Color(204, 204, 204));
-        txtbaseSalary.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtbaseSalary.setForeground(new java.awt.Color(0, 0, 0));
-        txtbaseSalary.setText("Base Salary");
-
-        updateButton.setBackground(new java.awt.Color(204, 204, 204));
-        updateButton.setForeground(new java.awt.Color(0, 0, 0));
         updateButton.setText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,91 +264,152 @@ public class CCPositionPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtbaseSalary))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPositionName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelTotalPositionEmployees)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelTotalPositionEmployeesValue)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPositionDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 270, Short.MAX_VALUE))))
+                        .addContainerGap()
+                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(employeeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtPositionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPositionDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtbaseSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelTotalPositionEmployees)
-                                .addComponent(labelTotalPositionEmployeesValue)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(employeeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(2, 2, 2))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        try {
+            int selectedIndex = employeeComboBox.getSelectedIndex();
+            if (selectedIndex < 0) {
+                throw new IllegalArgumentException("Please select an employee for this task.");
+            }
+            Employee chosenEmp = departmentEmployees.get(selectedIndex);
+            int assignedEmpId = chosenEmp.getEmployeeId();
 
-        String title = txtPositionName.getText();
-        String desc = txtPositionDescription.getText();
-        double baseSalary = Double.parseDouble(txtbaseSalary.getText());
+            // 2) StartDate, EndDate parse
+            Date startD = null, endD = null;
+            if (!txtStartDate.getText().trim().isEmpty()) {
+                startD = new SimpleDateFormat("yyyy-MM-dd").parse(txtStartDate.getText().trim());
+            }
+            if (!txtEndDate.getText().trim().isEmpty()) {
+                endD = new SimpleDateFormat("yyyy-MM-dd").parse(txtEndDate.getText().trim());
+            }
 
-        position.setPositionTitle(title);
-        position.setPositionDescription(desc);
-        position.setBaseSalary(baseSalary);
+            // 3) Description ve status
+            String desc = txtDescription.getText().trim();
+            String status = statusComboBox.getSelectedItem().toString();
 
-        // 3) Service çağır
-        PositionService service = new PositionService();
-        service.updatePosition(position);
+            // 4) Model güncelle
+            task.setAssignedTo(assignedEmpId);
+            task.setTaskDescription(desc);
+            task.setStatus(status);
+            task.setStartDate(startD);
+            task.setEndDate(endD);
 
-        JOptionPane.showMessageDialog(
-            this,
-            "Position updated successfully!",
-            "Update",
-            JOptionPane.INFORMATION_MESSAGE
-        );
+            // 5) DB update
+            TaskService service = new TaskService();
+            service.updateTask(task);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Task updated successfully!",
+                    "Update",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid date format. Please use yyyy-MM-dd",
+                    "Date Parse Error",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        try {
+            int choice = JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure to delete this Task?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if (choice == JOptionPane.YES_OPTION) {
+                TaskService service = new TaskService();
+                service.deleteTask(task.getTaskId());
+                this.setVisible(false); // or remove from parent
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,11 +421,14 @@ public class CCPositionPanel extends javax.swing.JPanel {
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle6;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle7;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle8;
-    private javax.swing.JLabel labelTotalPositionEmployees;
-    private javax.swing.JLabel labelTotalPositionEmployeesValue;
-    private javax.swing.JTextField txtPositionDescription;
-    private javax.swing.JTextField txtPositionName;
-    private javax.swing.JTextField txtbaseSalary;
+    private com.talentbridge.hirewise.custom_components.Button deleteButton;
+    private javax.swing.JComboBox<String> employeeComboBox;
+    private com.raven.datechooser.DateChooser endDate;
+    private com.raven.datechooser.DateChooser startDate;
+    private javax.swing.JComboBox<String> statusComboBox;
+    private javax.swing.JTextField txtDescription;
+    private javax.swing.JTextField txtEndDate;
+    private javax.swing.JTextField txtStartDate;
     private com.talentbridge.hirewise.custom_components.Button updateButton;
     // End of variables declaration//GEN-END:variables
 }

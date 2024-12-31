@@ -1,7 +1,7 @@
-package com.talentbridge.hirewise;
+package com.talentbridge.hirewise.user;
 
-import com.talentbridge.hirewise.DBConnection;
-import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.connection.DBConnection;
+import com.talentbridge.hirewise.user.User;
 
 import java.sql.*;
 import java.util.ArrayList;

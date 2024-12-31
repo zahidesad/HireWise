@@ -1,7 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
-import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.user.User;
 import com.talentbridge.hirewise.custom_components.CCPerformansReviewElement;
 import com.talentbridge.hirewise.custom_components.CCSalaryHistoryElement;
 import com.talentbridge.hirewise.custom_components.CCScrollBar;

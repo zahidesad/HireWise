@@ -1,11 +1,12 @@
-package com.talentbridge.hirewise.personnel_system.ui;
+package com.talentbridge.hirewise.personnel_system.ui.manager_screens;
 
 import com.talentbridge.hirewise.custom_components.CCScrollBar;
-import com.talentbridge.hirewise.custom_components.CCShowReview;
+import com.talentbridge.hirewise.custom_components.manager_custom_components.CCShowReview;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
 import com.talentbridge.hirewise.personnel_system.model.Employee;
 import com.talentbridge.hirewise.personnel_system.model.PerformanceReview;
 import com.talentbridge.hirewise.personnel_system.service.PerformanceReviewService;
+import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;

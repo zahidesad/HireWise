@@ -1,4 +1,4 @@
-package com.talentbridge.hirewise;
+package com.talentbridge.hirewise.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

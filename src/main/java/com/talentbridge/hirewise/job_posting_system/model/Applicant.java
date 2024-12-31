@@ -1,7 +1,7 @@
 package com.talentbridge.hirewise.job_posting_system.model;
 
-import com.talentbridge.hirewise.User;
-import com.talentbridge.hirewise.UserDAO;
+import com.talentbridge.hirewise.user.User;
+import com.talentbridge.hirewise.user.UserDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.CVDAO;
 
 /**
