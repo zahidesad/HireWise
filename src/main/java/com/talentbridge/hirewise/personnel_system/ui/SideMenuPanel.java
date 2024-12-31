@@ -2,6 +2,7 @@ package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.ImageLib;
 import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.custom_components.CCSideMenuList;
 import com.talentbridge.hirewise.custom_components.Item;
 import java.awt.Color;
 import java.awt.Image;
@@ -117,7 +118,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
             logoText.setText("TalentBridge Manager");
         } else if (account.equals("talentbridge_admin")) {
             talentbridgeAdminList();
-            logoText.setText("TalentBridhe Admin");
+            logoText.setText("TalentBridge Admin");
         } else {
             logoutList();
         }
@@ -148,21 +149,19 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
         cCSideMenuList1.addItem(new Item("Job Details", icon, MainFrame.instance.getHRJobDetailsPage()));
-        
-        
+
         //------------ HR Job Publish -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Publish Job", icon2, MainFrame.instance.getHRJobPublishPage()));
-       
-        
+
     }
 
     private void hirewiseUserList() {
         cCSideMenuList1.removeAllItems();
-        
-         //------------ Home -------------
+
+        //------------ Home -------------
         ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
@@ -173,35 +172,28 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Profile", icon2, MainFrame.instance.getApplicantProfilePage()));
-        
-         //------------ Job Posts -------------
+
+        //------------ Job Posts -------------
         ImageIcon icon3 = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Job Posts", icon3, MainFrame.instance.getJobPostsPage()));
-        
-      
+
         ImageIcon icon5 = new ImageIcon(ImageLib.getUserIconPath());
         Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon5.setImage(imgFit5);
         cCSideMenuList1.addItem(new Item("Application Details", icon5, MainFrame.instance.getApplicationsDetailPage()));
-        
-        
-        
-        
-        
-        
+
     }
 
     private void talentbridgeManagerList() {
-        // Önce menüdeki tüm öğeleri temizliyoruz
         cCSideMenuList1.removeAllItems();
 
         // 1) Home
         ImageIcon iconHome = new ImageIcon(ImageLib.getHomeIconPath());
         Image imgFitHome = iconHome.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconHome.setImage(imgFitHome);
-        cCSideMenuList1.addItem(new Item("Home", iconHome, MainFrame.instance.getWelcomePage()));
+        cCSideMenuList1.addItem(new Item("Home", iconHome, MainFrame.instance.getManagerHomePage(cCSideMenuList1)));
 
         // 2) Profile
         ImageIcon iconProfile = new ImageIcon(ImageLib.getUserIconPath());
@@ -213,7 +205,6 @@ public class SideMenuPanel extends javax.swing.JPanel {
         ImageIcon iconLeave = new ImageIcon(ImageLib.getLeaveIconPath());
         Image imgFitLeave = iconLeave.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconLeave.setImage(imgFitLeave);
-        //Burada getLeaveRecordPage() gibi bir panel oluşturduğunuzu varsayalım
         cCSideMenuList1.addItem(new Item("Show Leaves", iconLeave, MainFrame.instance.getLeaveRecordPage()));
 
         // 4) Departmant Budget
@@ -227,7 +218,6 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFitPosCreate = iconPosCreate.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconPosCreate.setImage(imgFitPosCreate);
         cCSideMenuList1.addItem(new Item("Positions", iconPosCreate, MainFrame.instance.getShowPositionsPage()));
-        
 
         // 7) Tasks
         ImageIcon iconTask = new ImageIcon(ImageLib.getTaskIconPath());
@@ -236,16 +226,12 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.addItem(new Item("Tasks", iconTask, MainFrame.instance.getShowTasksManagerPage()));
 
         // 8) Reviews
-        // Belki "PerformanceReviewPanel" gibi bir paneliniz vardır
         ImageIcon iconReview = new ImageIcon(ImageLib.getReviewIconPath());
         Image imgFitReview = iconReview.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         iconReview.setImage(imgFitReview);
-        // cCSideMenuList1.addItem(new Item("Give Review", iconReview, MainFrame.instance.getPerformanceReviewPage()));
-        cCSideMenuList1.addItem(new Item("Give Review", iconReview, MainFrame.instance.getWelcomePage()));
+        cCSideMenuList1.addItem(new Item("Show Review", iconReview, MainFrame.instance.getShowPerformanceReviewPage()));
 
-        // Yeni öğeler eklendikten sonra ilk elemanı seçili yapıyoruz (opsiyonel)
-        cCSideMenuList1.setSelectedIndex(0);
-
+        cCSideMenuList1.setSelectedIndex(1);
     }
 
     private void talentbridgeEmpList() {
@@ -268,8 +254,6 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
-        
-        
 
         cCSideMenuList1.setSelectedIndex(0);
     }
@@ -301,7 +285,11 @@ public class SideMenuPanel extends javax.swing.JPanel {
 
         cCSideMenuList1.setSelectedIndex(0);
     }
-
+    
+    // If the manager changes the page from the home section, adjust the position of the sidebar
+    public CCSideMenuList<String> getCCSideMenuList() {
+        return cCSideMenuList1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.talentbridge.hirewise.custom_components.CCGradientPanel cCGradientPanel1;

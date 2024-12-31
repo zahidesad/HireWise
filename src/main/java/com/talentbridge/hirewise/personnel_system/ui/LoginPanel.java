@@ -29,13 +29,13 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
         jLabel1 = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         hirewiseRadioBtn = new javax.swing.JRadioButton();
         talentBridgeRadioBtn = new javax.swing.JRadioButton();
         warningLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
 
         jLabel1.setText("Username");
 
@@ -85,13 +85,13 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                         .addComponent(hirewiseRadioBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addComponent(talentBridgeRadioBtn))
-                    .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addComponent(usernameField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(warningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordField))
                 .addContainerGap(390, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,9 +111,9 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
                 .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(16, 16, 16)
                 .addComponent(warningLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginButton)
@@ -203,7 +203,7 @@ public class LoginPanel extends javax.swing.JPanel implements IPage {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JRadioButton talentBridgeRadioBtn;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel warningLabel;

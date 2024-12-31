@@ -1,6 +1,7 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
 import com.talentbridge.hirewise.User;
+import com.talentbridge.hirewise.custom_components.CCSideMenuList;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicantProfilePanel;
@@ -60,6 +61,9 @@ public class MainFrame extends javax.swing.JFrame {
     private final AddNewPositionPanel addNewPositionPage;
     private final ShowTasksManagerPanel showTasksManagerPage;
     private final AddNewTaskManagerPanel addNewTaskManagerPage;
+    private final ShowPerformanceReviewPanel showPerformanceReviewPage;
+    private final GivePerformanceReviewPanel givePerformanceReviewPage;
+    private final ManagerHomePanel managerHomePage;
 
     
     
@@ -91,6 +95,8 @@ public class MainFrame extends javax.swing.JFrame {
         addNewPositionPage = new AddNewPositionPanel();
         showTasksManagerPage = new ShowTasksManagerPanel();
         addNewTaskManagerPage = new AddNewTaskManagerPanel();
+        showPerformanceReviewPage = new ShowPerformanceReviewPanel();
+        givePerformanceReviewPage = new GivePerformanceReviewPanel();
         // -------------------------------------
         headerPanel.setLayout(new GridLayout());
         header = new HeaderPanel();
@@ -110,6 +116,10 @@ public class MainFrame extends javax.swing.JFrame {
         this.setPreferredSize(new Dimension(1200, 600));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        // Manager Home Page 
+        managerHomePage = new ManagerHomePanel(sideMenu.getCCSideMenuList());
+        
         
         // ImageIcon icon = new ImageIcon("C:\\Users\\emirs\\Desktop\\pics\\appIcons\\logo.png");
         // this.setIconImage(icon.getImage());
@@ -250,9 +260,13 @@ public class MainFrame extends javax.swing.JFrame {
     public DepartmentBudgetPanel getDepartmentBudgetPage(){return this.departmentBudgetPage; }
     public AddNewDepartmentBudgetPanel getAddNewDepartmentBudgetPage(){ return this.addNewDepartmentBudgetPage; }
     public ShowPositionsPanel getShowPositionsPage(){ return this.showPositionsPage; }
-    public AddNewPositionPanel getAddNewPositionPage () {return this.addNewPositionPage; }
-    public ShowTasksManagerPanel getShowTasksManagerPage (){return this.showTasksManagerPage; }
-    public AddNewTaskManagerPanel getAddNewTaskManagerPage () {return this.addNewTaskManagerPage; }
+    public AddNewPositionPanel getAddNewPositionPage () { return this.addNewPositionPage; }
+    public ShowTasksManagerPanel getShowTasksManagerPage (){ return this.showTasksManagerPage; }
+    public AddNewTaskManagerPanel getAddNewTaskManagerPage () { return this.addNewTaskManagerPage; }
+    public ShowPerformanceReviewPanel getShowPerformanceReviewPage () { return this.showPerformanceReviewPage; }
+    public GivePerformanceReviewPanel getGivePerformanceReviewPage () { return this.givePerformanceReviewPage; }
+    public ManagerHomePanel getManagerHomePage () { return this.managerHomePage; }
+    public ManagerHomePanel getManagerHomePage (CCSideMenuList cCSideMenuList) { return this.managerHomePage; }
     
     public User getAccount(){return this.account; }
     public void setAccount(User acc){ this.account = acc; }

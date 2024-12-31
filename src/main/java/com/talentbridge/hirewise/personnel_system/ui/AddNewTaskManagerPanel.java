@@ -104,7 +104,6 @@ public class AddNewTaskManagerPanel extends javax.swing.JPanel implements IPage 
 
         startDateTxt.setBackground(new java.awt.Color(204, 204, 204));
         startDateTxt.setForeground(new java.awt.Color(0, 0, 0));
-        startDateTxt.setText("");
 
         saveButton.setBackground(new java.awt.Color(204, 204, 204));
         saveButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -132,7 +131,6 @@ public class AddNewTaskManagerPanel extends javax.swing.JPanel implements IPage 
 
         endDateTxt.setBackground(new java.awt.Color(204, 204, 204));
         endDateTxt.setForeground(new java.awt.Color(0, 0, 0));
-        endDateTxt.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,10 +153,9 @@ public class AddNewTaskManagerPanel extends javax.swing.JPanel implements IPage 
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(endDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTaskDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(employeeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTaskName, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txtTaskDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(employeeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTaskName, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(422, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
