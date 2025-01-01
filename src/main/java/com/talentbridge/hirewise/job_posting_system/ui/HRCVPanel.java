@@ -4,6 +4,7 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.custom_components.CCHRApplicationsElement;
 import com.talentbridge.hirewise.custom_components.CCOrganizationElement;
 import com.talentbridge.hirewise.custom_components.CCScrollBar;
 import com.talentbridge.hirewise.custom_components.CCSkillElement;
@@ -11,6 +12,7 @@ import com.talentbridge.hirewise.job_posting_system.model.Application;
 import com.talentbridge.hirewise.job_posting_system.model.Organization;
 import com.talentbridge.hirewise.job_posting_system.model.Skill;
 import com.talentbridge.hirewise.job_posting_system.service.ApplicantService;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
 import com.talentbridge.hirewise.job_posting_system.service.OrganizationService;
 import com.talentbridge.hirewise.job_posting_system.service.SkillService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
@@ -252,10 +254,15 @@ public class HRCVPanel extends javax.swing.JPanel implements IPage {
     public void onPageSetted() {
         createOrganizationList();
         createSkillList();
-        Application application = new Application();
+        ApplicationService applicationService = new ApplicationService();
+       
+      
+        
+        Application application = applicationService.getApplicationById(MainFrame.instance.getHRApplicationPage().applicationId);
+         
         var cv = applicantService.getApplicantByApplicationId(application.getApplicationId()).getCV();
-        FirstNameTextField.setText(applicantService.getApplicantByApplicationId(application.getApplicantId()).getFirstName());
-        LastNameTextField.setText(applicantService.getApplicantByApplicationId(application.getApplicantId()).getLastName());
+        FirstNameTextField.setText(applicantService.getApplicantByApplicationId(application.getApplicationId()).getFirstName());
+        LastNameTextField.setText(applicantService.getApplicantByApplicationId(application.getApplicationId()).getLastName());
         TitleTextField.setText(cv.getTitle());
         AboutTextField.setText(cv.getAbout());
         EmailTextField.setText(cv.getEmail());

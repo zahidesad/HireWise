@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
+import com.talentbridge.hirewise.custom_components.CCHRApplicationsElement;
 import com.talentbridge.hirewise.personnel_system.ui.manager_screens.ShowPositionsPanel;
 import com.talentbridge.hirewise.personnel_system.ui.manager_screens.ShowPerformanceReviewPanel;
 import com.talentbridge.hirewise.personnel_system.ui.manager_screens.ManagerHomePanel;
@@ -13,6 +14,7 @@ import com.talentbridge.hirewise.personnel_system.ui.manager_screens.AddNewPosit
 import com.talentbridge.hirewise.user.User;
 import com.talentbridge.hirewise.custom_components.CCSideMenuList;
 import com.talentbridge.hirewise.job_posting_system.model.Applicant;
+import com.talentbridge.hirewise.job_posting_system.model.Application;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicantProfilePanel;
 import com.talentbridge.hirewise.job_posting_system.ui.ApplicationsDetailPanel;
@@ -48,7 +50,6 @@ public class MainFrame extends javax.swing.JFrame {
         
     public static MainFrame instance;
     
-    
    
     private User account; 
     private Employee employee; 
@@ -71,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final HRJobPostsPanel hrJobPostsPage;
     private final HRApplications hrApplicationPage;
     private final HRCVPanel hrCVPage;
+
   
     
     private final WelcomePanel welcomePage;
@@ -119,6 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
         hrJobPublishPage = new HRJobPublishPanel();
         hrApplicationPage = new HRApplications();
         hrCVPage = new HRCVPanel();
+    
         
         welcomePage = new WelcomePanel();
         departmentPage = new DepartmentPanel();
@@ -306,6 +309,8 @@ public class MainFrame extends javax.swing.JFrame {
     public HRCVPanel getHRCVPage(){
         return this.hrCVPage;
     }
+    
+   
     
    
     

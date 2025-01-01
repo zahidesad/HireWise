@@ -18,10 +18,14 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
     /**
      * Creates new form HRApplicationsElement
      */
+    public int applicationId;
     Application application;
     public CCHRApplicationsElement(Application application) {
+        
+        
         initComponents();
         this.application = application;
+        applicationId = application.getApplicationId();
         SetPanel(application);
         StatusComboBox.addActionListener(evt -> {
     String selectedStatus = (String) StatusComboBox.getSelectedItem();

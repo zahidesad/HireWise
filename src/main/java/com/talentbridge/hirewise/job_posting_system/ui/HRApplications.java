@@ -24,6 +24,7 @@ public class HRApplications extends javax.swing.JPanel implements IPage{
     /**
      * Creates new form HRApplications
      */
+    public int applicationId;
     public HRApplications() {
         initComponents();
          SearchButton.addActionListener(evt -> onSearch());
@@ -52,6 +53,7 @@ public class HRApplications extends javax.swing.JPanel implements IPage{
 
         for (Application application : applicationsPosts) {
             CCHRApplicationsElement userListElement = new CCHRApplicationsElement(application);
+            applicationId = application.getApplicationId();
             userListElement.setSize(550, 100);
             resultContainer.add(userListElement);
         }
