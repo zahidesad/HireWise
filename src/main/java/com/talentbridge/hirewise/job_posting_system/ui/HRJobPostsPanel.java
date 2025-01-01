@@ -4,13 +4,12 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.custom_components.CCHRJobPostElement;
 import com.talentbridge.hirewise.custom_components.CCJobPostElement;
 import com.talentbridge.hirewise.custom_components.CCScrollBar;
-import com.talentbridge.hirewise.custom_components.CCTaskElement;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.service.JobPostingService;
 import com.talentbridge.hirewise.personnel_system.core.IPage;
-import com.talentbridge.hirewise.personnel_system.model.Task;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 import java.awt.GridLayout;
 import java.util.List;
@@ -21,21 +20,20 @@ import javax.swing.JScrollBar;
  *
  * @author Lenovo
  */
-public class JobPostsPanel extends javax.swing.JPanel implements IPage{
+public class HRJobPostsPanel extends javax.swing.JPanel implements IPage{
 
     /**
-     * Creates new form JobPostsPanel
+     * Creates new form HRJobPostsPanel
      */
-   
-    public JobPostsPanel() {
+    public HRJobPostsPanel() {
         initComponents();
-          SearchButton.addActionListener(evt -> onSearch());
-        SearchField.addActionListener(evt -> onSearch()); 
+
+        SearchButton.addActionListener(evt -> onSearch());
+        SearchField.addActionListener(evt -> onSearch());
         StatusComboBox.addActionListener(evt -> onSearch());
-        
     }
-    
-   public List<JobPosting> getJobPosts(String titleFilter, String statusFilter) {
+
+    public List<JobPosting> getJobPosts(String titleFilter, String statusFilter) {
         JobPostingService jobPostService = new JobPostingService();
 
         if ((titleFilter == null || titleFilter.isEmpty()) && (statusFilter == null || statusFilter.isEmpty())) {
@@ -44,7 +42,7 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
             return jobPostService.filterJobPostings(titleFilter, statusFilter); // Filtrelenmiş kayıtlar
         }
     }
-    
+
     private void createJobPostsList(String titleFilter, String statusFilter) {
         List<JobPosting> jobPosts = getJobPosts(titleFilter, statusFilter);
 
@@ -55,7 +53,7 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
         resultContainer.setLayout(gridLayout);
 
         for (JobPosting jobPost : jobPosts) {
-            CCJobPostElement userListElement = new CCJobPostElement(jobPost);
+            CCHRJobPostElement userListElement = new CCHRJobPostElement(jobPost);
             userListElement.setSize(550, 100);
             resultContainer.add(userListElement);
         }
@@ -67,8 +65,6 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
         sp.setOrientation(JScrollBar.HORIZONTAL);
         jScrollPane1.setHorizontalScrollBar(sp);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,63 +79,71 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
         SearchField = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
         StatusComboBox = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        CreateButton = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(750, 400));
-
-        SearchField.addActionListener(new java.awt.event.ActionListener() {
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchFieldActionPerformed(evt);
+                SearchButtonActionPerformed(evt);
             }
         });
 
-        SearchButton.setText("Search");
-
         StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Open", "Closed" }));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Job Posts");
+        CreateButton.setText("Create");
+        CreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(211, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(SearchButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(418, 418, 418)
+                            .addComponent(CreateButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(77, 77, 77)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchButton)
                     .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(CreateButton)
+                .addGap(71, 71, 71))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-      private void onSearch() {
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+       MainFrame.instance.setPage(MainFrame.instance.getHRJobPublishPage());
+    }//GEN-LAST:event_CreateButtonActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
+    private void onSearch() {
         String filterText = SearchField.getText().trim();
         String statusFilter = (String) StatusComboBox.getSelectedItem();
 
@@ -150,16 +154,12 @@ public class JobPostsPanel extends javax.swing.JPanel implements IPage{
 
         createJobPostsList(filterText, statusFilter);
     }
-    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchFieldActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateButton;
     private javax.swing.JButton SearchButton;
     private javax.swing.JTextField SearchField;
     private javax.swing.JComboBox<String> StatusComboBox;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

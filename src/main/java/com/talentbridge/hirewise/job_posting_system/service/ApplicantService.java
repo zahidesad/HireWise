@@ -60,4 +60,21 @@ public Applicant getApplicantByUserId(int userId) {
     }
     return applicantDAO.getApplicantByUserId(userId);
 }
+
+public Applicant getApplicantByApplicationId(int applicationId) {
+    // Geçersiz applicationId kontrolü
+    if (applicationId <= 0) {
+        System.out.println("Invalid application ID!");
+        return null;
+    }
+
+    try {
+       
+        return applicantDAO.getApplicantByApplicationId(applicationId);
+    } catch (Exception e) {
+        System.out.println("Error occurred while fetching applicant by application ID: " + e.getMessage());
+        e.printStackTrace();
+        return null;
+    }
+}
 }

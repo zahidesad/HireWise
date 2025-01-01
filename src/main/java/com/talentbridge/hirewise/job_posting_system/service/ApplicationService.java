@@ -12,6 +12,7 @@ import com.talentbridge.hirewise.job_posting_system.model.Application;
 import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +96,40 @@ public void applyForJob(int applicantId, int jobPostingId) {
         System.out.println("Application submitted successfully with ID: " + application.getApplicationId());
     } catch (Exception e) {
         System.out.println("Error occurred while applying for the job: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+// Filter applications by job post title
+public List<Application> getApplicationsByJobPostTitle(String jobPostTitle) {
+    // Validate input
+    if (jobPostTitle == null || jobPostTitle.trim().isEmpty()) {
+        System.out.println("Job post title cannot be null or empty!");
+        return new ArrayList<>();
+    }
+
+    try {
+        return applicationDAO.filterApplicationsByJobPostTitle(jobPostTitle);
+    } catch (Exception e) {
+        System.out.println("Error occurred while filtering applications by job post title: " + e.getMessage());
+        e.printStackTrace();
+        return new ArrayList<>();
+    }
+}
+
+// Delete all applications by job posting ID
+public void deleteApplicationsByJobPostingId(int jobPostingId) {
+    // Validate input
+    if (jobPostingId <= 0) {
+        System.out.println("Invalid job posting ID!");
+        return;
+    }
+
+    try {
+        applicationDAO.deleteApplicationsByJobPostingId(jobPostingId);
+        System.out.println("All applications for job posting ID " + jobPostingId + " have been deleted.");
+    } catch (Exception e) {
+        System.out.println("Error occurred while deleting applications for job posting ID: " + jobPostingId);
         e.printStackTrace();
     }
 }

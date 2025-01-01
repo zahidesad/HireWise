@@ -178,6 +178,28 @@ public List<JobPosting> filterJobPostings(String titleFilter, String statusFilte
     }
     return jobPostings;
 }
+public void updateTitle(int jobPostingId, String newTitle) {
+    String sql = "UPDATE JobPosting SET title = ? WHERE job_posting_id = ?";
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        // Yeni başlık ve ilgili JobPosting ID'si set edilir
+        ps.setString(1, newTitle);
+        ps.setInt(2, jobPostingId);
+
+        // Güncelleme sorgusu çalıştırılır
+        int rowsAffected = ps.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Job posting title updated successfully for ID: " + jobPostingId);
+        } else {
+            System.out.println("No job posting found with ID: " + jobPostingId);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error occurred while updating job posting title: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
     
 
     private JobPosting mapRowToJobPosting(ResultSet rs) throws SQLException {

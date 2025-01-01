@@ -94,8 +94,6 @@ public class CCSkillElement extends javax.swing.JPanel {
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
        SkillService skillservice = new SkillService();
-       
-       
        skillservice.deleteSkill(skill.getSkillId());
     }//GEN-LAST:event_DeleteButtonActionPerformed
 

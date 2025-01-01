@@ -128,6 +128,29 @@ public Applicant getApplicantByUserId(int userId) {
     return applicant;
 }
 
+// READ APPLICANT BY APPLICATION ID
+public Applicant getApplicantByApplicationId(int applicationId) {
+    String sql = "SELECT a.applicant_id, a.user_id, a.first_name, a.last_name, a.email, a.phone, a.cv_id " +
+                 "FROM Applicant a " +
+                 "JOIN Application app ON a.applicant_id = app.applicant_id " +
+                 "WHERE app.application_id = ?";
+    Applicant applicant = null;
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, applicationId);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                applicant = mapRowToApplicant(rs);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return applicant;
+}
+
     private Applicant mapRowToApplicant(ResultSet rs) throws SQLException {
         Applicant applicant = new Applicant();
         applicant.setApplicantId(rs.getInt("applicant_id"));

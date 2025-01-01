@@ -116,6 +116,46 @@ public class ApplicationDAO {
         }
     }
     
+    // Filter applications by job post title
+public List<Application> filterApplicationsByJobPostTitle(String jobPostTitle) {
+    String sql = "SELECT a.application_id, a.applicant_id, a.job_posting_id, a.application_date, a.current_stage, a.last_updated " +
+                 "FROM Application a " +
+                 "JOIN JobPosting jp ON a.job_posting_id = jp.job_posting_id " +
+                 "WHERE jp.title = ?";
+    List<Application> applications = new ArrayList<>();
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, jobPostTitle);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Application application = mapRowToApplication(rs);
+                applications.add(application);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return applications;
+}
+
+// Delete all applications by job posting ID
+public void deleteApplicationsByJobPostingId(int jobPostingId) {
+    String sql = "DELETE FROM Application WHERE job_posting_id=?";
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, jobPostingId);
+        int rowsDeleted = ps.executeUpdate();
+        System.out.println(rowsDeleted + " applications deleted for job posting ID: " + jobPostingId);
+
+    } catch (SQLException e) {
+        System.out.println("Error occurred while deleting applications for job posting ID: " + jobPostingId);
+        e.printStackTrace();
+    }
+}
+    
     
 
     private Application mapRowToApplication(ResultSet rs) throws SQLException {

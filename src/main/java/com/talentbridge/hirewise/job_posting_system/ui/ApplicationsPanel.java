@@ -4,17 +4,70 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.custom_components.CCApplicationElement;
+import com.talentbridge.hirewise.custom_components.CCScrollBar;
+import com.talentbridge.hirewise.job_posting_system.model.Application;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
+import com.talentbridge.hirewise.personnel_system.core.IPage;
+import java.awt.GridLayout;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+
 /**
  *
  * @author Lenovo
  */
-public class ApplicationsPanel extends javax.swing.JPanel {
+public class ApplicationsPanel extends javax.swing.JPanel implements IPage {
 
     /**
      * Creates new form ApplicationsPanel
      */
     public ApplicationsPanel() {
         initComponents();
+        SearchButton.addActionListener(evt -> onSearch());
+        SearchTextField.addActionListener(evt -> onSearch()); 
+    }
+    
+     
+   public List<Application> getApplicationPosts(String titleFilter) {
+        ApplicationService applicationService = new ApplicationService();
+
+        if ((titleFilter == null || titleFilter.isEmpty())) {
+            return applicationService.getAllApplications(); // Tüm kayıtlar
+        } else {
+            return applicationService.getApplicationsByJobPostTitle(titleFilter);
+        }
+    }
+    
+    private void createApplicationsList(String titleFilter) {
+        List<Application> applicationsPosts = getApplicationPosts(titleFilter);
+
+        JPanel resultContainer = new JPanel();
+        resultContainer.setSize(570, 100 * applicationsPosts.size());
+        GridLayout gridLayout = new GridLayout(applicationsPosts.size(), 1);
+        gridLayout.setVgap(5);
+        resultContainer.setLayout(gridLayout);
+
+        for (Application application : applicationsPosts) {
+            CCApplicationElement userListElement = new CCApplicationElement(application);
+            userListElement.setSize(550, 100);
+            resultContainer.add(userListElement);
+        }
+
+        jScrollPane1.setViewportView(resultContainer);
+
+        jScrollPane1.setVerticalScrollBar(new CCScrollBar());
+        CCScrollBar sp = new CCScrollBar();
+        sp.setOrientation(JScrollBar.HORIZONTAL);
+        jScrollPane1.setHorizontalScrollBar(sp);
+    }
+    
+    
+     private void onSearch() {
+        String filterText = SearchTextField.getText().trim();
+         createApplicationsList(filterText);
+         
     }
 
     /**
@@ -26,19 +79,62 @@ public class ApplicationsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        SearchTextField = new javax.swing.JTextField();
+        SearchButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        SearchButton.setText("Search");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("My Applications");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(SearchButton)
+                .addGap(83, 83, 83))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JTextField SearchTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onPageSetted() {
+        createApplicationsList(null);
+}
 }

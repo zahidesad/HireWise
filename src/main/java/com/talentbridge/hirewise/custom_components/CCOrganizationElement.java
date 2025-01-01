@@ -5,6 +5,7 @@
 package com.talentbridge.hirewise.custom_components;
 
 import com.talentbridge.hirewise.job_posting_system.model.Organization;
+import com.talentbridge.hirewise.job_posting_system.service.OrganizationService;
 
 /**
  *
@@ -43,6 +44,7 @@ public class CCOrganizationElement extends javax.swing.JPanel {
         StartDateLabel = new javax.swing.JLabel();
         EndDateLabel = new javax.swing.JLabel();
         OrganizationDescriptionField = new javax.swing.JTextField();
+        DeleteButton = new javax.swing.JButton();
 
         StartDateLabel.setText("jLabel1");
 
@@ -52,6 +54,13 @@ public class CCOrganizationElement extends javax.swing.JPanel {
         OrganizationDescriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OrganizationDescriptionFieldActionPerformed(evt);
+            }
+        });
+
+        DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
             }
         });
 
@@ -66,9 +75,14 @@ public class CCOrganizationElement extends javax.swing.JPanel {
                     .addComponent(OrganizationNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StartDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                    .addComponent(EndDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(StartDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(EndDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,10 +91,12 @@ public class CCOrganizationElement extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(StartDateLabel)
                     .addComponent(OrganizationNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(EndDateLabel))
+                        .addComponent(EndDateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DeleteButton))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(OrganizationDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -92,8 +108,14 @@ public class CCOrganizationElement extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_OrganizationDescriptionFieldActionPerformed
 
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+       OrganizationService organizationService = new OrganizationService();
+       organizationService.deleteOrganization(organization.getOrganizationId());
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JLabel EndDateLabel;
     private javax.swing.JTextField OrganizationDescriptionField;
     private javax.swing.JLabel OrganizationNameLabel;
