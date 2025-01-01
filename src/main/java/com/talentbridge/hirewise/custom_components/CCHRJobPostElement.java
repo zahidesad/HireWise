@@ -181,7 +181,7 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewButtonActionPerformed
-        MainFrame.instance.getJobDetailsPage().postedJob = postedJob;
+        MainFrame.instance.getHRJobDetailsPage().postedJob = postedJob;
         MainFrame.instance.setPage(MainFrame.instance.getHRJobDetailsPage());
     }//GEN-LAST:event_ViewButtonActionPerformed
 

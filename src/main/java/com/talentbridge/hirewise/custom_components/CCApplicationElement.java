@@ -6,6 +6,7 @@ package com.talentbridge.hirewise.custom_components;
 
 import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Application;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
 
 /**
@@ -34,7 +35,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
         StartDateLabel = new javax.swing.JLabel();
         LastUpdatedDateLabel = new javax.swing.JLabel();
         StatusLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
         cCPaintedCircle5 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle6 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle7 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
@@ -67,7 +68,12 @@ public class CCApplicationElement extends javax.swing.JPanel {
 
         StatusLabel.setText("jLabel4");
 
-        jButton1.setText("Delete");
+        DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout cCPaintedCircle5Layout = new javax.swing.GroupLayout(cCPaintedCircle5);
         cCPaintedCircle5.setLayout(cCPaintedCircle5Layout);
@@ -132,7 +138,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LastUpdatedDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(DeleteButton)))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
@@ -154,7 +160,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
                                     .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ViewButton)
                                     .addComponent(LastUpdatedDateLabel)
-                                    .addComponent(jButton1)))
+                                    .addComponent(DeleteButton)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(cCPaintedCircle6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -167,8 +173,19 @@ public class CCApplicationElement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewButtonActionPerformed
+        MainFrame.instance.getApplicationPage().application = application;
         MainFrame.instance.setPage(MainFrame.instance.getApplicationsDetailPage());
     }//GEN-LAST:event_ViewButtonActionPerformed
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+    
+    ApplicationService applicationService = new ApplicationService();
+
+    
+    applicationService.deleteApplication(application.getApplicationId());
+
+   
+    }//GEN-LAST:event_DeleteButtonActionPerformed
 
     public final void SetPanel(Application application){
         JobPostingDAO jobPostingDao= new JobPostingDAO();
@@ -179,17 +196,15 @@ public class CCApplicationElement extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JLabel LastUpdatedDateLabel;
     private javax.swing.JLabel StartDateLabel;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JButton ViewButton;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle4;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle5;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle6;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle7;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

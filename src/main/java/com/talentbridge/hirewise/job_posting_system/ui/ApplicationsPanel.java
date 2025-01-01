@@ -23,6 +23,7 @@ public class ApplicationsPanel extends javax.swing.JPanel implements IPage {
     /**
      * Creates new form ApplicationsPanel
      */
+    public Application application;
     public ApplicationsPanel() {
         initComponents();
         SearchButton.addActionListener(evt -> onSearch());
