@@ -3,20 +3,84 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import com.talentbridge.hirewise.job_posting_system.service.JobPostingService;
 
+import javax.swing.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 /**
  *
  * @author Lenovo
  */
 public class HRJobPublishPanel extends javax.swing.JPanel {
-
+    private JobPostingService jobPostingService;
     /**
      * Creates new form JobPublishPanel
      */
     public HRJobPublishPanel() {
-        initComponents();
+        jobPostingService = new JobPostingService(); // Service başlat
+        initComponents(); // GUI Builder tarafından oluşturulan kod
+        additionalInit(); // Ek işlevsellik ve bileşenler burada tanımlanır
+    }
+private void additionalInit() {
+        // CreateButton için ActionListener ekle
+        CreateButton.addActionListener(evt -> handleCreateButtonAction());
     }
 
+    /**
+     * "Create" butonu işlevselliği
+     */
+    private void handleCreateButtonAction() {
+        // Kullanıcıdan alınan veriler
+        String position = PositionTextField.getText().trim();
+        String description = DescriptionTextField.getText().trim();
+        String startDateStr = StartDateTextField.getText().trim();
+        String status = StatusTextField.getText().trim();
+
+        // Doğrulama
+        if (position.isEmpty() || description.isEmpty() || startDateStr.isEmpty() || status.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Tarih doğrulama
+            LocalDate startDate = LocalDate.parse(startDateStr);
+
+            // JobPosting nesnesi oluştur
+            JobPosting jobPosting = new JobPosting();
+            jobPosting.setPositionId(Integer.parseInt(position)); // Pozisyon ID'si numerik olmalı
+            jobPosting.setDescription(description);
+            jobPosting.setPostingDate(Date.valueOf(startDate));
+            jobPosting.setStatus(status);
+
+            // Veritabanına kaydet
+            jobPostingService.addJobPosting(jobPosting);
+
+            JOptionPane.showMessageDialog(this, "Job posting created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Alanları temizle
+            clearFields();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Position ID must be a number!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        } catch (DateTimeParseException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid date format! Use yyyy-MM-dd.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error creating job posting: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Alanları temizler
+     */
+    private void clearFields() {
+        PositionTextField.setText("");
+        DescriptionTextField.setText("");
+        StartDateTextField.setText("");
+        StatusTextField.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,7 +197,45 @@ public class HRJobPublishPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
-        // TODO add your handling code here:
+        // Kullanıcıdan alınan veriler
+    String position = PositionTextField.getText().trim();
+    String description = DescriptionTextField.getText().trim();
+    String startDateStr = StartDateTextField.getText().trim();
+    String status = StatusTextField.getText().trim();
+
+    // Giriş doğrulama
+    if (position.isEmpty() || description.isEmpty() || startDateStr.isEmpty() || status.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "All fields are required!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        // Tarih formatı doğrulama
+        LocalDate startDate = LocalDate.parse(startDateStr);
+
+        // JobPosting nesnesi oluşturma
+        JobPosting jobPosting = new JobPosting();
+        jobPosting.setPositionId(Integer.parseInt(position)); // Pozisyon ID'si numerik olmalı
+        jobPosting.setDescription(description);
+        jobPosting.setPostingDate(Date.valueOf(startDate));
+        jobPosting.setStatus(status);
+
+        // Veritabanına kaydetme
+        jobPostingService.addJobPosting(jobPosting);
+
+        // Başarılı mesajı gösterme
+        JOptionPane.showMessageDialog(this, "Job posting created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        // Alanları temizleme
+        clearFields();
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Position ID must be a number!", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    } catch (DateTimeParseException ex) {
+        JOptionPane.showMessageDialog(this, "Invalid date format! Use yyyy-MM-dd.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error creating job posting: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_CreateButtonActionPerformed
 
 

@@ -3,20 +3,84 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
-
+import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
+import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
+import javax.swing.*;
+import java.awt.*;
+import java.sql.Date;
 /**
  *
  * @author Lenovo
  */
 public class HRJobDetailsPanel extends javax.swing.JPanel {
-
+    private JobPostingDAO jobPostingDAO;
+    private JButton loadButton;
     /**
      * Creates new form HRJobDetailsPanel
      */
     public HRJobDetailsPanel() {
-        initComponents();
+        jobPostingDAO = new JobPostingDAO(); // DAO'yu başlat
+        initComponents(); // GUI Builder tarafından oluşturulan kod
+        additionalInit(); // Manuel olarak eklenen bileşenleri tanımlayın
+    }
+private void additionalInit() {
+        // Yeni "Load" butonunu oluştur
+        loadButton = new JButton("Load Job Posting");
+
+        // Layout'a butonu ekle
+        this.setLayout(new FlowLayout());
+        this.add(loadButton);
+
+        // Listener'ları tanımla
+        loadButton.addActionListener(e -> loadJobDetails());
+        UpdateButton.addActionListener(e -> updateJobDetails());
     }
 
+    /**
+     * Verileri yükle
+     */
+    private void loadJobDetails() {
+        String input = JOptionPane.showInputDialog(this, "Enter Job Posting ID to Load:");
+        if (input != null && !input.isEmpty()) {
+            try {
+                int jobPostingId = Integer.parseInt(input);
+                JobPosting jobPosting = jobPostingDAO.findById(jobPostingId);
+                if (jobPosting != null) {
+                    TitleTextField.setText(jobPosting.getTitle());
+                    StartDateTextField.setText(jobPosting.getPostingDate() != null ? jobPosting.getPostingDate().toString() : "");
+                    EndDateTextField.setText(jobPosting.getExpiryDate() != null ? jobPosting.getExpiryDate().toString() : "");
+                    StatusTextField.setText(jobPosting.getStatus());
+                    DescriptionTextField.setText(jobPosting.getDescription());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Job Posting not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Invalid Job Posting ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+     private void updateJobDetails() {
+        try {
+            JobPosting jobPosting = new JobPosting();
+
+            // Giriş alanlarından verileri al
+            jobPosting.setTitle(TitleTextField.getText());
+            jobPosting.setPostingDate(!StartDateTextField.getText().isEmpty() ? Date.valueOf(StartDateTextField.getText()) : null);
+            jobPosting.setExpiryDate(!EndDateTextField.getText().isEmpty() ? Date.valueOf(EndDateTextField.getText()) : null);
+            jobPosting.setStatus(StatusTextField.getText());
+            jobPosting.setDescription(DescriptionTextField.getText());
+
+            // JobPosting ID'yi kullanıcının girmesi gerekiyor
+            String input = JOptionPane.showInputDialog(this, "Enter Job Posting ID to Update:");
+            if (input != null && !input.isEmpty()) {
+                jobPosting.setJobPostingId(Integer.parseInt(input));
+                jobPostingDAO.update(jobPosting);
+                JOptionPane.showMessageDialog(this, "Job Posting updated successfully!");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error updating job posting: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +100,6 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
         EndDateTextField = new javax.swing.JTextField();
         cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         StatusTextField = new javax.swing.JTextField();
-        cCPaintedCircle4 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
         JobDetailLabel.setText("Job Detail");
 
@@ -52,6 +115,11 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
         );
 
         TitleTextField.setText("jTextField1");
+        TitleTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TitleTextFieldActionPerformed(evt);
+            }
+        });
 
         DescriptionTextField.setText("jTextField1");
 
@@ -90,17 +158,6 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
 
         StatusTextField.setText("jTextField1");
 
-        javax.swing.GroupLayout cCPaintedCircle4Layout = new javax.swing.GroupLayout(cCPaintedCircle4);
-        cCPaintedCircle4.setLayout(cCPaintedCircle4Layout);
-        cCPaintedCircle4Layout.setHorizontalGroup(
-            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 13, Short.MAX_VALUE)
-        );
-        cCPaintedCircle4Layout.setVerticalGroup(
-            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 12, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,58 +171,50 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
                 .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(JobDetailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(497, 497, 497))
+                        .addGap(256, 256, 256)
+                        .addComponent(JobDetailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(DescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EndDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52))))
+                        .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(470, 470, 470)
+                        .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(EndDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(StatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(22, 22, 22)
                             .addComponent(JobDetailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(81, 81, 81)
-                            .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(59, 59, 59)
+                            .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EndDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(44, 44, 44)
-                                .addComponent(EndDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(StatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(DescriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(UpdateButton)
                 .addGap(80, 80, 80))
@@ -175,6 +224,16 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UpdateButtonActionPerformed
+
+    private void TitleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TitleTextFieldActionPerformed
+        String enteredTitle = TitleTextField.getText().trim();
+    if (!enteredTitle.isEmpty()) {
+        // İş ilanını güncelle
+        updateJobDetails();
+    } else {
+        JOptionPane.showMessageDialog(this, "Title cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_TitleTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,6 +247,5 @@ public class HRJobDetailsPanel extends javax.swing.JPanel {
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle2;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle4;
     // End of variables declaration//GEN-END:variables
 }

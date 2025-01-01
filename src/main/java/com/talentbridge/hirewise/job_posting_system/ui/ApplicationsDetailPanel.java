@@ -4,17 +4,86 @@
  */
 package com.talentbridge.hirewise.job_posting_system.ui;
 
+import com.talentbridge.hirewise.job_posting_system.dao.ApplicationDAO;
+import com.talentbridge.hirewise.job_posting_system.model.Application;
+import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
+import java.sql.Date;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
  */
 public class ApplicationsDetailPanel extends javax.swing.JPanel {
-
+private ApplicationDAO applicationDAO;
+private ApplicationService applicationService;
+private JButton loadButton;
+private JButton saveButton;
     /**
      * Creates new form ApplicationsDetailPanel
      */
     public ApplicationsDetailPanel() {
-        initComponents();
+        applicationDAO = new ApplicationDAO(); // DAO'yu başlat
+        initComponents(); // GUI Builder tarafından oluşturulan kod
+        additionalInit(); // Manuel olarak eklenen bileşenleri tanımlayın
+    }
+private void additionalInit() {
+        // Yeni butonları oluştur
+        loadButton = new JButton("Load Application");
+        saveButton = new JButton("Save Changes");
+
+        // Layout'a ekle
+        this.setLayout(new java.awt.FlowLayout());
+        this.add(loadButton);
+        this.add(saveButton);
+
+        // Listener'ları tanımla
+        loadButton.addActionListener(e -> loadApplicationDetails());
+        saveButton.addActionListener(e -> saveApplicationDetails());
+    }
+
+    /**
+     * Uygulama detaylarını yükle
+     */
+    private void loadApplicationDetails() {
+        String input = JOptionPane.showInputDialog(this, "Enter Application ID to Load:");
+        if (input != null && !input.isEmpty()) {
+            try {
+                int applicationId = Integer.parseInt(input);
+                Application application = applicationDAO.findById(applicationId);
+                if (application != null) {
+                    ApplicationTitleLabel.setText(application.getApplicationId() + " - Title");
+                    StartDateLabel.setText("Start Date: " + application.getApplicationDate());
+                    EndDateLabel.setText("End Date: " + application.getLastUpdated());
+                    StatusLabel.setText("Status: " + application.getCurrentStage());
+                    ApplicationDetailsLabel.setText("Applicant ID: " + application.getApplicantId() +
+                            " | Job Posting ID: " + application.getJobPostingId());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Application not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Invalid Application ID!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    /**
+     * Uygulama detaylarını kaydet
+     */
+    private void saveApplicationDetails() {
+        try {
+            Application application = new Application();
+            application.setApplicationId(Integer.parseInt(ApplicationTitleLabel.getText().split(" - ")[0]));
+            application.setApplicationDate(Date.valueOf(StartDateLabel.getText().replace("Start Date: ", "").trim()));
+            application.setLastUpdated(Date.valueOf(EndDateLabel.getText().replace("End Date: ", "").trim()));
+            application.setCurrentStage(StatusLabel.getText().replace("Status: ", "").trim());
+
+            applicationDAO.update(application);
+            JOptionPane.showMessageDialog(this, "Application updated successfully!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error saving application: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -32,6 +101,8 @@ public class ApplicationsDetailPanel extends javax.swing.JPanel {
         ApplicationDetailsLabel = new javax.swing.JLabel();
         ApplicationTitleLabel = new javax.swing.JLabel();
         cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle2 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
         StartDateLabel.setText("jLabel1");
 
@@ -54,48 +125,78 @@ public class ApplicationsDetailPanel extends javax.swing.JPanel {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout cCPaintedCircle2Layout = new javax.swing.GroupLayout(cCPaintedCircle2);
+        cCPaintedCircle2.setLayout(cCPaintedCircle2Layout);
+        cCPaintedCircle2Layout.setHorizontalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 14, Short.MAX_VALUE)
+        );
+        cCPaintedCircle2Layout.setVerticalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cCPaintedCircle3Layout = new javax.swing.GroupLayout(cCPaintedCircle3);
+        cCPaintedCircle3.setLayout(cCPaintedCircle3Layout);
+        cCPaintedCircle3Layout.setHorizontalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 14, Short.MAX_VALUE)
+        );
+        cCPaintedCircle3Layout.setVerticalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 16, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(ApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(ApplicationDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(StartDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(105, 152, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(ApplicationDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(ApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(StartDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(EndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(202, 202, 202))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(StartDateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ApplicationDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StartDateLabel)
                             .addComponent(EndDateLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(StatusLabel)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(StatusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)))
+                        .addGap(94, 94, 94)
+                        .addComponent(ApplicationDetailsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -107,5 +208,7 @@ public class ApplicationsDetailPanel extends javax.swing.JPanel {
     private javax.swing.JLabel StartDateLabel;
     private javax.swing.JLabel StatusLabel;
     private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle2;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
     // End of variables declaration//GEN-END:variables
 }
