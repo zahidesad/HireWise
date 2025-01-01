@@ -153,4 +153,34 @@ public class TaskDAO {
         task.setStatus(rs.getString("status"));
         return task;
     }
+    
+    public List<Task> getFilteredTasks(int employeeId, String status, String orderBy) {
+    List<Task> tasks = new ArrayList<>();
+    String storedProcedure = "{call GetFilteredTasks(?, ?, ?)}"; // The stored procedure name
+
+    try (Connection conn = DBConnection.getConnection();
+         CallableStatement cs = conn.prepareCall(storedProcedure)) {
+
+        // Set the parameters for the stored procedure
+        cs.setInt(1, employeeId);
+        if (status != null && !status.isEmpty()) {
+            cs.setString(2, status); // Set the status if provided
+        } else {
+            cs.setNull(2, Types.VARCHAR); // If no status, set it as NULL
+        }
+        cs.setString(3, orderBy); // OrderBy: 'start_date' or 'end_date'
+
+        // Execute the stored procedure and process the result set
+        try (ResultSet rs = cs.executeQuery()) {
+            while (rs.next()) {
+                Task task = mapRowToTask(rs);
+                tasks.add(task);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return tasks;
+}
 }

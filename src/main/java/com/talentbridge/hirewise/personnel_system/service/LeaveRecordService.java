@@ -41,5 +41,9 @@ public class LeaveRecordService {
     public List<LeaveRecord> getLeavesByDepartmentId(int deptId) {
         return leaveRecordDAO.findByDepartmentId(deptId);
     }
+    
+    public List<LeaveRecord> getEmployeeLeaveRecords(int employeeId) {
+        return leaveRecordDAO.getEmployeeLeaveRecords(employeeId);
+    }
 
 }

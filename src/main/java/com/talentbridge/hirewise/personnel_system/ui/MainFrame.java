@@ -73,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final ProfilePanel profilePage;
     private final PositionDetailsPanel positionDetailsPage;
     private final LeaveRecordPanel leaveRecordPage;
+    private final EmpLeaveRequestsPanel empLeaveRequestsPage;
 
     private final AdminHomePanel adminHomePage;
     private final ShowDepartmentsPanel showDepartmentsPage;
@@ -114,6 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
         registerPage = new RegisterPanel();
         profilePage = new ProfilePanel();
         positionDetailsPage = new PositionDetailsPanel();
+        empLeaveRequestsPage = new EmpLeaveRequestsPanel();
         
         // ----------Admin Panels----------
         showDepartmentsPage = new ShowDepartmentsPanel();
@@ -296,6 +298,7 @@ public class MainFrame extends javax.swing.JFrame {
     public RegisterPanel getRegisterPage(){return this.registerPage; }
     public ShowTasksPanel getShowTasksPage(){return this.showTasksPage; }
     public ProfilePanel getProfilePage(){return this.profilePage; }
+    public EmpLeaveRequestsPanel getEmpLeaveRequestsPage() {return this.empLeaveRequestsPage; }
     
     
     public AdminHomePanel getAdminHomePage(CCSideMenuList cCSideMenuList) { return this.adminHomePage; }

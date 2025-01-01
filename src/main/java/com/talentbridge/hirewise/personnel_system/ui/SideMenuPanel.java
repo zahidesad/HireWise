@@ -183,7 +183,8 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon5.setImage(imgFit5);
         cCSideMenuList1.addItem(new Item("Create CV", icon5, MainFrame.instance.getCVPage()));
-
+        
+        cCSideMenuList1.setSelectedIndex(1);
     }
 
     private void talentbridgeManagerList() {
@@ -254,6 +255,12 @@ public class SideMenuPanel extends javax.swing.JPanel {
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Tasks", icon3, MainFrame.instance.getShowTasksPage()));
+        
+        // 3) Leave Record View
+        ImageIcon iconLeave = new ImageIcon(ImageLib.getLeaveIconPath());
+        Image imgFitLeave = iconLeave.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
+        iconLeave.setImage(imgFitLeave);
+        cCSideMenuList1.addItem(new Item("Leave Requests", iconLeave, MainFrame.instance.getEmpLeaveRequestsPage()));
 
         cCSideMenuList1.setSelectedIndex(0);
     }

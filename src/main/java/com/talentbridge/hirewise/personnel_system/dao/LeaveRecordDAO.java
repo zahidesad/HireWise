@@ -17,7 +17,7 @@ public class LeaveRecordDAO {
     public void insert(LeaveRecord lr) {
         String sql = "INSERT INTO LeaveRecord (employee_id, approved_by, leave_type, start_date, end_date, status) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
-        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, lr.getEmployeeId());
             if (lr.getApprovedBy() != null) {
@@ -39,7 +39,7 @@ public class LeaveRecordDAO {
             ps.setString(6, lr.getStatus());
 
             ps.executeUpdate();
-            try ( ResultSet rs = ps.getGeneratedKeys()) {
+            try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     lr.setLeaveId(rs.getInt(1));
                 }
@@ -53,10 +53,10 @@ public class LeaveRecordDAO {
         String sql = "SELECT leave_id, employee_id, approved_by, leave_type, start_date, end_date, status "
                 + "FROM LeaveRecord WHERE leave_id = ?";
         LeaveRecord lr = null;
-        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, leaveId);
-            try ( ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     lr = mapRowToLeaveRecord(rs);
                 }
@@ -71,7 +71,7 @@ public class LeaveRecordDAO {
         String sql = "SELECT leave_id, employee_id, approved_by, leave_type, start_date, end_date, status FROM LeaveRecord";
         List<LeaveRecord> list = new ArrayList<>();
 
-        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = DBConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 LeaveRecord lr = mapRowToLeaveRecord(rs);
                 list.add(lr);
@@ -85,7 +85,7 @@ public class LeaveRecordDAO {
     public void update(LeaveRecord lr) {
         String sql = "UPDATE LeaveRecord SET employee_id=?, approved_by=?, leave_type=?, start_date=?, end_date=?, status=? "
                 + "WHERE leave_id=?";
-        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, lr.getEmployeeId());
             if (lr.getApprovedBy() != null) {
@@ -115,7 +115,7 @@ public class LeaveRecordDAO {
 
     public void delete(int leaveId) {
         String sql = "DELETE FROM LeaveRecord WHERE leave_id=?";
-        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, leaveId);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -138,10 +138,10 @@ public class LeaveRecordDAO {
          WHERE e.department_id = ?
     """;
 
-        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, departmentId);
-            try ( ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     LeaveRecord lr = mapRowToLeaveRecord(rs);
                     leaves.add(lr);
@@ -151,6 +151,31 @@ public class LeaveRecordDAO {
             e.printStackTrace();
         }
         return leaves;
+    }
+
+    public List<LeaveRecord> getEmployeeLeaveRecords(int employeeId) {
+        List<LeaveRecord> leaveRecords = new ArrayList<>();
+        String sql = """
+        SELECT leave_id, employee_id, approved_by, leave_type, start_date, end_date, status
+        FROM LeaveRecord
+        WHERE employee_id = ?
+    """;
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, employeeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    LeaveRecord lr = mapRowToLeaveRecord(rs);
+                    leaveRecords.add(lr);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return leaveRecords;
     }
 
     private LeaveRecord mapRowToLeaveRecord(ResultSet rs) throws SQLException {
