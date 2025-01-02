@@ -8,6 +8,10 @@ import com.talentbridge.hirewise.job_posting_system.dao.ApplicationDAO;
 import com.talentbridge.hirewise.job_posting_system.dao.JobPostingDAO;
 import com.talentbridge.hirewise.job_posting_system.model.Application;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 /**
  *
@@ -27,6 +31,8 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
         this.application = application;
         applicationId = application.getApplicationId();
         SetPanel(application);
+        setBackground(Color.decode("#616fec"));
+        setOpaque(false);
         StatusComboBox.addActionListener(evt -> {
     String selectedStatus = (String) StatusComboBox.getSelectedItem();
     if (selectedStatus != null) {
@@ -72,6 +78,16 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
 });
     }
     
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+
+        // Yuvarlatılmış dikdörtgeni çizmek için
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30); // 30px yuvarlatma
+    }
+    
     
     public final void SetPanel(Application application){
         JobPostingDAO jobPostingDao= new JobPostingDAO();
@@ -91,28 +107,17 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         NameTextField = new javax.swing.JTextField();
         UpdateButton = new javax.swing.JButton();
         CVButton = new javax.swing.JButton();
         TitleTextField = new javax.swing.JTextField();
         StartDateTextField = new javax.swing.JTextField();
         StatusComboBox = new javax.swing.JComboBox<>();
-
-        javax.swing.GroupLayout cCPaintedCircle1Layout = new javax.swing.GroupLayout(cCPaintedCircle1);
-        cCPaintedCircle1.setLayout(cCPaintedCircle1Layout);
-        cCPaintedCircle1Layout.setHorizontalGroup(
-            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        cCPaintedCircle1Layout.setVerticalGroup(
-            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
         UpdateButton.setText("Update");
 
-        CVButton.setText("CV");
+        CVButton.setText("View CV");
         CVButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CVButtonActionPerformed(evt);
@@ -127,22 +132,38 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
 
         StatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Received", "Interview" }));
 
+        cCPaintedCircle3.setBackground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle3.setForeground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle3.setToolTipText("");
+        cCPaintedCircle3.setColor(new java.awt.Color(246, 183, 162));
+
+        javax.swing.GroupLayout cCPaintedCircle3Layout = new javax.swing.GroupLayout(cCPaintedCircle3);
+        cCPaintedCircle3.setLayout(cCPaintedCircle3Layout);
+        cCPaintedCircle3Layout.setHorizontalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+        cCPaintedCircle3Layout.setVerticalGroup(
+            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 42, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UpdateButton)
-                    .addComponent(CVButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(UpdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CVButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(StartDateTextField)
                     .addComponent(StatusComboBox, 0, 98, Short.MAX_VALUE))
@@ -155,23 +176,22 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(UpdateButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CVButton))
-                            .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(UpdateButton)
+                            .addComponent(StartDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(StatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CVButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,6 +211,6 @@ public class CCHRApplicationsElement extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> StatusComboBox;
     private javax.swing.JTextField TitleTextField;
     private javax.swing.JButton UpdateButton;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
     // End of variables declaration//GEN-END:variables
 }

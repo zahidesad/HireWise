@@ -1,5 +1,6 @@
 package com.talentbridge.hirewise.personnel_system.ui;
 
+
 import com.talentbridge.hirewise.custom_components.CCHRApplicationsElement;
 import com.talentbridge.hirewise.personnel_system.ui.manager_screens.ShowPositionsPanel;
 import com.talentbridge.hirewise.personnel_system.ui.manager_screens.ShowPerformanceReviewPanel;
@@ -36,10 +37,17 @@ import com.talentbridge.hirewise.personnel_system.ui.admin_screens.AddNewDepartm
 import com.talentbridge.hirewise.personnel_system.ui.admin_screens.AdminHomePanel;
 import com.talentbridge.hirewise.personnel_system.ui.admin_screens.PromoteEmployeePanel;
 import com.talentbridge.hirewise.personnel_system.ui.admin_screens.ShowDepartmentsPanel;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import mdlaf.MaterialLookAndFeel;
+import mdlaf.themes.MaterialLiteTheme;
+import mdlaf.themes.MaterialOceanicTheme;
+
 
 /**
  *
@@ -266,6 +274,26 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        
+       try {
+            // Material UI Look and Feel ayarı
+            UIManager.setLookAndFeel(new MaterialLookAndFeel(new MaterialLiteTheme()));
+            
+            UIManager.put("Button.arc", 16);       
+            UIManager.put("TextField.arc", 12); 
+            UIManager.put("Button.background", Color.decode("#5ce1e6"));  
+            UIManager.put("Panel.background", Color.decode("#fef7ff"));// Buton arka plan rengi
+            UIManager.put("Button.foreground", Color.BLACK);      // Buton yazı rengi
+            UIManager.put("TextField.background",Color.lightGray); // TextField arka plan
+            UIManager.put("TextField.foreground", Color.BLACK);
+            UIManager.put("Label.foreground", Color.BLACK);
+        } catch (UnsupportedLookAndFeelException e) {
+            // Hata mesajını yazdır ve programın devamını engelle
+            e.printStackTrace();
+            return; // LAF ayarlanamazsa programı sonlandır
+        }
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

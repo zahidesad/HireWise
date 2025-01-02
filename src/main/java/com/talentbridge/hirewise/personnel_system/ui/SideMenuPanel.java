@@ -144,11 +144,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
 
     private void hirewiseHRList() {
         testList();
-        //------------ HR Job Details -------------
-        ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
-        Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
-        icon.setImage(imgFit);
-        cCSideMenuList1.addItem(new Item("Job Details", icon, MainFrame.instance.getHRJobDetailsPage()));
+        
 
         //------------ HR Job Posts -------------
         ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());

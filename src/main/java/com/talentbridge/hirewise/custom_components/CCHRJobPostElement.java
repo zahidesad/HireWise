@@ -8,6 +8,10 @@ import com.talentbridge.hirewise.job_posting_system.model.JobPosting;
 import com.talentbridge.hirewise.job_posting_system.service.ApplicationService;
 import com.talentbridge.hirewise.job_posting_system.service.JobPostingService;
 import com.talentbridge.hirewise.personnel_system.ui.MainFrame;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 /**
  *
@@ -23,6 +27,8 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
         initComponents();
         this.postedJob = postedJob;
         setPanel(postedJob);
+        setBackground(Color.decode("#616fec"));
+        setOpaque(false);
     }
 
     /**
@@ -34,29 +40,18 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cCPaintedCircle1 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         TitleLabel = new javax.swing.JLabel();
         ViewButton = new javax.swing.JButton();
         StartDateLabel = new javax.swing.JLabel();
         EndDateLabel = new javax.swing.JLabel();
         StatusLabel = new javax.swing.JLabel();
-        cCPaintedCircle3 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
-        cCPaintedCircle4 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
-        cCPaintedCircle5 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         DeleteButton = new javax.swing.JButton();
+        cCPaintedCircle6 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle2 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle7 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
+        cCPaintedCircle8 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
         setPreferredSize(new java.awt.Dimension(533, 100));
-
-        javax.swing.GroupLayout cCPaintedCircle1Layout = new javax.swing.GroupLayout(cCPaintedCircle1);
-        cCPaintedCircle1.setLayout(cCPaintedCircle1Layout);
-        cCPaintedCircle1Layout.setHorizontalGroup(
-            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        cCPaintedCircle1Layout.setVerticalGroup(
-            cCPaintedCircle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
 
         TitleLabel.setText("jLabel1");
 
@@ -73,39 +68,6 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
 
         StatusLabel.setText("jLabel4");
 
-        javax.swing.GroupLayout cCPaintedCircle3Layout = new javax.swing.GroupLayout(cCPaintedCircle3);
-        cCPaintedCircle3.setLayout(cCPaintedCircle3Layout);
-        cCPaintedCircle3Layout.setHorizontalGroup(
-            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        cCPaintedCircle3Layout.setVerticalGroup(
-            cCPaintedCircle3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout cCPaintedCircle4Layout = new javax.swing.GroupLayout(cCPaintedCircle4);
-        cCPaintedCircle4.setLayout(cCPaintedCircle4Layout);
-        cCPaintedCircle4Layout.setHorizontalGroup(
-            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        cCPaintedCircle4Layout.setVerticalGroup(
-            cCPaintedCircle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout cCPaintedCircle5Layout = new javax.swing.GroupLayout(cCPaintedCircle5);
-        cCPaintedCircle5.setLayout(cCPaintedCircle5Layout);
-        cCPaintedCircle5Layout.setHorizontalGroup(
-            cCPaintedCircle5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        cCPaintedCircle5Layout.setVerticalGroup(
-            cCPaintedCircle5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-
         DeleteButton.setText("Delete");
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,73 +75,143 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
             }
         });
 
+        cCPaintedCircle6.setBackground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle6.setForeground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle6.setToolTipText("");
+        cCPaintedCircle6.setColor(new java.awt.Color(246, 183, 162));
+
+        javax.swing.GroupLayout cCPaintedCircle6Layout = new javax.swing.GroupLayout(cCPaintedCircle6);
+        cCPaintedCircle6.setLayout(cCPaintedCircle6Layout);
+        cCPaintedCircle6Layout.setHorizontalGroup(
+            cCPaintedCircle6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+        cCPaintedCircle6Layout.setVerticalGroup(
+            cCPaintedCircle6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 42, Short.MAX_VALUE)
+        );
+
+        cCPaintedCircle2.setBackground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle2.setForeground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle2.setToolTipText("");
+        cCPaintedCircle2.setColor(new java.awt.Color(246, 183, 162));
+        cCPaintedCircle2.setDiameter(15);
+
+        javax.swing.GroupLayout cCPaintedCircle2Layout = new javax.swing.GroupLayout(cCPaintedCircle2);
+        cCPaintedCircle2.setLayout(cCPaintedCircle2Layout);
+        cCPaintedCircle2Layout.setHorizontalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle2Layout.setVerticalGroup(
+            cCPaintedCircle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        cCPaintedCircle7.setBackground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle7.setForeground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle7.setToolTipText("");
+        cCPaintedCircle7.setColor(new java.awt.Color(246, 183, 162));
+        cCPaintedCircle7.setDiameter(15);
+
+        javax.swing.GroupLayout cCPaintedCircle7Layout = new javax.swing.GroupLayout(cCPaintedCircle7);
+        cCPaintedCircle7.setLayout(cCPaintedCircle7Layout);
+        cCPaintedCircle7Layout.setHorizontalGroup(
+            cCPaintedCircle7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle7Layout.setVerticalGroup(
+            cCPaintedCircle7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        cCPaintedCircle8.setBackground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle8.setForeground(new java.awt.Color(97, 111, 236));
+        cCPaintedCircle8.setToolTipText("");
+        cCPaintedCircle8.setColor(new java.awt.Color(246, 183, 162));
+        cCPaintedCircle8.setDiameter(15);
+
+        javax.swing.GroupLayout cCPaintedCircle8Layout = new javax.swing.GroupLayout(cCPaintedCircle8);
+        cCPaintedCircle8.setLayout(cCPaintedCircle8Layout);
+        cCPaintedCircle8Layout.setHorizontalGroup(
+            cCPaintedCircle8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        cCPaintedCircle8Layout.setVerticalGroup(
+            cCPaintedCircle8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(cCPaintedCircle6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ViewButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cCPaintedCircle8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ViewButton)
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cCPaintedCircle5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DeleteButton)))
-                        .addContainerGap(26, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(StartDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106))))
+                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(EndDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(StartDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(101, 101, 101)
+                .addComponent(DeleteButton)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(StartDateLabel)
-                    .addComponent(cCPaintedCircle3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DeleteButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ViewButton)
+                            .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ViewButton))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addComponent(cCPaintedCircle6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(cCPaintedCircle5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(EndDateLabel)
-                                .addComponent(DeleteButton)))
+                            .addComponent(StartDateLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cCPaintedCircle7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EndDateLabel))
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(StatusLabel)
-                            .addComponent(cCPaintedCircle4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(cCPaintedCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cCPaintedCircle8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
 
+        // Yuvarlatılmış dikdörtgeni çizmek için
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30); // 30px yuvarlatma
+    }
     private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewButtonActionPerformed
         MainFrame.instance.getHRJobDetailsPage().postedJob = postedJob;
         MainFrame.instance.setPage(MainFrame.instance.getHRJobDetailsPage());
@@ -211,9 +243,9 @@ public class CCHRJobPostElement extends javax.swing.JPanel {
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JButton ViewButton;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle1;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle3;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle4;
-    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle5;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle2;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle6;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle7;
+    private com.talentbridge.hirewise.custom_components.CCPaintedCircle cCPaintedCircle8;
     // End of variables declaration//GEN-END:variables
 }
