@@ -22,30 +22,25 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="cCPaintedCircle1" min="-2" pref="29" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="cCPaintedCircle1" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="TitleTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
-                                      <Component id="JobDetailLabel" min="-2" pref="94" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="TitleTextField" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="DescriptionTextField" min="-2" pref="607" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="cCPaintedCircle3" min="-2" pref="13" max="-2" attributes="0"/>
-                                  <Component id="cCPaintedCircle2" min="-2" pref="13" max="-2" attributes="0"/>
-                                  <Component id="cCPaintedCircle4" min="-2" pref="13" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="StartDateTextField" min="-2" max="-2" attributes="0"/>
-                                  <Component id="EndDateTextField" min="-2" max="-2" attributes="0"/>
-                                  <Component id="StatusTextField" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cCPaintedCircle5" pref="23" max="32767" attributes="0"/>
+                                  <Component id="cCPaintedCircle6" alignment="1" pref="23" max="32767" attributes="0"/>
+                                  <Component id="cCPaintedCircle7" alignment="1" pref="23" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="StartDateTextField" alignment="0" pref="192" max="32767" attributes="0"/>
+                                  <Component id="EndDateTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="StatusTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -55,42 +50,41 @@
                       <Component id="UpdateButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="191" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+              <Component id="JobDetailLabel" min="-2" pref="145" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="JobDetailLabel" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="JobDetailLabel" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                          <Component id="TitleTextField" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="cCPaintedCircle1" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="TitleTextField" min="-2" max="-2" attributes="0"/>
+                  <Component id="cCPaintedCircle1" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="cCPaintedCircle3" min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="StartDateTextField" min="-2" max="-2" attributes="0"/>
+                          <Component id="cCPaintedCircle5" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="cCPaintedCircle2" min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="EndDateTextField" min="-2" max="-2" attributes="0"/>
+                          <Component id="cCPaintedCircle6" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="cCPaintedCircle4" min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="StatusTextField" min="-2" max="-2" attributes="0"/>
+                          <Component id="cCPaintedCircle7" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -108,20 +102,27 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="JobDetailLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Job Detail"/>
       </Properties>
     </Component>
     <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle1">
+      <Properties>
+        <Property name="diameter" type="int" value="25"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -147,21 +148,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateButtonActionPerformed"/>
       </Events>
     </Component>
-    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle2">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JTextField" name="StartDateTextField">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
@@ -172,37 +158,61 @@
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle3">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JTextField" name="StatusTextField">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
-    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle4">
+    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle5">
+      <Properties>
+        <Property name="diameter" type="int" value="15"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle6">
+      <Properties>
+        <Property name="diameter" type="int" value="15"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+    <Container class="com.talentbridge.hirewise.custom_components.CCPaintedCircle" name="cCPaintedCircle7">
+      <Properties>
+        <Property name="diameter" type="int" value="15"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

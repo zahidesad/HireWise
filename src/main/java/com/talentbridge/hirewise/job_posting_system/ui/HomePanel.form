@@ -24,7 +24,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="ProfileButton" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace pref="109" max="32767" attributes="0"/>
+              <EmptySpace pref="108" max="32767" attributes="0"/>
               <Component id="ApplicationsButton" min="-2" pref="201" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
               <Component id="JobPostButton" min="-2" pref="200" max="-2" attributes="0"/>
@@ -48,7 +48,7 @@
                   <Component id="ApplicationsButton" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
                   <Component id="ProfileButton" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="242" max="32767" attributes="0"/>
+              <EmptySpace pref="277" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
