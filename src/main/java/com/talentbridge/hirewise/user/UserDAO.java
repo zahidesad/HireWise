@@ -1,7 +1,6 @@
 package com.talentbridge.hirewise.user;
 
 import com.talentbridge.hirewise.connection.DBConnection;
-import com.talentbridge.hirewise.user.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ public class UserDAO {
     // CREATE
     public void insert(User user) {
         String sql = "INSERT INTO [Users] (username, [password], email, role) VALUES (?, ?, ?, ?)";
-        // Not: tablo adı "User" ise MSSQL'de köşeli parantez kullanmanız gerekebilir: [User]
 
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -99,16 +97,16 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
-    
+
     public User login(String username, String password) {
         String sql = "SELECT user_id, username, [password], email, role, created_at, updated_at "
-                   + "FROM [Users] WHERE username = ? AND [password] = ?";
+                + "FROM [Users] WHERE username = ? AND [password] = ?";
         User user = null;
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
             ps.setString(2, password);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     user = mapRowToUser(rs);
                 }

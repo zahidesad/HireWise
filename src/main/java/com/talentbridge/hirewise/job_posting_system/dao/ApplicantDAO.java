@@ -15,11 +15,11 @@ import java.util.List;
  * @author zahid
  */
 public class ApplicantDAO {
-     // CREATE
+    // CREATE
+
     public void insert(Applicant applicant) {
         String sql = "INSERT INTO Applicant (user_id, first_name, last_name, email, phone, cv_id) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, applicant.getUserId());
             ps.setString(2, applicant.getFirstName());
@@ -29,7 +29,7 @@ public class ApplicantDAO {
             ps.setInt(6, applicant.getCvId());
 
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     applicant.setApplicantId(rs.getInt(1));
                 }
@@ -43,11 +43,10 @@ public class ApplicantDAO {
     public Applicant findById(int applicantId) {
         String sql = "SELECT applicant_id, user_id, first_name, last_name, email, phone, cv_id FROM Applicant WHERE applicant_id=?";
         Applicant applicant = null;
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, applicantId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     applicant = mapRowToApplicant(rs);
                 }
@@ -62,9 +61,7 @@ public class ApplicantDAO {
     public List<Applicant> findAll() {
         String sql = "SELECT applicant_id, user_id, first_name, last_name, email, phone, cv_id FROM Applicant";
         List<Applicant> applicants = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 Applicant applicant = mapRowToApplicant(rs);
@@ -79,8 +76,7 @@ public class ApplicantDAO {
     // UPDATE
     public void update(Applicant applicant) {
         String sql = "UPDATE Applicant SET user_id=?, first_name=?, last_name=?, email=?, phone=?, cv_id=? WHERE applicant_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, applicant.getUserId());
             ps.setString(2, applicant.getFirstName());
@@ -99,8 +95,7 @@ public class ApplicantDAO {
     // DELETE
     public void delete(int applicantId) {
         String sql = "DELETE FROM Applicant WHERE applicant_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, applicantId);
             ps.executeUpdate();
@@ -108,48 +103,46 @@ public class ApplicantDAO {
             e.printStackTrace();
         }
     }
-    
-    // READ SINGLE APPLICANT BY USER ID
-public Applicant getApplicantByUserId(int userId) {
-    String sql = "SELECT applicant_id, user_id, first_name, last_name, email, phone, cv_id FROM Applicant WHERE user_id=?";
-    Applicant applicant = null;
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, userId);
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                applicant = mapRowToApplicant(rs);
+    // READ SINGLE APPLICANT BY USER ID
+    public Applicant getApplicantByUserId(int userId) {
+        String sql = "SELECT applicant_id, user_id, first_name, last_name, email, phone, cv_id FROM Applicant WHERE user_id=?";
+        Applicant applicant = null;
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+            try ( ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    applicant = mapRowToApplicant(rs);
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return applicant;
     }
-    return applicant;
-}
 
 // READ APPLICANT BY APPLICATION ID
-public Applicant getApplicantByApplicationId(int applicationId) {
-    String sql = "SELECT a.applicant_id, a.user_id, a.first_name, a.last_name, a.email, a.phone, a.cv_id " +
-                 "FROM Applicant a " +
-                 "JOIN Application app ON a.applicant_id = app.applicant_id " +
-                 "WHERE app.application_id = ?";
-    Applicant applicant = null;
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+    public Applicant getApplicantByApplicationId(int applicationId) {
+        String sql = "SELECT a.applicant_id, a.user_id, a.first_name, a.last_name, a.email, a.phone, a.cv_id "
+                + "FROM Applicant a "
+                + "JOIN Application app ON a.applicant_id = app.applicant_id "
+                + "WHERE app.application_id = ?";
+        Applicant applicant = null;
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, applicationId);
+            ps.setInt(1, applicationId);
 
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                applicant = mapRowToApplicant(rs);
+            try ( ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    applicant = mapRowToApplicant(rs);
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return applicant;
     }
-    return applicant;
-}
 
     private Applicant mapRowToApplicant(ResultSet rs) throws SQLException {
         Applicant applicant = new Applicant();

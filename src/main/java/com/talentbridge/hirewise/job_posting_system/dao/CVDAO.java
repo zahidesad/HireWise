@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.job_posting_system.dao;
+
 import com.talentbridge.hirewise.connection.DBConnection;
 import com.talentbridge.hirewise.job_posting_system.model.CV;
 import java.sql.Connection;
@@ -12,16 +9,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author PC
  */
 public class CVDAO {
+
     // CREATE
     public void insert(CV cv) {
         String sql = "INSERT INTO CV (title, about, email, phone, external_source) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, cv.getTitle());
             ps.setString(2, cv.getAbout());
@@ -30,7 +28,7 @@ public class CVDAO {
             ps.setString(5, cv.getExternalSource());
 
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     cv.setCvId(rs.getInt(1));
                 }
@@ -44,11 +42,10 @@ public class CVDAO {
     public CV findById(int cvId) {
         String sql = "SELECT cv_id, title, about, email, phone, external_source FROM CV WHERE cv_id=?";
         CV cv = null;
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, cvId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     cv = mapRowToCV(rs);
                 }
@@ -63,9 +60,7 @@ public class CVDAO {
     public List<CV> findAll() {
         String sql = "SELECT cv_id, title, about, email, phone, external_source FROM CV";
         List<CV> cvs = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 CV cv = mapRowToCV(rs);
@@ -80,8 +75,7 @@ public class CVDAO {
     // UPDATE
     public void update(CV cv) {
         String sql = "UPDATE CV SET title=?, about=?, email=?, phone=?, external_source=? WHERE cv_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, cv.getTitle());
             ps.setString(2, cv.getAbout());
@@ -99,8 +93,7 @@ public class CVDAO {
     // DELETE
     public void delete(int cvId) {
         String sql = "DELETE FROM CV WHERE cv_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, cvId);
             ps.executeUpdate();

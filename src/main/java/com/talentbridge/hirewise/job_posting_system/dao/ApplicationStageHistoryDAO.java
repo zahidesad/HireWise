@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.job_posting_system.dao;
 
 import com.talentbridge.hirewise.connection.DBConnection;
@@ -21,11 +17,12 @@ import java.util.List;
  * @author Lenovo
  */
 public class ApplicationStageHistoryDAO {
+
     // CREATE
     public void insert(ApplicationStageHistory history) {
         String sql = "INSERT INTO ApplicationStageHistory (application_id, stage_name, changed_data, comments) "
-                   + "VALUES (?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                + "VALUES (?, ?, ?, ?)";
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, history.getApplicationId());
             ps.setString(2, history.getStageName());
@@ -33,7 +30,7 @@ public class ApplicationStageHistoryDAO {
             ps.setString(4, history.getComments());
             ps.executeUpdate();
 
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     history.setStageHistoryId(rs.getInt(1));
                 }
@@ -46,13 +43,13 @@ public class ApplicationStageHistoryDAO {
     // READ by ID
     public ApplicationStageHistory findById(int stageHistoryId) {
         String sql = "SELECT stage_history_id, application_id, stage_name, changed_data, comments "
-                   + "FROM ApplicationStageHistory WHERE stage_history_id = ?";
+                + "FROM ApplicationStageHistory WHERE stage_history_id = ?";
         ApplicationStageHistory history = null;
 
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, stageHistoryId);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     history = mapRowToApplicationStageHistory(rs);
                 }
@@ -69,7 +66,7 @@ public class ApplicationStageHistoryDAO {
         String sql = "SELECT stage_history_id, application_id, stage_name, changed_data, comments FROM ApplicationStageHistory";
         List<ApplicationStageHistory> histories = new ArrayList<>();
 
-        try (Connection conn = DBConnection.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 ApplicationStageHistory history = mapRowToApplicationStageHistory(rs);
                 histories.add(history);
@@ -84,8 +81,8 @@ public class ApplicationStageHistoryDAO {
     // UPDATE
     public void update(ApplicationStageHistory history) {
         String sql = "UPDATE ApplicationStageHistory SET application_id = ?, stage_name = ?, changed_data = ?, comments = ? "
-                   + "WHERE stage_history_id = ?";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+                + "WHERE stage_history_id = ?";
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, history.getApplicationId());
             ps.setString(2, history.getStageName());
@@ -102,7 +99,7 @@ public class ApplicationStageHistoryDAO {
     // DELETE
     public void delete(int stageHistoryId) {
         String sql = "DELETE FROM ApplicationStageHistory WHERE stage_history_id = ?";
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, stageHistoryId);
             ps.executeUpdate();
         } catch (SQLException e) {

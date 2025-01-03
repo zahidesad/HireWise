@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.job_posting_system.dao;
+
 import com.talentbridge.hirewise.connection.DBConnection;
 import com.talentbridge.hirewise.job_posting_system.model.Organization;
 import java.sql.Connection;
@@ -14,19 +11,20 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 /**
  *
  * @author PC
  */
 public class OrganizationDAO {
+
     // CREATE
     public void insert(Organization organization) {
         String sql = "INSERT INTO Organization (cv_id, start_date, end_date, organization_name, organization_description) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, organization.getCvId());
-            
+
             if (organization.getStartDate() != null) {
                 ps.setDate(2, new java.sql.Date(organization.getStartDate().getTime()));
             } else {
@@ -43,7 +41,7 @@ public class OrganizationDAO {
             ps.setString(5, organization.getOrganizationDescription());
 
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     organization.setOrganizationId(rs.getInt(1));
                 }
@@ -57,11 +55,10 @@ public class OrganizationDAO {
     public Organization findById(int organizationId) {
         String sql = "SELECT organization_id, cv_id, start_date, end_date, organization_name, organization_description FROM Organization WHERE organization_id=?";
         Organization organization = null;
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, organizationId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     organization = mapRowToOrganization(rs);
                 }
@@ -76,11 +73,10 @@ public class OrganizationDAO {
     public List<Organization> findByCvId(int cvId) {
         String sql = "SELECT organization_id, cv_id, start_date, end_date, organization_name, organization_description FROM Organization WHERE cv_id=?";
         List<Organization> organizations = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, cvId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Organization organization = mapRowToOrganization(rs);
                     organizations.add(organization);
@@ -96,9 +92,7 @@ public class OrganizationDAO {
     public List<Organization> findAll() {
         String sql = "SELECT organization_id, cv_id, start_date, end_date, organization_name, organization_description FROM Organization";
         List<Organization> organizations = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 Organization organization = mapRowToOrganization(rs);
@@ -113,11 +107,10 @@ public class OrganizationDAO {
     // UPDATE
     public void update(Organization organization) {
         String sql = "UPDATE Organization SET cv_id=?, start_date=?, end_date=?, organization_name=?, organization_description=? WHERE organization_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, organization.getCvId());
-            
+
             if (organization.getStartDate() != null) {
                 ps.setDate(2, new java.sql.Date(organization.getStartDate().getTime()));
             } else {
@@ -143,8 +136,7 @@ public class OrganizationDAO {
     // DELETE
     public void delete(int organizationId) {
         String sql = "DELETE FROM Organization WHERE organization_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, organizationId);
             ps.executeUpdate();
@@ -157,7 +149,7 @@ public class OrganizationDAO {
         Organization organization = new Organization();
         organization.setOrganizationId(rs.getInt("organization_id"));
         organization.setCvId(rs.getInt("cv_id"));
-        
+
         Date startDate = rs.getDate("start_date");
         if (startDate != null) {
             organization.setStartDate(new java.util.Date(startDate.getTime()));

@@ -126,15 +126,15 @@ public class PositionDAO {
 
     public Position findByTitle(String title) {
         String sql = """
-        SELECT TOP 1 position_id, department_id, position_title, position_description, base_salary
-        FROM Position
-        WHERE position_title = ?
-    """;
+                    SELECT * 
+                    FROM dbo.FindPositionByTitle(?)
+                    """;
 
         Position pos = null;
         try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, title);
+
             try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     pos = mapRowToPosition(rs);

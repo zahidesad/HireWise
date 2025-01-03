@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.job_posting_system.dao;
 
 import com.talentbridge.hirewise.connection.DBConnection;
@@ -19,13 +15,12 @@ import java.util.List;
  * @author Lenovo
  */
 public class ApplicationDAO {
-    
-     // CREATE
+
+    // CREATE
     public void insert(Application application) {
         String sql = "INSERT INTO Application (applicant_id, job_posting_id, application_date, current_stage, last_updated) "
                 + "VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, application.getApplicantId());
             ps.setInt(2, application.getJobPostingId());
@@ -34,7 +29,7 @@ public class ApplicationDAO {
             ps.setDate(5, application.getLastUpdated());
 
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     application.setApplicationId(rs.getInt(1));
                 }
@@ -49,11 +44,10 @@ public class ApplicationDAO {
         String sql = "SELECT application_id, applicant_id, job_posting_id, application_date, current_stage, last_updated "
                 + "FROM Application WHERE application_id=?";
         Application application = null;
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, applicationId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     application = mapRowToApplication(rs);
                 }
@@ -69,9 +63,7 @@ public class ApplicationDAO {
         String sql = "SELECT application_id, applicant_id, job_posting_id, application_date, current_stage, last_updated "
                 + "FROM Application";
         List<Application> applications = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 Application application = mapRowToApplication(rs);
@@ -87,8 +79,7 @@ public class ApplicationDAO {
     public void update(Application application) {
         String sql = "UPDATE Application SET applicant_id=?, job_posting_id=?, application_date=?, current_stage=?, last_updated=? "
                 + "WHERE application_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, application.getApplicantId());
             ps.setInt(2, application.getJobPostingId());
@@ -106,8 +97,7 @@ public class ApplicationDAO {
     // DELETE
     public void delete(int applicationId) {
         String sql = "DELETE FROM Application WHERE application_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, applicationId);
             ps.executeUpdate();
@@ -115,48 +105,44 @@ public class ApplicationDAO {
             e.printStackTrace();
         }
     }
-    
+
     // Filter applications by job post title
-public List<Application> filterApplicationsByJobPostTitle(String jobPostTitle) {
-    String sql = "SELECT a.application_id, a.applicant_id, a.job_posting_id, a.application_date, a.current_stage, a.last_updated " +
-                 "FROM Application a " +
-                 "JOIN JobPosting jp ON a.job_posting_id = jp.job_posting_id " +
-                 "WHERE jp.title = ?";
-    List<Application> applications = new ArrayList<>();
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+    public List<Application> filterApplicationsByJobPostTitle(String jobPostTitle) {
+        String sql = "SELECT a.application_id, a.applicant_id, a.job_posting_id, a.application_date, a.current_stage, a.last_updated "
+                + "FROM Application a "
+                + "JOIN JobPosting jp ON a.job_posting_id = jp.job_posting_id "
+                + "WHERE jp.title = ?";
+        List<Application> applications = new ArrayList<>();
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setString(1, jobPostTitle);
+            ps.setString(1, jobPostTitle);
 
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Application application = mapRowToApplication(rs);
-                applications.add(application);
+            try ( ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Application application = mapRowToApplication(rs);
+                    applications.add(application);
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return applications;
     }
-    return applications;
-}
 
 // Delete all applications by job posting ID
-public void deleteApplicationsByJobPostingId(int jobPostingId) {
-    String sql = "DELETE FROM Application WHERE job_posting_id=?";
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
+    public void deleteApplicationsByJobPostingId(int jobPostingId) {
+        String sql = "DELETE FROM Application WHERE job_posting_id=?";
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, jobPostingId);
-        int rowsDeleted = ps.executeUpdate();
-        System.out.println(rowsDeleted + " applications deleted for job posting ID: " + jobPostingId);
+            ps.setInt(1, jobPostingId);
+            int rowsDeleted = ps.executeUpdate();
+            System.out.println(rowsDeleted + " applications deleted for job posting ID: " + jobPostingId);
 
-    } catch (SQLException e) {
-        System.out.println("Error occurred while deleting applications for job posting ID: " + jobPostingId);
-        e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error occurred while deleting applications for job posting ID: " + jobPostingId);
+            e.printStackTrace();
+        }
     }
-}
-    
-    
 
     private Application mapRowToApplication(ResultSet rs) throws SQLException {
         Application application = new Application();
@@ -168,5 +154,5 @@ public void deleteApplicationsByJobPostingId(int jobPostingId) {
         application.setLastUpdated(rs.getDate("last_updated"));
         return application;
     }
-    
+
 }

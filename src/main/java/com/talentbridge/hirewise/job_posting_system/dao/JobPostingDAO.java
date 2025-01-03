@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.talentbridge.hirewise.job_posting_system.dao;
 
 import com.talentbridge.hirewise.connection.DBConnection;
@@ -21,12 +17,12 @@ import java.util.List;
  * @author Lenovo
  */
 public class JobPostingDAO {
+
     // CREATE
     public void insert(JobPosting jobPosting) {
         String sql = "INSERT INTO JobPosting (position_id, posted_by, title, description, posting_date, expiry_date, status) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, jobPosting.getPositionId());
             ps.setInt(2, jobPosting.getPostedBy());
@@ -48,7 +44,7 @@ public class JobPostingDAO {
             ps.setString(7, jobPosting.getStatus());
 
             ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
+            try ( ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     jobPosting.setJobPostingId(rs.getInt(1));
                 }
@@ -63,11 +59,10 @@ public class JobPostingDAO {
         String sql = "SELECT job_posting_id, position_id, posted_by, title, description, posting_date, expiry_date, status "
                 + "FROM JobPosting WHERE job_posting_id=?";
         JobPosting jobPosting = null;
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, jobPostingId);
-            try (ResultSet rs = ps.executeQuery()) {
+            try ( ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     jobPosting = mapRowToJobPosting(rs);
                 }
@@ -83,9 +78,7 @@ public class JobPostingDAO {
         String sql = "SELECT job_posting_id, position_id, posted_by, title, description, posting_date, expiry_date, status "
                 + "FROM JobPosting";
         List<JobPosting> jobPostings = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 JobPosting jobPosting = mapRowToJobPosting(rs);
@@ -101,8 +94,7 @@ public class JobPostingDAO {
     public void update(JobPosting jobPosting) {
         String sql = "UPDATE JobPosting SET position_id=?, posted_by=?, title=?, description=?, posting_date=?, expiry_date=?, status=? "
                 + "WHERE job_posting_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, jobPosting.getPositionId());
             ps.setInt(2, jobPosting.getPostedBy());
@@ -133,8 +125,7 @@ public class JobPostingDAO {
     // DELETE
     public void delete(int jobPostingId) {
         String sql = "DELETE FROM JobPosting WHERE job_posting_id=?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, jobPostingId);
             ps.executeUpdate();
@@ -143,64 +134,63 @@ public class JobPostingDAO {
         }
     }
     // FILTER BY TITLE AND STATUS
-public List<JobPosting> filterJobPostings(String titleFilter, String statusFilter) {
-    String sql = "SELECT job_posting_id, position_id, posted_by, title, description, posting_date, expiry_date, status "
-               + "FROM JobPosting WHERE 1=1";
 
-    // Dynamically build the WHERE clause based on the filters
-    if (titleFilter != null && !titleFilter.trim().isEmpty()) {
-        sql += " AND title LIKE ?";
-    }
-    if (statusFilter != null && !statusFilter.trim().isEmpty()) {
-        sql += " AND status = ?";
-    }
+    public List<JobPosting> filterJobPostings(String titleFilter, String statusFilter) {
+        String sql = "SELECT job_posting_id, position_id, posted_by, title, description, posting_date, expiry_date, status "
+                + "FROM JobPosting WHERE 1=1";
 
-    List<JobPosting> jobPostings = new ArrayList<>();
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
-
-        int paramIndex = 1;
+        // Dynamically build the WHERE clause based on the filters
         if (titleFilter != null && !titleFilter.trim().isEmpty()) {
-            ps.setString(paramIndex++, "%" + titleFilter + "%");
+            sql += " AND title LIKE ?";
         }
         if (statusFilter != null && !statusFilter.trim().isEmpty()) {
-            ps.setString(paramIndex++, statusFilter);
+            sql += " AND status = ?";
         }
 
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                JobPosting jobPosting = mapRowToJobPosting(rs);
-                jobPostings.add(jobPosting);
+        List<JobPosting> jobPostings = new ArrayList<>();
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            int paramIndex = 1;
+            if (titleFilter != null && !titleFilter.trim().isEmpty()) {
+                ps.setString(paramIndex++, "%" + titleFilter + "%");
             }
+            if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+                ps.setString(paramIndex++, statusFilter);
+            }
+
+            try ( ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    JobPosting jobPosting = mapRowToJobPosting(rs);
+                    jobPostings.add(jobPosting);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return jobPostings;
     }
-    return jobPostings;
-}
-public void updateTitle(int jobPostingId, String newTitle) {
-    String sql = "UPDATE JobPosting SET title = ? WHERE job_posting_id = ?";
-    try (Connection conn = DBConnection.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        // Yeni başlık ve ilgili JobPosting ID'si set edilir
-        ps.setString(1, newTitle);
-        ps.setInt(2, jobPostingId);
+    public void updateTitle(int jobPostingId, String newTitle) {
+        String sql = "UPDATE JobPosting SET title = ? WHERE job_posting_id = ?";
+        try ( Connection conn = DBConnection.getConnection();  PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        // Güncelleme sorgusu çalıştırılır
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-            System.out.println("Job posting title updated successfully for ID: " + jobPostingId);
-        } else {
-            System.out.println("No job posting found with ID: " + jobPostingId);
+            // Yeni başlık ve ilgili JobPosting ID'si set edilir
+            ps.setString(1, newTitle);
+            ps.setInt(2, jobPostingId);
+
+            // Güncelleme sorgusu çalıştırılır
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Job posting title updated successfully for ID: " + jobPostingId);
+            } else {
+                System.out.println("No job posting found with ID: " + jobPostingId);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error occurred while updating job posting title: " + e.getMessage());
+            e.printStackTrace();
         }
-
-    } catch (SQLException e) {
-        System.out.println("Error occurred while updating job posting title: " + e.getMessage());
-        e.printStackTrace();
     }
-}
-    
 
     private JobPosting mapRowToJobPosting(ResultSet rs) throws SQLException {
         JobPosting jobPosting = new JobPosting();
