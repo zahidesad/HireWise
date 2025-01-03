@@ -147,13 +147,13 @@ public class SideMenuPanel extends javax.swing.JPanel {
         
 
         //------------ HR Job Posts -------------
-        ImageIcon icon2 = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon2 = new ImageIcon(ImageLib.getPositionIconPath());
         Image imgFit2 = icon2.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon2.setImage(imgFit2);
         cCSideMenuList1.addItem(new Item("Job Posts", icon2, MainFrame.instance.getHRJobPostsPage()));
         
          //------------ HR Applications -------------
-        ImageIcon icon3 = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon3 = new ImageIcon(ImageLib.getApplicationsIconPath());
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Applications", icon3, MainFrame.instance.getHRApplicationPage()));
@@ -167,7 +167,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.removeAllItems();
 
         //------------ Home -------------
-        ImageIcon icon = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon = new ImageIcon(ImageLib.getHomeIconPath());
         Image imgFit = icon.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon.setImage(imgFit);
         cCSideMenuList1.addItem(new Item("Home", icon, MainFrame.instance.getHomePage()));
@@ -179,13 +179,13 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.addItem(new Item("Profile", icon2, MainFrame.instance.getApplicantProfilePage()));
 
         //------------ Job Posts -------------
-        ImageIcon icon3 = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon3 = new ImageIcon(ImageLib.getPostingIconPath());
         Image imgFit3 = icon3.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon3.setImage(imgFit3);
         cCSideMenuList1.addItem(new Item("Job Posts", icon3, MainFrame.instance.getJobPostsPage()));
         
         //------------ CV -------------
-        ImageIcon icon5 = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon5 = new ImageIcon(ImageLib.getCVIconPath());
         Image imgFit5 = icon5.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon5.setImage(imgFit5);
         cCSideMenuList1.addItem(new Item("Create CV", icon5, MainFrame.instance.getCVPage()));
@@ -194,7 +194,7 @@ public class SideMenuPanel extends javax.swing.JPanel {
         cCSideMenuList1.setSelectedIndex(1);
 
         //------------ Applications -------------
-        ImageIcon icon6 = new ImageIcon(ImageLib.getUserIconPath());
+        ImageIcon icon6 = new ImageIcon(ImageLib.getApplicationsIconPath());
         Image imgFit6 = icon6.getImage().getScaledInstance(25, 25, Image.SCALE_AREA_AVERAGING);
         icon6.setImage(imgFit6);
         cCSideMenuList1.addItem(new Item("Applications", icon6, MainFrame.instance.getApplicationPage()));

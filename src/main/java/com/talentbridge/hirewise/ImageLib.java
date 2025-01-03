@@ -109,4 +109,16 @@ public class ImageLib {
     public static String getPromotionIconPath() {
         return projectPath + "\\assets\\promotion.png";
     }
+    
+    public static String getApplicationsIconPath() {
+        return projectPath + "\\assets\\applications.png";
+    }
+    
+    public static String getCVIconPath() {
+        return projectPath + "\\assets\\cv.png";
+    }
+    
+    public static String getPostingIconPath() {
+        return projectPath + "\\assets\\posting.png";
+    }
 }
