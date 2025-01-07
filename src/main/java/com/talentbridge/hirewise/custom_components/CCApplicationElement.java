@@ -56,6 +56,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
         cCPaintedCircle4 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
         cCPaintedCircle8 = new com.talentbridge.hirewise.custom_components.CCPaintedCircle();
 
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setPreferredSize(new java.awt.Dimension(515, 100));
 
         TitleLabel.setText("jLabel1");
@@ -158,7 +159,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(ViewButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(cCPaintedCircle2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +201,7 @@ public class CCApplicationElement extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(StatusLabel)
                             .addComponent(cCPaintedCircle8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
