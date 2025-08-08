@@ -55,7 +55,6 @@ com\talentbridge\hirewise\custom_components\CCOrganizationElement$2.class
 com\talentbridge\hirewise\job_posting_system\ui\CVPanel$1.class
 com\talentbridge\hirewise\custom_components\Button.class
 com\talentbridge\hirewise\custom_components\TextField.class
-com\talentbridge\hirewise\personnel_system\service\ExpenseRecordService.class
 com\talentbridge\hirewise\job_posting_system\ui\HomePanel$2.class
 com\talentbridge\hirewise\personnel_system\model\Employee.class
 com\talentbridge\hirewise\custom_components\CCTransparentViewport.class
@@ -65,7 +64,6 @@ com\raven\datechooser\Slider$6.class
 com\talentbridge\hirewise\user\UserDAO.class
 com\talentbridge\hirewise\custom_components\CCTaskElement.class
 com\talentbridge\hirewise\custom_components\CCHRJobPostElement$2.class
-com\talentbridge\hirewise\personnel_system\model\ExpenseRecord.class
 com\talentbridge\hirewise\job_posting_system\model\JobPosting.class
 com\talentbridge\hirewise\job_posting_system\ui\HRJobDetailsPanel$1.class
 com\talentbridge\hirewise\personnel_system\service\DepartmentBudgetService.class
@@ -98,7 +96,6 @@ com\talentbridge\hirewise\personnel_system\ui\admin_screens\PromoteEmployeePanel
 com\talentbridge\hirewise\custom_components\CCSideMenuList$3.class
 com\talentbridge\hirewise\custom_components\manager_custom_components\CCShowReview$1.class
 com\talentbridge\hirewise\job_posting_system\dao\ApplicationDAO.class
-com\talentbridge\hirewise\personnel_system\dao\ExpenseRecordDAO.class
 com\talentbridge\hirewise\custom_components\manager_custom_components\CCTaskElementManager$2.class
 com\talentbridge\hirewise\personnel_system\service\SalaryRecordService.class
 com\talentbridge\hirewise\personnel_system\ui\manager_screens\GivePerformanceReviewPanel$1.class
